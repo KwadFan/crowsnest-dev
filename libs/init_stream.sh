@@ -46,10 +46,18 @@ function construct_streamer {
         esac
     done
     if [ "${#MULTI_INSTANCES[@]}" != "0" ]; then
-        run_multi "${MULTI_INSTANCES[*]}"
+        if [[ "${CN_USTREAMER_FOUND}" = "1" ]]; then
+            run_multi "${MULTI_INSTANCES[*]}"
+        else
+            log_msg "ERROR: Backend 'ustreamer' not found. Start skipped..."
+        fi
     fi
     if [ "${#MJPG_INSTANCES[@]}" != "0" ]; then
-        run_mjpg "${MJPG_INSTANCES[*]}"
+        if [[ "${CN_USTREAMER_FOUND}" = "1" ]]; then
+            run_mjpg "${MJPG_INSTANCES[*]}"
+        else
+            log_msg "ERROR: Backend 'ustreamer' not found. Start skipped..."
+        fi
     fi
     sleep 2 & sleep_pid="$!" ; wait "${sleep_pid}"
     log_msg " ... Done!"

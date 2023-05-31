@@ -86,19 +86,21 @@ function check_apps {
     cstreamer="bin/camera-streamer/camera-streamer"
 
     if [[ -x "${BASE_CN_PATH}/${ustreamer}" ]]; then
-        log_msg "Dependency: '${ustreamer##*/}' found in ${ustreamer}."
+        log_msg "Backend: '${ustreamer##*/}' found in ${ustreamer}."
+        #shellcheck disable=SC2034
+        CN_USTREAMER_FOUND="1"
     else
-        log_msg "Dependency: '${ustreamer##*/}' not found. Exiting!"
-        exit 1
+        log_msg "Backend: '${ustreamer##*/}' not found ..."
     fi
 
     ## Avoid dependency check if non rpi sbc
     if [[ "$(is_raspberry_pi)" = "1" ]] && [[ "$(is_ubuntu_arm)" = "0" ]]; then
         if [[ -x "${BASE_CN_PATH}/${cstreamer}" ]]; then
-            log_msg "Dependency: '${cstreamer##*/}' found in ${cstreamer}."
+            log_msg "Backend: '${cstreamer##*/}' found in ${cstreamer}."
+            #shellcheck disable=SC2034
+            CN_CSTREAMER_FOUND="1"
         else
-            log_msg "Dependency: '${cstreamer##*/}' not found. Exiting!"
-            exit 1
+            log_msg "Backend: '${cstreamer##*/}' not found ..."
         fi
     fi
 }
@@ -112,6 +114,8 @@ function initial_check {
     check_dep "crudini"
     check_dep "find"
     check_dep "xargs"
+    check_startx
+    check_camautoddetect
     check_apps
     versioncontrol
     # print cfg if ! "${CROWSNEST_LOG_LEVEL}": quiet

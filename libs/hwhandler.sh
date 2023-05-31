@@ -120,3 +120,19 @@ is_ubuntu_arm() {
         echo "0"
     fi
 }
+
+check_startx() {
+    if [[ -f /boot/config.txt ]]; then
+        if grep -q "^start_x=1" /boot/config.txt ;then
+            legacy_stack_msg
+        fi
+    fi
+}
+
+check_camautoddetect() {
+    if [[ -f /boot/config.txt ]]; then
+        if grep -q "^camera_auto_detect=0" /boot/config.txt ;then
+            camautodetect_msg
+        fi
+    fi
+}

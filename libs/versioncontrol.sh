@@ -59,9 +59,18 @@ versioncontrol() {
     ### MAIN
     function main {
         if [[ "${CROWSNEST_LOG_LEVEL}" != "quiet" ]]; then
-            get_ustreamer_version
-            if [[ "$(is_raspberry_pi)" = "1" ]]; then
+            if [[ "${CN_USTREAMER_FOUND}" = "1" ]]; then
+                get_ustreamer_version
+            fi
+            if [[ "${CN_USTREAMER_FOUND}" != "1" ]]; then
+                vc_log_msg "Ustreamer not found, version check skipped ..."
+            fi
+            if [[ "$(is_raspberry_pi)" = "1" ]] &&
+            [[ "${CN_CSTREAMER_FOUND}" = "1" ]] ; then
                 get_ayucamstream_version
+            fi
+            if [[ "${CN_USTREAMER_FOUND}" != "1" ]]; then
+                vc_log_msg "camera-streamer not found, version check skipped ..."
             fi
         fi
     }

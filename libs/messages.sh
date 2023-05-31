@@ -64,3 +64,21 @@ function debug_focus_val_msg {
 function blockyfix_msg_1 {
     log_msg "INFO: Blockyfix: Setting video_bitrate_mode to constant."
 }
+
+function no_usable_device_msg {
+    log_msg "ERROR: No usable Devices Found. Stopping $(basename "${0}")."
+    log_msg "INFO: If a USB webcam connected, please see https://crowsnest.mainsail.xyz/faq/how-to-use-v4l2-ctl"
+    log_msg "INFO: If a Raspicam is connected, please see https://crowsnest.mainsail.xyz/faq/how-to-setup-a-raspicam"
+}
+
+function legacy_stack_msg {
+    log_msg "WARN: Detected enabled legacy camera stack ..."
+    log_msg "INFO: If possible, disable it by removing all occurences of 'start_x=1' in '/boot/config.txt'"
+    log_msg "INFO: if needed for some reason, DSI screen for ex., ignore this message ..."
+}
+
+function camautodetect_msg {
+    log_msg "WARN: Detected camera auto detect disabled ..."
+    log_msg "INFO: If possible, disable it by removing all occurences of 'camera_auto_detect=0' in '/boot/config.txt'"
+    log_msg "INFO: Please remove also commented out ones ..."
+}
