@@ -87,7 +87,7 @@ function check_section {
         exit 1
     fi
     if [[ "${#missing[@]}" == "0" ]]; then
-        log_msg "INFO: Configuration of Section [${section}] looks good. Continue ..."
+        log_msg "INFO: Configuration of Section [${section}]: All essential parameters given. Continue ..."
     fi
     return
 }
