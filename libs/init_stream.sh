@@ -49,7 +49,7 @@ function construct_streamer {
         if [[ "${CN_CSTREAMER_FOUND}" = "1" ]]; then
             run_multi "${MULTI_INSTANCES[*]}"
         else
-            log_msg "ERROR: Backend 'ustreamer' not found. Start skipped..."
+            log_msg "ERROR: Backend 'camera-streamer' not found. Start skipped..."
         fi
     fi
     if [ "${#MJPG_INSTANCES[@]}" != "0" ]; then
