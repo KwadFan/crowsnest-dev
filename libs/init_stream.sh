@@ -46,7 +46,7 @@ function construct_streamer {
         esac
     done
     if [ "${#MULTI_INSTANCES[@]}" != "0" ]; then
-        if [[ "${CN_USTREAMER_FOUND}" = "1" ]]; then
+        if [[ "${CN_CSTREAMER_FOUND}" = "1" ]]; then
             run_multi "${MULTI_INSTANCES[*]}"
         else
             log_msg "ERROR: Backend 'ustreamer' not found. Start skipped..."
