@@ -45,7 +45,7 @@ function deprecated_msg_1 {
 
 function unknown_mode_msg {
     log_msg "WARN: Unknown Mode configured!"
-    log_msg "WARN: Using 'mode: mjpg' as fallback!"
+    log_msg "WARN: Using 'mode: ustreamer' as fallback!"
 }
 
 ## v4l2_control lib
