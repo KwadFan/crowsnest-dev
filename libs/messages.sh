@@ -72,5 +72,6 @@ function legacy_stack_msg {
 }
 
 function camautodetect_msg {
-    log_msg "WARN: Detected 'camera_auto_detect=0', this disables raspicam detection ..."
+    log_msg "WARN: Detected 'camera_auto_detect=0', this disables raspicam detection. \
+Change '0' to '1' in '/boot/config.txt' to enable it."
 }
