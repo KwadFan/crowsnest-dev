@@ -62,9 +62,9 @@ function blockyfix_msg_1 {
 }
 
 function no_usable_device_msg {
-    log_msg "ERROR: No usable Devices Found. Stopping $(basename "${0}")."
-    log_msg "INFO: If a USB webcam connected, please see https://crowsnest.mainsail.xyz/faq/how-to-use-v4l2-ctl"
-    log_msg "INFO: If a Raspicam is connected, please see https://crowsnest.mainsail.xyz/faq/how-to-setup-a-raspicam"
+    log_msg "ERROR: No usable Devices Found. Stopping $(basename "${0}"). \
+If a USB webcam connected, please see https://crowsnest.mainsail.xyz/faq/how-to-use-v4l2-ctl, \
+if a Raspicam is connected, please see https://crowsnest.mainsail.xyz/faq/how-to-setup-a-raspicam"
 }
 
 function legacy_stack_msg {
