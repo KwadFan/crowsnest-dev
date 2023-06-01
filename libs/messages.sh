@@ -38,20 +38,16 @@ function help_msg {
 }
 
 function deprecated_msg_1 {
-    log_msg "Parameter 'streamer' is deprecated!"
-    log_msg "Please use mode: [ mjpg | multi ]"
-    log_msg "ERROR: Please update your crowsnest.conf! Stopped."
+    log_msg "Parameter 'streamer' is deprecated! Please use mode: [ mjpg | multi ] ..."
 }
 
 function unknown_mode_msg {
-    log_msg "WARN: Unknown Mode configured!"
-    log_msg "WARN: Using 'mode: ustreamer' as fallback!"
+    log_msg "WARN: Unknown Mode configured! Using 'mode: ustreamer' as fallback! ..."
 }
 
 ## v4l2_control lib
 function detected_broken_dev_msg {
-    log_msg "WARN: Detected 'brokenfocus' device."
-    log_msg "INFO: Trying to set to configured Value."
+    log_msg "WARN: Detected 'brokenfocus' device. Trying to set to configured Value."
 }
 
 # call debug_focus_val_msg <value>
@@ -72,12 +68,9 @@ function no_usable_device_msg {
 }
 
 function legacy_stack_msg {
-    log_msg "WARN: Detected enabled legacy camera stack ..."
-    log_msg "INFO: If possible, disable it by removing all occurences of 'start_x=1' in '/boot/config.txt'"
-    log_msg "INFO: if needed for some reason, DSI screen for ex., ignore this message ..."
+    log_msg "WARN: Detected legacy camera stack, disable it by removing 'start_x=1' in '/boot/config.txt'"
 }
 
 function camautodetect_msg {
-    log_msg "WARN: Detected 'camera_auto_detect=0' ..."
-    log_msg "INFO: This disables raspicam detection ..."
+    log_msg "WARN: Detected 'camera_auto_detect=0', this disables raspicam detection ..."
 }
