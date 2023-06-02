@@ -26,13 +26,6 @@ import_components() {
 
 main() {
 
-    echo "${CN_WORKDIR_PATH}"
-
-    CN_WORKDIR_PATH="foo"
-
-    echo "${CN_WORKDIR_PATH}"
-
-
     import_components
 
 }
