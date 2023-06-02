@@ -17,9 +17,6 @@
 set -Eex
 
 
-CN_WORKDIR_PATH="$(dirname "$(readlink -f "${0}")")"
-declare -r CN_WORKDIR_PATH
-
 import_components() {
     local -a components
     local files
@@ -36,6 +33,9 @@ import_components() {
 }
 
 main() {
+    CN_WORKDIR_PATH="$(dirname "$(readlink -f "${0}")")"
+    declare -r CN_WORKDIR_PATH
+
 
     import_components
 
