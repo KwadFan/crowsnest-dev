@@ -23,7 +23,7 @@ declare -r CN_WORKDIR_PATH
 import_components() {
     local components
     components="$(find "${CN_WORKDIR_PATH}/components/" -type f \
-                -not -name '.*' -printf '%f ' | tr -d' ')"
+                -not -name '.*' -printf '%f ' | tr -s' ')"
     for component in ${components}; do
         # shellcheck disable=SC1090
         . "${CN_WORKDIR_PATH}"/components/"${component}"
