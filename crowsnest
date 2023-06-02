@@ -17,6 +17,12 @@
 set -Eex
 
 
+function do_nothing()
+{
+    echo "do nothinng"
+}
+
+
 main() {
     printf "Hello World"
 }
