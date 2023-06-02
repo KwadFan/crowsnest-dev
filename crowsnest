@@ -43,5 +43,5 @@ main() {
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
-    main "${@}"
+    main "${@}" | tee >> "${CN_WORKDIR_PATH}/test.log"
 fi
