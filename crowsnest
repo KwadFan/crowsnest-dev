@@ -17,8 +17,8 @@
 set -Eex
 
 
-BASE_CN_PATH="$(dirname "$(readlink -f "${0}")")"
-declare -r BASE_CN_PATH
+CN_WORKDIR_PATH="$(dirname "$(readlink -f "${0}")")"
+declare -r CN_WORKDIR_PATH
 
 import_components() {
     local components
@@ -27,11 +27,11 @@ import_components() {
 
 main() {
 
-    echo "${BASE_CN_PATH}"
+    echo "${CN_WORKDIR_PATH}"
 
-    BASE_CN_PATH="foo"
+    CN_WORKDIR_PATH="foo"
 
-    echo "${BASE_CN_PATH}"
+    echo "${CN_WORKDIR_PATH}"
 
 
     import_components
