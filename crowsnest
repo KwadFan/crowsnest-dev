@@ -21,6 +21,6 @@ main() {
     printf "Hello World"
 }
 
-if [[ "${0}" = "crowsnest" ]]; then
+if [[ "${BASH_SOURCE[0]}" = "crowsnest" ]]; then
     main
 fi
