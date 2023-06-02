@@ -5,7 +5,7 @@
 #### crowsnest - A webcam Service for multiple Cams and Stream Services.
 ####
 #### Written by Stephan Wendel aka KwadFan <me@stephanwe.de>
-#### Copyright 2021
+#### Copyright 2021 - till today
 #### https://github.com/mainsail-crew/crowsnest
 ####
 #### This File is distributed under GPLv3
@@ -24,6 +24,7 @@ import_components() {
     local components
     components="$(find "${CN_WORKDIR_PATH}/components/" -type f \
                 -not -name '.*' -printf '%f ' | tr -d '$[:space:]')"
+
     for component in ${components}; do
         # shellcheck disable=SC1090
         . "${CN_WORKDIR_PATH}"/components/"${component}"
@@ -34,8 +35,9 @@ main() {
 
     import_components
 
+    echo "${@}"
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
-    main
+    main "${@}"
 fi
