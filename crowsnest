@@ -16,11 +16,18 @@
 # Exit upon Errors
 set -Eex
 
+
+BASE_CN_PATH="$(dirname "$(readlink -f "${0}")")"
+
 import_components() {
-    echo foo
+    local components
+    components=""
 }
 
 main() {
+
+    echo "${BASE_CN_PATH}"
+
 
     import_components
 
