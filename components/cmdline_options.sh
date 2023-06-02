@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -Eex
+set -Ee
 
 
 echo "options"
