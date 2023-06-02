@@ -16,15 +16,14 @@
 # Exit upon Errors
 set -Eex
 
-
-function do_nothing()
-{
-    echo "do nothinng"
+import_components() {
+    echo foo
 }
 
-
 main() {
-    printf "Hello World"
+
+    import_components
+
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
