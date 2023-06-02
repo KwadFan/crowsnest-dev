@@ -17,26 +17,7 @@
 set -Eex
 
 
-CN_WORKDIR_PATH="$(dirname "$(readlink -f "${0}")")"
-declare -r CN_WORKDIR_PATH
 
-import_components() {
-    find "${CN_WORKDIR_PATH}"/components -maxdepth 1 -not -name '.*' -prinf '%f '
+test_func() {
+    echo "sourced!"
 }
-
-main() {
-
-    echo "${CN_WORKDIR_PATH}"
-
-    CN_WORKDIR_PATH="foo"
-
-    echo "${CN_WORKDIR_PATH}"
-
-
-    import_components
-
-}
-
-if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
-    main
-fi
