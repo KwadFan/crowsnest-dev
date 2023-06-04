@@ -82,10 +82,6 @@ main() {
 
     init_config_parse
 
-    echo "${CROWSNEST_CFG}"
-
-    #cn_print_host
-
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
