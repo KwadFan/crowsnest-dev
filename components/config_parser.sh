@@ -42,7 +42,9 @@ cn_get_self_config() {
         variables+=( "${var_name}" )
     done
     echo "${variables[@]}"
-    echo "${variables[@]/CN_SELF_/}" | tr '[:upper:] [:lower:]'
+    variables=("${variables[@]/CN_SELF_/}")
+    variables=("${variables[@]},,")
+    echo "${variables[@]}"
 }
 
 init_config_parse() {
