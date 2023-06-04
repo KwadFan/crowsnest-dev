@@ -26,7 +26,7 @@ cn_missing_args_msg() {
 cn_wrong_args_msg() {
     printf "%s\n" "${CN_SELF_TITLE}"
     printf "\nERROR: Wrong Arguments!\n"
-    printf "\n\tTry: crowsnest -h\n"
+    printf "\n\tTry: crowsnest -h\n\n"
 }
 
 cn_help_msg() {
