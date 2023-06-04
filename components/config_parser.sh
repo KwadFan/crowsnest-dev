@@ -48,8 +48,7 @@ cn_set_self_config() {
     local var_name
     for var in $(cn_get_self_config); do
         var_name="${var}"
-        export "${var_name}"="123"
-        echo "${var_name}"
+        declare "${var_name}"
     done
 }
 
