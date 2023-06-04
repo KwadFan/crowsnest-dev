@@ -34,9 +34,14 @@ cn_get_section() {
 }
 
 cn_get_self_config() {
+    local var_name
+    local -a variables
+    variables=()
     for param in $(cn_get_section "crowsnest"); do
-        echo "${param}"
+        var_name="CN_SELF_${param^^}"
+        variables+=( "${var_name}" )
     done
+    echo "${variables[@]}"
 }
 
 init_config_parse() {
