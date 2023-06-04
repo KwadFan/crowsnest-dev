@@ -17,15 +17,9 @@
 set -Ee
 
 ## Version of crowsnest
-function self_version {
-    pushd "${BASE_CN_PATH}" &> /dev/null
-    git describe --always --tags
-    popd &> /dev/null
-}
+
 
 # Init Traps
-trap 'shutdown' 1 2 3 15
-trap 'err_exit $? $LINENO' ERR
 
 # Behavior of traps
 # log_msg, see libs/logging.sh L#46

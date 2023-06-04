@@ -20,6 +20,10 @@ set -Ee
 CN_WORKDIR_PATH="$(dirname "$(readlink -f "${0}")")"
 declare -r CN_WORKDIR_PATH
 
+CN_SELF_TITLE="crowsnest - A webcam Service for multiple Cams and Stream Services."
+# shellcheck disable=SC2034
+declare -r CN_SELF_TITLE
+
 cn_import_components() {
     local -a components
     local files
@@ -71,6 +75,9 @@ main() {
 
     cn_import_components
 
+    trap 'cn_shutdown' 1 2 3 15
+    trap 'cn_err_exit $? $LINENO' ERR
+
     if [ "$#" -eq 0 ]; then
         missing_args_msg
         exit 1
@@ -88,7 +95,9 @@ main() {
         ;;
         c )
             check_cfg "${OPTARG}"
-            export CROWSNEST_CFG="${OPTARG}"
+            CROWSNEST_CFG="${OPTARG}"
+            # shellcheck disable=SC2034
+            declare -r CROWSNEST_CFG
         ;;
         d )
             set -x
@@ -101,8 +110,6 @@ main() {
 done
 
 
-    trap 'cn_shutdown' 1 2 3 15
-    trap 'cn_err_exit $? $LINENO' ERR
 
 
 

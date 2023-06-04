@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#### message library
+#### message.sh -
 
 #### crowsnest - A webcam Service for multiple Cams and Stream Services.
 ####
