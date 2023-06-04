@@ -37,8 +37,7 @@ cn_get_self_config() {
     local param
     for param in $(cn_get_section "crowsnest"); do
         #shellcheck disable=SC2276
-        CN_SELF_"${param^^}"="$(cn_get_param "crowsnest" "${param}")"
-        declare -r CN_SELF_"${param^^}"
+        declare -r CN_SELF_"${param^^}"="$(cn_get_param "crowsnest" "${param}")"
         echo "${CN_SELF_\"${param^^}\"}"
     done
 }
