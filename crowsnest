@@ -41,9 +41,14 @@ main() {
 
     cn_init_traps
 
+
+    # test err_exit
+
+    exec foo
+
     echo "${@}"
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
-    main "${@}" | tee >> "${CN_WORKDIR_PATH}/test.log"
+    main "${@}"
 fi
