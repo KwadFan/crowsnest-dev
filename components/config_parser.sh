@@ -42,6 +42,7 @@ cn_get_self_config() {
         variables+=( "${var_name}" )
     done
     echo "${variables[@]}"
+    sed 's/^CN_SELF_//' "${variables[@]}"
 }
 
 init_config_parse() {
