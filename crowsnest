@@ -69,7 +69,7 @@ cn_shutdown() {
 
 main() {
 
-    if cn_import_components; then
+    if ! cn_import_components; then
         echo "Failed to import components!"
     fi
 
