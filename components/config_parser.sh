@@ -39,3 +39,6 @@ cn_get_self_config() {
     done
 }
 
+init_config_parse() {
+    cn_get_self_config
+}
