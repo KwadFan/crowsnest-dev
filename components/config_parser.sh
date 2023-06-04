@@ -52,7 +52,7 @@ cn_set_self_config() {
         var_name="${var}"
         var="${var/CN_SELF_/}"
         var="${var,,}"
-        config+=("${var_name}=${var}")
+        config+=("${var_name}=\"${var}\"")
     done
 
     echo "${config[@]}"
