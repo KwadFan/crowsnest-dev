@@ -63,13 +63,14 @@ cn_init_argparse() {
             exit 0
         ;;
         c )
-            if [[ -z "${OPTARG}" ]]; then
+            CROWSNEST_CFG="${OPTARG}"
+
+            if [[ -z "${CROWSNEST_CFG}" ]]; then
                 cn_missing_cfg_path
                 exit 1
             fi
 
             check_cfg "${OPTARG}"
-            CROWSNEST_CFG="${OPTARG}"
             # shellcheck disable=SC2034
             declare -r CROWSNEST_CFG
         ;;
