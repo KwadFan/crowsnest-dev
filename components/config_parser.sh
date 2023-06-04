@@ -48,7 +48,7 @@ cn_set_self_config() {
     local var_name
     for var in $(cn_get_self_config); do
         var_name="${var}"
-        declare -x "${var_name}"=123
+        eval "${var}"=""
         # var="${var/CN_SELF_/}"
         # var="${var,,}"
         # echo "${var}"
