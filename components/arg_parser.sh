@@ -76,8 +76,6 @@ cn_init_argparse() {
     esac
 done
 
-    shift $(($OPTIND - 1))
-
 if [[ -z "${CROWSNEST_CFG}" ]]; then
     cn_missing_cfg_path
     exit 1
