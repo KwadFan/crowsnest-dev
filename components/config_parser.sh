@@ -51,7 +51,6 @@ cn_set_self_config() {
         echo "${var}"
         var="${var/CN_SELF_/}"
         var="${var,,}"
-        cn_get_param "crowsnest" "${var}"
         echo "${var}"
         export "${var_name}"="$(cn_get_param "crowsnest" "${var}")"
         echo "${var_name}"
