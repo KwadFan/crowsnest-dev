@@ -68,6 +68,9 @@ cn_shutdown() {
 }
 
 main() {
+
+    cn_import_components
+
     if [ "$#" -eq 0 ]; then
         missing_args_msg
         exit 1
@@ -76,7 +79,6 @@ main() {
     trap 'cn_shutdown' 1 2 3 15
     trap 'cn_err_exit $? $LINENO' ERR
 
-    cn_import_components
 
 
     # test err_exit
