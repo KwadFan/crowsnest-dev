@@ -42,7 +42,7 @@ cn_get_self_config() {
         variables+=( "${var_name}" )
     done
     echo "${variables[@]}"
-    echo "${variables[@]/CN_SELF_/,,}"
+    echo "${variables[@],,/cn_self_/}"
 }
 
 init_config_parse() {
