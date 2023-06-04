@@ -82,6 +82,8 @@ main() {
 
     init_config_parse
 
+    echo "${CROWSNEST_CFG}"
+
     #cn_print_host
 
 }
