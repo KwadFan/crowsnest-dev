@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#### mashine_info.sh - determine and print host information
+#### host_info.sh - determine and print host information
 
 #### crowsnest - A webcam Service for multiple Cams and Stream Services.
 ####
