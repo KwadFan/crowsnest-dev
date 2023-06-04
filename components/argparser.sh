@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#### cmdline_options.sh - Argument parser for commandline options
+#### argparser.sh - Argument parser for commandline options
 
 #### crowsnest - A webcam Service for multiple Cams and Stream Services.
 ####
@@ -50,7 +50,7 @@ cn_init_argparse() {
             exit 0
         ;;
         h )
-            help_msg
+            cn_help_msg
             exit 0
         ;;
         c )
