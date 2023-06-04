@@ -24,8 +24,9 @@ cn_missing_args_msg() {
 }
 
 cn_wrong_args_msg() {
-    echo -e "crowsnest: Wrong Arguments!"
-    echo -e "\n\tTry: crowsnest -h\n"
+    printf "%s\n" "${CN_SELF_TITLE}"
+    printf "\nERROR: Wrong Arguments!"
+    printf "\n\tTry: crowsnest -h\n"
 }
 
 cn_help_msg() {
@@ -62,7 +63,7 @@ cn_init_argparse() {
             set -x
         ;;
         \?)
-            wrong_args_msg
+            cn_wrong_args_msg
             exit 1
         ;;
     esac
