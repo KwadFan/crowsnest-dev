@@ -49,8 +49,8 @@ cn_set_self_config() {
     for var in $(cn_get_self_config); do
         var_name="${var}"
         echo "${var_name}"
-        var_name="${var/CN_SELF_/}"
-        var_name="${var,,}"
+        var="${var/CN_SELF_/}"
+        var="${var,,}"
         echo "${var_name}"
     done
 }
