@@ -69,14 +69,37 @@ cn_shutdown() {
 
 main() {
 
-    if ! cn_import_components; then
-        echo "Failed to import components!"
-    fi
+    cn_import_components
 
     if [ "$#" -eq 0 ]; then
         missing_args_msg
         exit 1
     fi
+
+    while getopts ":vhc:d" arg; do
+    case "${arg}" in
+        v )
+            echo -e "\ncrowsnest Version: $(self_version)\n"
+            exit 0
+        ;;
+        h )
+            help_msg
+            exit 0
+        ;;
+        c )
+            check_cfg "${OPTARG}"
+            export CROWSNEST_CFG="${OPTARG}"
+        ;;
+        d )
+            set -x
+        ;;
+        \?)
+            wrong_args_msg
+            exit 1
+        ;;
+    esac
+done
+
 
     trap 'cn_shutdown' 1 2 3 15
     trap 'cn_err_exit $? $LINENO' ERR
