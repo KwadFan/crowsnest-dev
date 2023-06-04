@@ -38,7 +38,8 @@ cn_get_self_config() {
     for param in $(cn_get_section "crowsnest"); do
         #shellcheck disable=SC2276
         declare -r CN_SELF_"${param^^}"="$(cn_get_param "crowsnest" "${param}")"
-        export | grep "CN_*"
+        print="$(export | grep "CN_*")"
+        printf "%s" "${print}"
     done
 }
 
