@@ -20,21 +20,24 @@ set -Ee
 cn_missing_args_msg() {
     printf "%s\n" "${CN_SELF_TITLE}"
     printf "\nERROR: Missing arguments!\n"
-    printf "\n\tTry: crowsnest -h\n\n"
+    printf "\n\tTry: crowsnest -h\n"
+    printf "\n"
 }
 
 cn_wrong_args_msg() {
     printf "%s\n" "${CN_SELF_TITLE}"
     printf "\nERROR: Wrong Arguments!\n"
-    printf "\n\tTry: crowsnest -h\n\n"
+    printf "\n\tTry: crowsnest -h\n"
+    printf "\n"
 }
 
 cn_help_msg() {
     printf "%s\n" "${CN_SELF_TITLE}"
-    printf "\t crowsnest [Options]"
+    printf "\n\t crowsnest [Options]"
     printf "\n\t\t-h Prints this help."
     printf "\n\t\t-v Prints Version of crowsnest."
     printf "\n\t\t-c </path/to/configfile>\n\t\t\tPath to your webcam.conf\n"
+    printf "\n"
 }
 
 cn_init_argparse() {
