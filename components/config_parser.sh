@@ -56,8 +56,7 @@ cn_set_self_config() {
     done
 
     for expose_var in "${config[@]}"; do
-        expose_var="${expose_var/\'/}"
-        declare -x -r "${expose_var}"
+        echo "${expose_var}" | xargs -I{} declare -x -r {}
     done
 }
 
