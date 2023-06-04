@@ -30,11 +30,11 @@ cn_wrong_args_msg() {
 }
 
 cn_help_msg() {
-    echo -e "crowsnest - webcam deamon\nUsage:"
-    echo -e "\t crowsnest [Options]"
-    echo -e "\n\t\t-h Prints this help."
-    echo -e "\n\t\t-v Prints Version of crowsnest."
-    echo -e "\n\t\t-c </path/to/configfile>\n\t\t\tPath to your webcam.conf\n"
+    printf "%s\n" "${CN_SELF_TITLE}"
+    printf "\t crowsnest [Options]"
+    printf "\n\t\t-h Prints this help."
+    printf "\n\t\t-v Prints Version of crowsnest."
+    printf "\n\t\t-c </path/to/configfile>\n\t\t\tPath to your webcam.conf\n"
 }
 
 cn_init_argparse() {
