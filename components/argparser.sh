@@ -55,7 +55,7 @@ cn_init_argparse() {
     while getopts "vhc:d" arg; do
     case "${arg}" in
         v )
-            echo -e "\ncrowsnest Version: $(self_version)\n"
+            cn_self_version_msg
             exit 0
         ;;
         h )

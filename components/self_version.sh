@@ -16,8 +16,13 @@
 # Exit upon Errors
 set -Ee
 
-self_version() {
+cn_self_version() {
     pushd "${CN_WORKDIR_PATH}" &> /dev/null
     git describe --always --tags
     popd &> /dev/null
+}
+
+cn_self_version_msg() {
+    printf "%s\n" "${CN_SELF_TITLE}"
+    printf "\tVersion: %s\n" "$(self_version)"
 }
