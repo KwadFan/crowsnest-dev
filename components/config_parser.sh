@@ -52,7 +52,7 @@ cn_set_self_config() {
         var="${var/CN_SELF_/}"
         var="${var,,}"
         echo "${var}"
-        eval "${var_name}"="$(cn_get_param "crowsnest" "${var}")"
+        declare "${var_name}"="$(cn_get_param "crowsnest" "${var}")"
         echo "${var_name}"
     done
 }
