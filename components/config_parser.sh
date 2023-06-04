@@ -43,7 +43,7 @@ cn_get_self_config() {
     done
     echo "${variables[@]}"
     variables=("${variables[@]/CN_SELF_/}")
-    variables=("${variables[@]},,")
+    variables=("${variables[@],,}")
     echo "${variables[@]}"
 }
 
