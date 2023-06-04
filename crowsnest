@@ -69,7 +69,9 @@ cn_shutdown() {
 
 main() {
 
-    cn_import_components
+    if ! cn_import_components; then
+        echo "Failed to import components!"
+    fi
 
     if [ "$#" -eq 0 ]; then
         missing_args_msg
