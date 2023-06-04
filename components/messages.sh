@@ -19,23 +19,7 @@ set -Ee
 ## Message Helpers
 
 ## core lib
-function missing_args_msg {
-    echo -e "crowsnest: Missing Arguments!"
-    echo -e "\n\tTry: crowsnest -h\n"
-}
 
-function wrong_args_msg {
-    echo -e "crowsnest: Wrong Arguments!"
-    echo -e "\n\tTry: crowsnest -h\n"
-}
-
-function help_msg {
-    echo -e "crowsnest - webcam deamon\nUsage:"
-    echo -e "\t crowsnest [Options]"
-    echo -e "\n\t\t-h Prints this help."
-    echo -e "\n\t\t-v Prints Version of crowsnest."
-    echo -e "\n\t\t-c </path/to/configfile>\n\t\t\tPath to your webcam.conf\n"
-}
 
 function deprecated_msg_1 {
     log_msg "Parameter 'streamer' is deprecated!"

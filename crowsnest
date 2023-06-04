@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #### Crowsnest Core Application.
 
@@ -78,36 +78,7 @@ main() {
     trap 'cn_shutdown' 1 2 3 15
     trap 'cn_err_exit $? $LINENO' ERR
 
-    if [ "$#" -eq 0 ]; then
-        missing_args_msg
-        exit 1
-    fi
-
-    while getopts ":vhc:d" arg; do
-    case "${arg}" in
-        v )
-            echo -e "\ncrowsnest Version: $(self_version)\n"
-            exit 0
-        ;;
-        h )
-            help_msg
-            exit 0
-        ;;
-        c )
-            check_cfg "${OPTARG}"
-            CROWSNEST_CFG="${OPTARG}"
-            # shellcheck disable=SC2034
-            declare -r CROWSNEST_CFG
-        ;;
-        d )
-            set -x
-        ;;
-        \?)
-            wrong_args_msg
-            exit 1
-        ;;
-    esac
-done
+    cn_init_argparse "${@}"
 
 
 
