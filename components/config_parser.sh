@@ -39,6 +39,7 @@ cn_get_self_config() {
         #shellcheck disable=SC2276
         CN_SELF_"${param}"="$(cn_get_param "crowsnest" "${param}")"
         declare -r CN_SELF_"${param}"
+        echo "${CN_SELF_\"${param}\"}"
     done
 }
 
