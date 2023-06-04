@@ -19,7 +19,7 @@ set -Ee
 
 cn_missing_args_msg() {
     printf "%s\n" "${CN_SELF_TITLE}"
-    printf "\tERROR: Missing arguments!"
+    printf "\nERROR: Missing arguments!"
     printf "\n\tTry: crowsnest -h\n"
 }
 
