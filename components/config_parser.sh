@@ -55,9 +55,10 @@ cn_set_self_config() {
         config+=("${var_name}=\"$(cn_get_param "crowsnest" "${var}")\"")
     done
 
-    echo "${config[@]}"
+    for expose_var in "${config[@]}"; do
+        declare -r "${expose_var}"
+    done
 }
-        # declare -r "${var_name}"="$(cn_get_param "crowsnest" "${var}")"
 
 init_config_parse() {
     cn_set_self_config
