@@ -80,7 +80,6 @@ main() {
 
     cn_init_argparse "${@}"
 
-    echo "${@}"
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
