@@ -49,6 +49,6 @@ get_crowsnest_config() {
 }
 
 
-init_configparse() {
-    true
+init_config_parse() {
+    cn_get_self_config
 }

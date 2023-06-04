@@ -80,7 +80,9 @@ main() {
 
     cn_init_argparse "${@}"
 
-    cn_print_host
+    init_config_parse
+
+    #cn_print_host
 
 }
 
