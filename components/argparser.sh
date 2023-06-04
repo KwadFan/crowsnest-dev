@@ -40,6 +40,12 @@ cn_help_msg() {
     printf "\n"
 }
 
+cn_missing_cfg_path() {
+    printf "%s\n" "${CN_SELF_TITLE}"
+    printf "\nERROR: No configuration file path specified!\n"
+    printf "\n"
+}
+
 cn_init_argparse() {
     if [ "$#" -eq 0 ]; then
         cn_missing_args_msg
@@ -57,6 +63,11 @@ cn_init_argparse() {
             exit 0
         ;;
         c )
+            if [[ -z "${OPTARG}" ]]; then
+                cn_missing_cfg_path
+                exit 1
+            fi
+
             check_cfg "${OPTARG}"
             CROWSNEST_CFG="${OPTARG}"
             # shellcheck disable=SC2034
