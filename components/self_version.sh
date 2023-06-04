@@ -24,5 +24,5 @@ cn_self_version() {
 
 cn_self_version_msg() {
     printf "%s\n" "${CN_SELF_TITLE}"
-    printf "\tVersion: %s\n" "$(self_version)"
+    printf "\tVersion: %s\n" "$(cn_self_version)"
 }
