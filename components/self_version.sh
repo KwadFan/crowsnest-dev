@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#### Webcamd Core Application.
+#### self_version.sh - determine crowsnest local version
 
 #### crowsnest - A webcam Service for multiple Cams and Stream Services.
 ####

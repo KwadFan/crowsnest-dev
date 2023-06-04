@@ -32,39 +32,11 @@ trap 'err_exit $? $LINENO' ERR
 
 # Print Error Code and Line to Log
 # and kill running jobs
-function err_exit {
-    local file_trace func_trace line_trace
-    read -r LINE FUNC FILE < <(caller 0)
-    func_trace="${FUNC}"
-    file_trace="$(basename "${FILE}")"
-    line_trace="${LINE}"
-    if [ "${1}" != "0" ]; then
-        log_msg "ERROR: Error ${1} occured on line ${line_trace}"
-        log_msg "==> Error occured in file: ${file_trace} -> ${func_trace}"
-        log_msg "ERROR: Stopping $(basename "$0")."
-        log_msg "Goodbye..."
-    fi
-    if [ -n "$(jobs -pr)" ]; then
-        jobs -pr | while IFS='' read -r job_id; do
-            kill "${job_id}"
-        done
-    fi
-    exit 1
-}
+
 
 # Print Goodbye Message
 # and kill running jobs
-function shutdown {
-    log_msg "Shutdown or Killed by User!"
-    log_msg "Please come again :)"
-    if [ -n "$(jobs -pr)" ]; then
-        jobs -pr | while IFS='' read -r job_id; do
-            kill "${job_id}"
-        done
-    fi
-    log_msg "Goodbye..."
-    exit 0
-}
+
 
 ## Sanity Checks
 # Dependency Check
