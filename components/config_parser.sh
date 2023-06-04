@@ -45,8 +45,13 @@ cn_get_self_config() {
 }
 
 cn_set_self_config() {
+    local var_name
     for var in $(cn_get_self_config); do
-        echo "${var}"
+        var_name="${var}"
+        echo "${var_name}"
+        var_name="${var/CN_SELF_/}"
+        var_name="${var,,}"
+        echo "${var_name}"
     done
 }
 
