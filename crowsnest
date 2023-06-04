@@ -80,14 +80,6 @@ main() {
 
     cn_init_argparse "${@}"
 
-
-
-
-
-    # test err_exit
-
-    exec foo
-
     echo "${@}"
 }
 
