@@ -44,6 +44,7 @@ cn_missing_cfg_path() {
     printf "%s\n" "${CN_SELF_TITLE}"
     printf "\nERROR: No configuration file path specified!\n"
     printf "\n\tTry: crowsnest -c </path/to/configfile>\n"
+    printf "\n(for ex.: crowsnest -c /home/pi/printer_data/config/crowsnest.conf)\n"
     printf "\n"
 }
 
