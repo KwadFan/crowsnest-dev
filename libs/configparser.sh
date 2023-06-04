@@ -19,15 +19,7 @@ set -Ee
 # Read Configuration File
 # call get_param section param
 # spits out raw value
-function get_param {
-    local cfg section param
-    cfg="${CROWSNEST_CFG}"
-    section="${1}"
-    param="${2}"
-    crudini --get "${cfg}" "${section}" "${param}" 2> /dev/null | \
-    sed 's/\#.*//;s/[[:space:]]*$//'
-    return
-}
+
 
 # Check for existing file
 # Exit with error if not exist
