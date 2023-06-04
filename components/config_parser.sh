@@ -48,11 +48,11 @@ cn_set_self_config() {
     local var_name
     for var in $(cn_get_self_config); do
         var_name="${var}"
-        declare "${var_name}"
+        declare "${var_name}"=""
         var="${var/CN_SELF_/}"
         var="${var,,}"
         echo "${var}"
-        # export "${var_name}"="$(cn_get_param "crowsnest" "${var}")"
+        eval "${var_name}"="$(cn_get_param "crowsnest" "${var}")"
         echo "${var_name}"
     done
 }

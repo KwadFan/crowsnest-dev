@@ -84,8 +84,6 @@ main() {
 
     echo "${CROWSNEST_CFG}"
 
-    export | grep "CN_*"
-
     #cn_print_host
 
 }
