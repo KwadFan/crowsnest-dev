@@ -34,21 +34,8 @@ cn_get_section() {
 }
 
 cn_get_self_config() {
-    local param
     for param in $(cn_get_section "crowsnest"); do
-        #shellcheck disable=SC2276
-        declare -r CN_SELF_"${param^^}"="$(cn_get_param "crowsnest" "${param}")"
-        print="$(export | grep "CN_*")"
-        printf "%s" "${print}"
+        echo "${param}"
     done
 }
 
-
-get_crowsnest_config() {
-    true
-}
-
-
-init_config_parse() {
-    cn_get_self_config
-}
