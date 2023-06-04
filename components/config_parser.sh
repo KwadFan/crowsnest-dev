@@ -49,6 +49,10 @@ cn_set_self_config() {
     for var in $(cn_get_self_config); do
         var_name="${var}"
         declare "${var_name}"
+        var="${var/CN_SELF_/}"
+        var="${var,,}"
+        declare -r "${var_name}"="$(cn_get_param "crowsnest" "${var}")"
+
     done
 }
 
