@@ -37,7 +37,7 @@ cn_help_msg() {
 
 cn_init_argparse() {
     if [ "$#" -eq 0 ]; then
-        missing_args_msg
+        cn_missing_args_msg
         exit 1
     fi
 
