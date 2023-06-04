@@ -43,7 +43,7 @@ cn_help_msg() {
 cn_missing_cfg_path() {
     printf "%s\n" "${CN_SELF_TITLE}"
     printf "\nERROR: No configuration file path specified!\n"
-    printf "\n\tTry: crowsnest -h\n"
+    printf "\n\tTry: crowsnest -c </path/to/configfile>\n"
     printf "\n"
 }
 
