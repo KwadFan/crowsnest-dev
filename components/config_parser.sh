@@ -56,7 +56,8 @@ cn_set_self_config() {
     done
 
     for expose_var in "${config[@]}"; do
-        declare -r "${expose_var}"
+        expose_var="${expose_var/\'/}"
+        declare -x -r "${expose_var}"
     done
 }
 
