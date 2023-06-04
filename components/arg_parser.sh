@@ -82,7 +82,7 @@ if [[ -z "${CROWSNEST_CFG}" ]]; then
 fi
 
 if [[ -n "${CROWSNEST_CFG}" ]]; then
-    declare -r CROWSNEST_CFG
+    declare -xr CROWSNEST_CFG
 fi
 
 }
