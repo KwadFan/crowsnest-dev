@@ -89,6 +89,8 @@ main() {
     echo "${CN_SELF_DELETE_LOG}"
     echo "${CN_SELF_NO_PROXY}"
 
+    export -p
+
 
 }
 
