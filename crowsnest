@@ -18,11 +18,11 @@ set -Ee
 
 
 CN_WORKDIR_PATH="$(dirname "$(readlink -f "${0}")")"
-declare -r CN_WORKDIR_PATH
+declare -g -r CN_WORKDIR_PATH
 
 CN_SELF_TITLE="crowsnest - A webcam Service for multiple Cams and Stream Services."
 # shellcheck disable=SC2034
-declare -r CN_SELF_TITLE
+declare -g -r CN_SELF_TITLE
 
 cn_import_components() {
     local -a components
@@ -81,6 +81,12 @@ main() {
     cn_init_argparse "${@}"
 
     init_config_parse
+
+    echo "Log Path = ${CN_SELF_LOG_PATH}"
+    echo "Log Level = ${CN_SELF_LOG_LEVEL}"
+    echo "Delete Log = ${CN_SELF_DELETE_LOG}"
+    echo "NO PROXY = ${CN_SELF_NO_PROXY}"
+
 
 }
 
