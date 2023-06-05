@@ -87,6 +87,7 @@ main() {
     echo "Delete Log = ${CN_SELF_DELETE_LOG}"
     echo "NO PROXY = ${CN_SELF_NO_PROXY}"
 
+    cn_init_logging
 
 }
 

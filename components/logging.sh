@@ -43,18 +43,17 @@ cn_log_msg() {
 }
 
 #call '| log_output "<prefix>"'
-function log_output {
+cn_log_output() {
     local prefix
     prefix="DEBUG: ${1}"
     while read -r line; do
-        if [[ "${CROWSNEST_LOG_LEVEL}" = "debug" ]]; then
-            log_msg "${prefix}: ${line}"
+        if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
+            cn_log_msg "${prefix}: ${line}"
         fi
     done
 }
 
 cn_init_logging() {
-    delete_log
-
-    print_host
+    cn_delete_log
+    cn_log_header
 }
