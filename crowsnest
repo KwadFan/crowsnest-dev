@@ -90,6 +90,7 @@ main() {
     echo "${CN_SELF_NO_PROXY}"
 
     export -p
+    export -fn
 
 
 }
