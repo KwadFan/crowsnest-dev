@@ -52,7 +52,7 @@ cn_set_self_config() {
         var_name="${var}"
         var="${var/CN_SELF_/}"
         var="${var,,}"
-        config+=("${var_name}=\"$(cn_get_param "crowsnest" "${var}")\"")
+        config+=("${var_name}=$(cn_get_param "crowsnest" "${var}")")
     done
 
     for expose_var in "${config[@]}"; do
