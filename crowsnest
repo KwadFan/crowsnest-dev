@@ -82,17 +82,6 @@ main() {
 
     init_config_parse
 
-
-    # test
-    echo "${CN_SELF_LOG_PATH}"
-    echo "${CN_SELF_LOG_LEVEL}"
-    echo "${CN_SELF_DELETE_LOG}"
-    echo "${CN_SELF_NO_PROXY}"
-
-    export -p
-    export -fn
-
-
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then

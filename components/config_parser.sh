@@ -18,7 +18,7 @@ set -Ee
 
 cn_get_param() {
     local cfg section param
-    cfg="${CROWSNEST_CFG}"
+    cfg="${CROWSNEST_CONFIG_FILE}"
     section="${1}"
     param="${2}"
     crudini --get "${cfg}" "${section}" "${param}" 2> /dev/null | \
@@ -28,7 +28,7 @@ cn_get_param() {
 
 cn_get_section() {
     local cfg section
-    cfg="${CROWSNEST_CFG}"
+    cfg="${CROWSNEST_CONFIG_FILE}"
     section="${1}"
     crudini --get "${cfg}" "${section}" 2> /dev/null
 }
@@ -63,9 +63,3 @@ cn_set_self_config() {
 init_config_parse() {
     cn_set_self_config
 }
-
-
-    # variables=("${variables[@]/CN_SELF_/}")
-    # variables=("${variables[@],,}")
-    # echo "${variables[@]}"
-# for i in $(seq 1 10); do echo $i | xargs -I {} declare -x -r "my_var{}"; done

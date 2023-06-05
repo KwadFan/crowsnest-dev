@@ -64,7 +64,7 @@ cn_init_argparse() {
             exit 0
         ;;
         c )
-            CROWSNEST_CFG="${OPTARG}"
+            CROWSNEST_CONFIG_FILE="${OPTARG}"
         ;;
         d )
             set -x
@@ -76,13 +76,13 @@ cn_init_argparse() {
     esac
 done
 
-if [[ -z "${CROWSNEST_CFG}" ]]; then
+if [[ -z "${CROWSNEST_CONFIG_FILE}" ]]; then
     cn_missing_cfg_path
     exit 1
 fi
 
-if [[ -n "${CROWSNEST_CFG}" ]]; then
-    declare -xr CROWSNEST_CFG
+if [[ -n "${CROWSNEST_CONFIG_FILE}" ]]; then
+    declare -g -r CROWSNEST_CONFIG_FILE
 fi
 
 }
