@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #### self_version.sh - determine crowsnest local version
 
