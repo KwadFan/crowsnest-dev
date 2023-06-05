@@ -56,7 +56,7 @@ cn_set_self_config() {
     done
 
     for expose_var in "${config[@]}"; do
-        echo "${expose_var}" | tr -d "'" | xargs -I {} declare -x -r {}
+        (echo "${expose_var}" | tr -d "'") | xargs -I {} declare -x -r {}
     done
 }
 
@@ -68,3 +68,4 @@ init_config_parse() {
     # variables=("${variables[@]/CN_SELF_/}")
     # variables=("${variables[@],,}")
     # echo "${variables[@]}"
+# for i in $(seq 1 10); do echo $i | xargs -I {} declare -x -r "my_var{}"; done
