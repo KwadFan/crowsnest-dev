@@ -17,47 +17,20 @@
 set -Ee
 
 ## Logging
-function set_log_path {
-    #Workaround sed ~ to BASH VAR $HOME
-    CROWSNEST_LOG_PATH=$(get_param "crowsnest" log_path | sed "s#^~#${HOME}#gi")
-    declare -g CROWSNEST_LOG_PATH
-    #Workaround: Make Dir if not exist
-    if [ ! -d "$(dirname "${CROWSNEST_LOG_PATH}")" ]; then
-        mkdir -p "$(dirname "${CROWSNEST_LOG_PATH}")"
-    fi
-}
 
-function init_logging {
-    set_log_path
-    set_log_level
-    delete_log
-    log_msg "crowsnest - A webcam Service for multiple Cams and Stream Services."
-    log_msg "Version: $(self_version)"
-    log_msg "Prepare Startup ..."
-    print_host
-}
-
-function set_log_level {
-    local loglevel
-    loglevel="$(get_param crowsnest log_level 2> /dev/null)"
-    # Set default log_level to quiet
-    if [ -z "${loglevel}" ] || [[ "${loglevel}" != @(quiet|verbose|debug) ]]; then
-        CROWSNEST_LOG_LEVEL="quiet"
-    else
-        CROWSNEST_LOG_LEVEL="${loglevel}"
-    fi
-    declare -r CROWSNEST_LOG_LEVEL
-}
-
-function delete_log {
-    local del_log
-    del_log="$(get_param "crowsnest" delete_log 2> /dev/null)"
-    if [ "${del_log}" = "true" ]; then
+cn_delete_log() {
+    if [[ "${CN_SELF_DELETE_LOG}" = "true" ]]; then
         rm -rf "${CROWSNEST_LOG_PATH}"
     fi
 }
 
-function log_msg {
+cn_log_header() {
+    log_msg "${CN_SELF_TITLE}"
+    cn_self_version_log_msg
+    log_msg "Prepare Startup ..."
+}
+
+cn_log_msg() {
     local msg prefix
     msg="${1}"
     prefix="$(date +'[%D %T]') crowsnest:"
@@ -76,16 +49,6 @@ function log_output {
     done
 }
 
-function print_cfg {
-    local prefix
-    prefix="$(date +'[%D %T]') crowsnest:"
-    log_msg "INFO: Print Configfile: '${CROWSNEST_CFG}'"
-    (sed '/^#.*/d;/./,$!d' | cut -d'#' -f1) < "${CROWSNEST_CFG}" | \
-    while read -r line; do
-        printf "%s\t\t%s\n" "${prefix}" "${line}" >> "${CROWSNEST_LOG_PATH}"
-        printf "\t\t%s\n" "${line}"
-    done
-}
 
 function print_cams {
     local total v4l
@@ -105,3 +68,8 @@ function print_cams {
     fi
 }
 
+cn_init_logging() {
+    delete_log
+
+    print_host
+}
