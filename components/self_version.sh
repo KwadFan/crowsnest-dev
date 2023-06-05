@@ -28,6 +28,6 @@ cn_self_version_msg() {
     printf "\n"
 }
 
-cn_self_version_log_msg() {
-    cn_log_msg "Version: $(self_version)"
+cn_version_log_msg() {
+    cn_log_msg "Version: $(cn_self_version)"
 }

@@ -16,25 +16,27 @@
 # Exit upon Errors
 set -Ee
 
-## Logging
+cn_log_prefix() {
+    printf "%s crowsnest:" "$(date +'[%D %T]')"
+}
 
 cn_delete_log() {
-    if [[ "${CN_SELF_DELETE_LOG}" = "true" ]]; then
-        rm -rf "${CROWSNEST_LOG_PATH}"
+    if [[ "${CN_SELF_DELETE_LOG}" = "true" ]] &&
+    [[ -f "${CN_SELF_LOG_PATH}" ]]; then
+        rm -rf "${CN_SELF_LOG_PATH}"
     fi
 }
 
 cn_log_header() {
-    log_msg "${CN_SELF_TITLE}"
-    cn_self_version_log_msg
-    log_msg "Prepare Startup ..."
+    cn_log_msg "${CN_SELF_TITLE}"
+    cn_version_log_msg
+    cn_log_msg "Prepare Startup ..."
 }
 
 cn_log_msg() {
-    local msg prefix
+    local msg
     msg="${1}"
-    prefix="$(date +'[%D %T]') crowsnest:"
-    printf "%s %s\n" "${prefix}" "${msg}" >> "${CROWSNEST_LOG_PATH}"
+    printf "%s %s\n" "$(cn_log_prefix)" "${msg}" >> "${CN_SELF_LOG_PATH}"
     printf "%s\n" "${msg}"
 }
 
