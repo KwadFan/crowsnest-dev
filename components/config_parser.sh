@@ -56,7 +56,7 @@ cn_set_self_config() {
     done
 
     for expose_var in "${config[@]}"; do
-        export "$(echo "${expose_var}" | tr -d "'")"
+        declare -g -r "$(echo "${expose_var}" | tr -d "'")"
     done
 }
 
