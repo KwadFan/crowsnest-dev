@@ -17,7 +17,7 @@
 set -Ee
 
 cn_log_prefix() {
-    printf "%s crowsnest:" "$(date +'[%D %T]')"
+    printf "%s" "$(date +'[%D %T]')"
 }
 
 cn_delete_log() {
