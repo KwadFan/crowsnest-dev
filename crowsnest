@@ -20,7 +20,7 @@ set -Ee
 CN_WORKDIR_PATH="$(dirname "$(readlink -f "${0}")")"
 declare -g -r CN_WORKDIR_PATH
 
-CN_SELF_TITLE="crowsnest - A webcam Service for multiple Cams and Stream Services."
+CN_SELF_TITLE="crowsnest - A webcam service for multiple cams and stream services."
 # shellcheck disable=SC2034
 declare -g -r CN_SELF_TITLE
 
