@@ -33,26 +33,30 @@ cn_get_section() {
     crudini --get "${cfg}" "${section}" 2> /dev/null
 }
 
-cn_get_self_config() {
-    local var_name
+cn_get_config() {
+    local var_name section prefix
     local -a variables
+    section="${1}"
+    prefix="${2}"
     variables=()
-    for param in $(cn_get_section "crowsnest"); do
-        var_name="CN_SELF_${param^^}"
+    for param in $(cn_get_section "${section}"); do
+        var_name="${prefix}${param^^}"
         variables+=( "${var_name}" )
     done
     echo "${variables[@]}"
 }
 
-cn_set_self_config() {
-    local var_name
+cn_set_config() {
+    local var_name section prefix
     local -a config
+    section="${1}"
+    prefix="${2}"
     config=()
-    for var in $(cn_get_self_config); do
+    for var in $(cn_get_config "${section}" "${prefix}"); do
         var_name="${var}"
-        var="${var/CN_SELF_/}"
+        var="${var/${prefix}/}"
         var="${var,,}"
-        config+=("${var_name}=$(cn_get_param "crowsnest" "${var}")")
+        config+=("${var_name}=$(cn_get_param "${section}" "${var}")")
     done
 
     for expose_var in "${config[@]}"; do
@@ -61,5 +65,5 @@ cn_set_self_config() {
 }
 
 init_config_parse() {
-    cn_set_self_config
+    cn_set_config "crowsnest" "CN_SELF_"
 }
