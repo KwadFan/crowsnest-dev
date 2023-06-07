@@ -35,16 +35,7 @@ set -Ee
 ## Sanity Checks
 # Dependency Check
 # call check_dep <programm>, ex.: check_dep vim
-function check_dep {
-    local dep
-    dep="$(whereis "${1}" | awk '{print $2}')"
-    if [[ -z "${dep}" ]]; then
-        log_msg "Dependency: '${1}' not found. Exiting!"
-        exit 1
-    else
-        log_msg "Dependency: '${1}' found in ${dep}."
-    fi
-}
+function
 
 function check_apps {
     local cstreamer ustreamer

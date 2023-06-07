@@ -82,12 +82,9 @@ main() {
 
     init_config_parse
 
-    echo "Log Path = ${CN_SELF_LOG_PATH}"
-    echo "Log Level = ${CN_SELF_LOG_LEVEL}"
-    echo "Delete Log = ${CN_SELF_DELETE_LOG}"
-    echo "NO PROXY = ${CN_SELF_NO_PROXY}"
-
     cn_init_logging
+
+    cn_init_check_deps
 
 }
 
