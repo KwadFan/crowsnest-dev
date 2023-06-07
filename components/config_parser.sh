@@ -34,7 +34,7 @@ cn_set_cam_sections() {
         crudini --existing=file --get "${CROWSNEST_CONFIG_FILE}" | \
         sed '/crowsnest/d;s/cam //' \
         )
-    declare -g -r "CN_CONFIGURED_CAMS=${name_spaces[*]}"
+    declare -agr "CN_CONFIGURED_CAMS=${name_spaces[*]}"
 }
 
 cn_get_section() {
