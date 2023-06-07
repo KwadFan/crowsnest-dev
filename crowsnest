@@ -24,6 +24,10 @@ CN_SELF_TITLE="crowsnest - A webcam service for multiple cams and stream service
 # shellcheck disable=SC2034
 declare -g -r CN_SELF_TITLE
 
+CN_SELF_DEPS=(crudini find xargs)
+# shellcheck disable=SC2034
+declare -g -r CN_SELF_DEPS
+
 cn_import_components() {
     local -a components
     local files
