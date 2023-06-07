@@ -86,3 +86,5 @@ if [[ -n "${CROWSNEST_CONFIG_FILE}" ]]; then
 fi
 
 }
+
+develop_msg "Loaded component 'arg_parser.sh'"
