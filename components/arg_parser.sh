@@ -54,27 +54,30 @@ cn_init_argparse() {
     fi
 
     while getopts ":vhc:d" arg; do
-    case "${arg}" in
-        v )
-            cn_self_version_msg
-            exit 0
-        ;;
-        h )
-            cn_help_msg
-            exit 0
-        ;;
-        c )
-            CROWSNEST_CONFIG_FILE="${OPTARG}"
-        ;;
-        d )
-            set -x
-        ;;
-        \?)
-            cn_wrong_args_msg
-            exit 1
-        ;;
-    esac
-done
+        case "${arg}" in
+            v )
+                cn_self_version_msg
+                exit 0
+            ;;
+            h )
+                cn_help_msg
+                exit 0
+            ;;
+            c )
+                CROWSNEST_CONFIG_FILE="${OPTARG}"
+            ;;
+            d )
+                set -x
+            ;;
+            \?)
+                cn_wrong_args_msg
+                exit 1
+            ;;
+        esac
+        if [[ "${CN_DEV_MSG}" = "1" ]]; then
+            printf "Args given: %s\n" "${arg}"
+        fi
+    done
 
 if [[ -z "${CROWSNEST_CONFIG_FILE}" ]]; then
     cn_missing_cfg_path

@@ -39,5 +39,5 @@ if [[ "${CN_DEV_MSG}" = "1" ]]; then
 fi
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
-    printf "Dependencies: %s" "${CN_SELF_DEPS[@]}"
+    printf "Dependencies: %s\n" "${CN_SELF_DEPS[@]}"
 fi
