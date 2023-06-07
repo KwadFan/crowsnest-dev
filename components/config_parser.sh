@@ -31,7 +31,8 @@ cn_get_all_sections() {
 cn_set_cam_sections() {
     CN_CONFIGURED_CAMS="$(
         crudini --existing=file --get "${CROWSNEST_CONFIG_FILE}" | \
-        sed '/crowsnest/d;s/cam//')"
+        sed '/crowsnest/d;s/cam//'
+    )"
     declare -g -r "${CN_CONFIGURED_CAMS}"
 }
 
@@ -86,9 +87,10 @@ cn_set_config() {
 
 init_config_parse() {
     cn_check_config_exist
+
     cn_set_config "crowsnest" "CN_SELF_"
 
-
+    cn_set_cam_sections
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "config_parser:\n###########\n"
