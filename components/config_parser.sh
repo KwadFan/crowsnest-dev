@@ -67,7 +67,7 @@ cn_get_config() {
 }
 
 cn_set_config() {
-    local var_name section prefix expose_var
+    local expose_var var_name section prefix
     local -a config
     section="${1}"
     prefix="${2}"
