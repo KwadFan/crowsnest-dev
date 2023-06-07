@@ -88,7 +88,7 @@ cn_set_cam_sections() {
 cn_set_cam_config() {
     local cam
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
-        cn_set_config "cam ${cam}" "CN_CAM_${CAM^^}"
+        cn_set_config "cam ${cam}" "CN_CAM_${CAM^^}_"
     done
 }
 
