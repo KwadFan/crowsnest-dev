@@ -90,9 +90,9 @@ init_config_parse() {
 
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
-        printf "config_parser:\n-------------"
+        printf "config_parser:\n###########\n"
         declare -p | grep "CN_"
-        printf "------------"
+        printf "###########\n"
     fi
 }
 
