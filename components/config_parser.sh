@@ -79,7 +79,8 @@ cn_set_config() {
     done
 
     for expose_var in "${config[@]}"; do
-        declare -g -r "$(echo "${expose_var}" | tr -d "'")"
+        expose_var="$(echo "${expose_var}" | tr -d "'")"
+        declare -g -r "${expose_var}"
     done
 }
 
