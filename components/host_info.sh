@@ -24,33 +24,33 @@ cn_print_host() {
     disksize="$(LC_ALL=C df -h / | awk 'NR==2 {print $4" / "$2}')"
     ## print only if not "${CROWSNEST_LOG_LEVEL}": quiet
     if [[ "${CROWSNEST_LOG_LEVEL}" != "quiet" ]]; then
-        log_msg "INFO: Host information:"
+        cn_log_msg "INFO: Host information:"
         ## OS Infos
         ## OS Version
         if [[ -f /etc/os-release ]]; then
-            log_msg "Host Info: Distribution: $(grep "PRETTY" /etc/os-release | \
+            cn_log_msg "Host Info: Distribution: $(grep "PRETTY" /etc/os-release | \
             cut -d '=' -f2 | sed 's/^"//;s/"$//')"
         fi
         ## Release Version of MainsailOS (if file present)
         if [[ -f /etc/mainsailos-release ]]; then
-            log_msg "Host Info: Release: $(cat /etc/mainsailos-release)"
+            cn_log_msg "Host Info: Release: $(cat /etc/mainsailos-release)"
         fi
         ## Kernel version
-        log_msg "Host Info: Kernel: $(uname -s) $(uname -rm)"
+        cn_log_msg "Host Info: Kernel: $(uname -s) $(uname -rm)"
         ## Host Machine Infos
         ## Host model
         if [[ -n "${sbc_model}" ]]; then
-            log_msg "Host Info: Model: ${sbc_model}"
+            cn_log_msg "Host Info: Model: ${sbc_model}"
         fi
         if [[ -n "${generic_model}" ]] &&
         [[ -z "${sbc_model}" ]]; then
-            log_msg "Host Info: Model: ${generic_model}"
+            cn_log_msg "Host Info: Model: ${generic_model}"
         fi
         ## CPU count
-        log_msg "Host Info: Available CPU Cores: $(nproc)"
+        cn_log_msg "Host Info: Available CPU Cores: $(nproc)"
         ## Avail mem
-        log_msg "Host Info: Available Memory: ${memtotal}"
+        cn_log_msg "Host Info: Available Memory: ${memtotal}"
         ## Avail disk size
-        log_msg "Host Info: Diskspace (avail. / total): ${disksize}"
+        cn_log_msg "Host Info: Diskspace (avail. / total): ${disksize}"
     fi
 }

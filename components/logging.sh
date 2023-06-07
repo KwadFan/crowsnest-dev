@@ -56,4 +56,5 @@ cn_log_output() {
 cn_init_logging() {
     cn_delete_log
     cn_log_header
+    cn_print_host
 }
