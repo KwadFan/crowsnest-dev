@@ -36,7 +36,7 @@ cn_set_cam_sections() {
     # for i in ${cam_sections}; do
     #     name_spaces+=( "${i}" )
     # done
-    readarray -t name_spaces <<< "${cam_section}"
+    readarray -t name_spaces <<< "${cam_sections}"
     declare -agr CN_CONFIGURED_CAMS=("${name_spaces[@]}")
 }
 
