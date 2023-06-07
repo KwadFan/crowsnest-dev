@@ -63,6 +63,12 @@ cn_get_config() {
         variables+=( "${var_name}" )
     done
     echo "${variables[@]}"
+
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        printf "cn_get_config section: %s\n" "${section}"
+        printf "cn_get_config prefix: %s\n" "${prefix}"
+        printf "cn_get_config variables: %s\n" "${variables[@]}"
+    fi
 }
 
 cn_set_config() {
@@ -81,6 +87,10 @@ cn_set_config() {
     for expose_var in "${config[@]}"; do
         declare -g -r "$(echo "${expose_var}" | tr -d "'")"
     done
+
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        printf "cn_set_config: %s\n" "${config[@]}"
+    fi
 }
 
 init_config_parse() {
