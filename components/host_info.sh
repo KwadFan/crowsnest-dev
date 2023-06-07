@@ -54,3 +54,7 @@ cn_print_host() {
         cn_log_msg "Host Info: Diskspace (avail. / total): ${disksize}"
     fi
 }
+
+if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    printf "Sourced component: host_info.sh\n"
+fi

@@ -33,3 +33,7 @@ cn_init_check_deps() {
         cn_check_dep "${dep}"
     done
 }
+
+if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    printf "Sourced component: self_dep_check.sh\n"
+fi

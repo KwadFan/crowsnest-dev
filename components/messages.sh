@@ -43,3 +43,7 @@ function debug_focus_val_msg {
 function blockyfix_msg_1 {
     cn_log_msg "INFO: Blockyfix: Setting video_bitrate_mode to constant."
 }
+
+if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    printf "Sourced component: messages.sh\n"
+fi

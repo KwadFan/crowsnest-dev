@@ -27,3 +27,7 @@ cn_print_cfg() {
         printf "\t\t%s\n" "${line}"
     done
 }
+
+if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    printf "Sourced component: log_config_file.sh\n"
+fi

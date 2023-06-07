@@ -31,3 +31,7 @@ cn_self_version_msg() {
 cn_version_log_msg() {
     cn_log_msg "Version: $(cn_self_version)"
 }
+
+if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    printf "Sourced component: self_version.sh\n"
+fi

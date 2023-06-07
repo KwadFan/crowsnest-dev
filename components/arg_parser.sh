@@ -88,5 +88,5 @@ fi
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
-    printf "Loaded component arg_parser\n"
+    printf "Sourced component: arg_parser.sh\n"
 fi

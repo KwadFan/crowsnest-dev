@@ -60,3 +60,7 @@ cn_init_logging() {
     cn_delete_log
     cn_log_header
 }
+
+if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    printf "Sourced component: logging.sh\n"
+fi
