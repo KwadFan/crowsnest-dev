@@ -37,7 +37,10 @@ cn_log_msg() {
     local msg
     msg="${1}"
     # print to log file
-    printf "%s %s\n" "$(cn_log_prefix)" "${msg}" >> "${CN_SELF_LOG_PATH}"
+    # log to stdout only if log_path is missing
+    if [[ -n "${CN_SELF_LOG_PATH}" ]]; then
+        printf "%s %s\n" "$(cn_log_prefix)" "${msg}" >> "${CN_SELF_LOG_PATH}"
+    fi
     # print to stdout/journald
     printf "%s\n" "${msg}"
 }
