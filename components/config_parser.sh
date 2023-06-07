@@ -86,12 +86,14 @@ cn_set_config() {
 init_config_parse() {
     cn_check_config_exist
     cn_set_config "crowsnest" "CN_SELF_"
+
+
+
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    declare -p | grep "declare -[aA] CN_"
+    fi
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: config_parser.sh\n"
-fi
-
-if [[ "${CN_DEV_MSG}" = "1" ]]; then
-    declare -p | grep "declare -[aA] CN_"
 fi
