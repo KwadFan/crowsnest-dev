@@ -90,5 +90,8 @@ init_config_parse() {
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: config_parser.sh\n"
-    export -p
+fi
+
+if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    declare -p | grep "declare -[aA] CN_"
 fi
