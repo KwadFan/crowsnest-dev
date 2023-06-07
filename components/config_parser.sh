@@ -28,14 +28,6 @@ cn_get_all_sections() {
     crudini --existing=file --get "${CROWSNEST_CONFIG_FILE}"
 }
 
-cn_set_cam_sections() {
-    local cam_sections
-    cam_sections=$(cn_get_all_sections | grep "cam" | cut -f2 -d' ')
-    readarray -t name_spaces <<< "${cam_sections}"
-    #shellcheck disable=SC2034
-    declare -agr CN_CONFIGURED_CAMS=("${name_spaces[@]}")
-}
-
 cn_get_section() {
     local cfg section
     cfg="${CROWSNEST_CONFIG_FILE}"
@@ -85,12 +77,28 @@ cn_set_config() {
     done
 }
 
+cn_set_cam_sections() {
+    local cam_sections
+    cam_sections=$(cn_get_all_sections | grep "cam" | cut -f2 -d' ')
+    readarray -t name_spaces <<< "${cam_sections}"
+    #shellcheck disable=SC2034
+    declare -agr CN_CONFIGURED_CAMS=("${name_spaces[@]}")
+}
+
+cn_set_cam_config() {
+    for cam in "${CN_CONFIGURED_CAMS[@]}"; do
+        cn_set_config "cam ${cam}" "CN_CAM_${CAM^^}"
+    done
+}
+
 init_config_parse() {
     cn_check_config_exist
 
     cn_set_config "crowsnest" "CN_SELF_"
 
     cn_set_cam_sections
+
+    cn_set_cam_config
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "config_parser:\n###########\n"
