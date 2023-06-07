@@ -25,8 +25,14 @@ cn_check_config_exist() {
 }
 
 cn_get_all_sections() {
-    local cfg
-    cfg="${CROWSNEST_CONFIG_FILE}"
+    crudini --existing=file --get "${CROWSNEST_CONFIG_FILE}"
+}
+
+cn_set_cam_sections() {
+    CN_CONFIGURED_CAMS="$(
+        crudini --existing=file --get "${CROWSNEST_CONFIG_FILE}" | \
+        sed '/crowsnest/d;s/cam//')"
+    declare -g -r "${CN_CONFIGURED_CAMS}"
 }
 
 cn_get_section() {

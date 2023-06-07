@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#### message.sh -
+#### message.sh - reusable messages
 
 #### crowsnest - A webcam Service for multiple Cams and Stream Services.
 ####
@@ -16,10 +16,11 @@
 # Exit upon Errors
 set -Ee
 
-## Message Helpers
-
-## core lib
-
+develop_msg() {
+    if [[ "${CN_SELF_LOG_LEVEL}" = "develop" ]]; then
+        printf "DEV_DEBUG: %s" "${1}"
+    fi
+}
 
 function deprecated_msg_1 {
     cn_log_msg "Parameter 'streamer' is deprecated!"
