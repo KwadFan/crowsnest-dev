@@ -29,12 +29,15 @@ cn_get_all_sections() {
 }
 
 cn_set_cam_sections() {
-    local name_spaces
+    local cam_sections
+    local -a name_spaces
+    cam_sections="$(cn_get_all_sections | grep "cam" | cut -f2 -d' ')"
+    name_spaces=()
+    for i in ${cam_sections}; do
+        name_spaces+=( "${i}" )
+    done
 
-    mapfile -t name_spaces < <(crudini --existing=file --get "${CROWSNEST_CONFIG_FILE}" | \
-        sed '/crowsnest/d;s/cam //')
-
-    declare -agr CN_CONFIGURED_CAMS="${name_spaces[@]}"
+    declare -agr "CN_CONFIGURED_CAMS=${name_spaces[*]}"
 }
 
 cn_get_section() {
