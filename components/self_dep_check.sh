@@ -37,3 +37,7 @@ cn_init_check_deps() {
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: self_dep_check.sh\n"
 fi
+
+if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    printf "Dependencies: %s" "${CN_SELF_DEPS[@]}"
+fi
