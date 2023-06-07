@@ -37,7 +37,7 @@ cn_set_cam_sections() {
         name_spaces+=( "${i}" )
     done
 
-    declare -agr "CN_CONFIGURED_CAMS=${name_spaces[*]}"
+    declare -agr CN_CONFIGURED_CAMS=("${name_spaces[@]}")
 }
 
 cn_get_section() {
