@@ -53,7 +53,7 @@ cn_init_argparse() {
         exit 1
     fi
 
-    while getopts ":vhc:d" arg; do
+    while getopts ":vhc:dx" arg; do
     case "${arg}" in
         v )
             cn_self_version_msg
@@ -68,6 +68,10 @@ cn_init_argparse() {
         ;;
         d )
             set -x
+        ;;
+        x )
+            # shellcheck disable=SC2034
+            CN_SELF_DEV_MSG=1
         ;;
         \?)
             cn_wrong_args_msg
@@ -87,4 +91,6 @@ fi
 
 }
 
-develop_msg "Loaded component 'arg_parser.sh'"
+if [[ "${CN_SELF_DEV_MSG}" = 1 ]]; then
+    printf "Loaded component arg_parser\n"
+fi

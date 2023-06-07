@@ -16,12 +16,6 @@
 # Exit upon Errors
 set -Ee
 
-develop_msg() {
-    if [[ "${CN_SELF_LOG_LEVEL}" = "develop" ]]; then
-        printf "DEV_DEBUG: %s" "${1}"
-    fi
-}
-
 function deprecated_msg_1 {
     cn_log_msg "Parameter 'streamer' is deprecated!"
     cn_log_msg "Please use mode: [ mjpg | multi ]"
