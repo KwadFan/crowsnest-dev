@@ -24,7 +24,7 @@ cn_print_host() {
     disksize="$(LC_ALL=C df -h / | awk 'NR==2 {print $4" / "$2}')"
     ## print only if not "${CROWSNEST_LOG_LEVEL}": quiet
     if [[ "${CROWSNEST_LOG_LEVEL}" != "quiet" ]]; then
-        cn_log_msg "INFO: Host information:"
+        cn_log_msg "Host information:"
         ## OS Infos
         ## OS Version
         if [[ -f /etc/os-release ]]; then
