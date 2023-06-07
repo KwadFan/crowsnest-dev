@@ -31,7 +31,7 @@ cn_get_all_sections() {
 cn_set_cam_sections() {
     local cam_sections
     local -a name_spaces
-    cam_sections="$(cn_get_all_sections | grep "cam" | cut -f2 -d' ')"
+    cam_sections=$(cn_get_all_sections | grep "cam" | cut -f2 -d' ')
     name_spaces=()
     for i in ${cam_sections}; do
         name_spaces+=( "${i}" )
