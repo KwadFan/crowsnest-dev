@@ -65,8 +65,8 @@ cn_get_config() {
     echo "${variables[@]}"
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
-        printf "cn_get_config section: %s\n" "${section}"
-        printf "cn_get_config prefix: %s\n" "${prefix}"
+        printf "cn_get_config section: %s\n" "${1}"
+        printf "cn_get_config prefix: %s\n" "${2}"
         printf "cn_get_config variables: %s\n" "${variables[@]}"
     fi
 }
