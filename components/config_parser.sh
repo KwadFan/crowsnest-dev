@@ -87,10 +87,6 @@ cn_set_config() {
     for expose_var in "${config[@]}"; do
         declare -g -r "$(echo "${expose_var}" | tr -d "'")"
     done
-
-    if [[ "${CN_DEV_MSG}" = "1" ]]; then
-        printf "cn_set_config: %s\n" "${config[@]}"
-    fi
 }
 
 init_config_parse() {
