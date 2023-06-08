@@ -96,7 +96,7 @@ init_config_parse() {
     cn_check_config_exist
 
 
-    (cn_set_cam_sections &&  cn_set_cam_config) &
+    cn_set_cam_sections &&  cn_set_cam_config &
 
     cn_set_config "crowsnest" "CN_SELF_"
     wait
