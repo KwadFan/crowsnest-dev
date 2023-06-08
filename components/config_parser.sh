@@ -97,7 +97,9 @@ init_config_parse() {
 
     (cn_set_config "crowsnest" "CN_SELF_" &)
 
-    cn_set_cam_sections &&  cn_set_cam_config
+    (cn_set_cam_sections &&  cn_set_cam_config) &
+
+    wait
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "config_parser:\n###########\n"
