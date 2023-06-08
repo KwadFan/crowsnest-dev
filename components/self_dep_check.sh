@@ -20,6 +20,7 @@ set -Ee
 cn_check_dep() {
     local dep
     dep="$(whereis "${1}" | awk '{print $2}')"
+    cn_log_msg "-------- Dependencies: --------"
     if [[ -z "${dep}" ]]; then
         cn_log_msg "Dependency: '${1}' not found. Exiting!"
         exit 1
