@@ -16,6 +16,11 @@
 # Exit upon Errors
 set -Ee
 
+cn_stopped_msg() {
+    cn_log_msg "ERROR: Stopping $(basename "$0")."
+    cn_log_msg "Goodbye..."
+}
+
 function deprecated_msg_1 {
     cn_log_msg "Parameter 'streamer' is deprecated!"
     cn_log_msg "Please use mode: [ mjpg | multi ]"

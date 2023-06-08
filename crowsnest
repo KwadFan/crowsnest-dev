@@ -52,8 +52,7 @@ cn_err_exit() {
     if [ "${1}" != "0" ]; then
         cn_log_msg "ERROR: Error ${1} occured on line ${line_trace}"
         cn_log_msg "==> Error occured in file: ${file_trace} -> ${func_trace}"
-        cn_log_msg "ERROR: Stopping $(basename "$0")."
-        cn_log_msg "Goodbye..."
+        cn_stopped_msg
     fi
     if [ -n "$(jobs -pr)" ]; then
         jobs -pr | while IFS='' read -r job_id; do

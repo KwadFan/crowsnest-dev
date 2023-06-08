@@ -80,9 +80,15 @@ cn_set_config() {
 cn_set_cam_sections() {
     local cam_sections
     cam_sections=$(cn_get_all_sections | grep "cam" | cut -f2 -d' ')
-    readarray -t name_spaces <<< "${cam_sections}"
-    #shellcheck disable=SC2034
-    declare -agr CN_CONFIGURED_CAMS=("${name_spaces[@]}")
+    if [[ -n "${cam_sections}" ]]; then
+        readarray -t name_spaces <<< "${cam_sections}"
+        #shellcheck disable=SC2034
+        declare -agr CN_CONFIGURED_CAMS=("${name_spaces[@]}")
+    else
+        cn_log_msg "ERROR: No cameras configured!"
+        cn_stopped_msg
+        exit 1
+    fi
 }
 
 cn_set_cam_config() {
