@@ -34,7 +34,7 @@ cn_print_cfg() {
     local cfg prefix
     prefix="$(date +'[%D %T]')"
     cn_log_msg "-------- Configfile: '${CN_CONFIG_FILE}' --------"
-    mapfile -t cfg < "${CN_CONFIG_FILE/^\#$/}"
+    mapfile -t cfg < <(sed '/^#.*/d;/./,$!d' "${CN_CONFIG_FILE}" | cut -d'#' -f1)
     for i in "${cfg[@]}"; do
         if [[ -n "${CN_SELF_LOG_PATH}" ]]; then
             printf "%s\t%s" "${prefix}" "${i}" >> "${CN_SELF_LOG_PATH}"
