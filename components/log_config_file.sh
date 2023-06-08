@@ -20,7 +20,8 @@ cn_print_cfg() {
     local cfg prefix
     prefix="$(date +'[%D %T]')"
     cn_log_msg "-------- Configfile: '${CN_CONFIG_FILE}' --------"
-    cn_log_msg "\n"
+    # put a little whitespace here
+    cn_log_msg " "
     mapfile -t cfg < <(sed '/^#.*/d;/./,$!d' "${CN_CONFIG_FILE}" | cut -d'#' -f1)
     for i in "${cfg[@]}"; do
         if [[ -n "${CN_SELF_LOG_PATH}" ]]; then
@@ -28,7 +29,8 @@ cn_print_cfg() {
         fi
         printf "\t%s\n" "${i}"
     done
-    cn_log_msg "\n"
+    # put a little whitespace here
+    cn_log_msg " "
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
