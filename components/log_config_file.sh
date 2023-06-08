@@ -20,7 +20,7 @@ set -Ee
 cn_print_cfg() {
     local prefix
     prefix="$(date +'[%D %T]') crowsnest:"
-    log_msg "INFO: Print Configfile: '${CROWSNEST_CFG}'"
+    cn_log_msg "INFO: Print Configfile: '${CROWSNEST_CFG}'"
     (sed '/^#.*/d;/./,$!d' | cut -d'#' -f1) < "${CROWSNEST_CFG}" | \
     while read -r line; do
         printf "%s\t\t%s\n" "${prefix}" "${line}" >> "${CROWSNEST_LOG_PATH}"
