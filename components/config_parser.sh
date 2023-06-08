@@ -95,8 +95,7 @@ cn_set_cam_config() {
 init_config_parse() {
     cn_check_config_exist
 
-    foo="$(cn_set_config "crowsnest" "CN_SELF_" &)"
-    foo
+    (cn_set_config "crowsnest" "CN_SELF_" &)
 
     cn_set_cam_sections &&  cn_set_cam_config
 
