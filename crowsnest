@@ -91,6 +91,8 @@ main() {
 
     cn_init_check_deps
 
+    cn_print_cfg
+
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
