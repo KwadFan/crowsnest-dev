@@ -16,20 +16,6 @@
 # Exit upon Errors
 set -Ee
 
-
-# cn_print_cfg() {
-#     local prefix
-#     prefix="$(date +'[%D %T]')"
-#     cn_log_msg "-------- Configfile: '${CN_CONFIG_FILE}' --------"
-#     (sed '/^#.*/d;/./,$!d' | cut -d'#' -f1) < "${CN_CONFIG_FILE}" | \
-#     while read -r line; do
-#         if [[ -n "${CN_SELF_LOG_PATH}" ]]; then
-#             printf "%s\t%s\n" "${prefix}" "${line}" >> "${CN_SELF_LOG_PATH}"
-#         fi
-#         printf "\t%s\n" "${line}"
-#     done
-# }
-
 cn_print_cfg() {
     local cfg prefix
     prefix="$(date +'[%D %T]')"
