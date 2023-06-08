@@ -19,14 +19,17 @@ set -Ee
 CN_DOCS_BASE_URL="https://crowsnest.mainsail.xyz"
 declare -gr CN_DOCS_BASE_URL
 
+CN_DOCS_CAM_SECTION="/configuration/cam-section"
+declare -gr CN_DOCS_CAM_SECTION
+
+
 cn_stopped_msg() {
     cn_log_msg "ERROR: Stopping $(basename "$0")."
     cn_log_msg "Goodbye..."
 }
 
 cn_missing_cam_section_msg() {
-    cn_log_msg "ERROR: No cameras configured! \
-Please visit ${CN_DOCS_BASE_URL}/configuration/cam-section "
+    cn_log_msg "ERROR: No cameras configured! Please visit ${CN_DOCS_BASE_URL}${CN_DOCS_CAM_SECTION}"
     cn_stopped_msg
 }
 
