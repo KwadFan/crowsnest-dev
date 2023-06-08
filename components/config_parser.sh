@@ -17,26 +17,26 @@
 set -Ee
 
 cn_check_config_exist() {
-    if [[ ! -f "${CROWSNEST_CONFIG_FILE}" ]]; then
+    if [[ ! -f "${CN_CONFIG_FILE}" ]]; then
         cn_config_file_missing
         exit 1
     fi
 }
 
 cn_get_all_sections() {
-    crudini --existing=file --get "${CROWSNEST_CONFIG_FILE}"
+    crudini --existing=file --get "${CN_CONFIG_FILE}"
 }
 
 cn_get_section() {
     local cfg section
-    cfg="${CROWSNEST_CONFIG_FILE}"
+    cfg="${CN_CONFIG_FILE}"
     section="${1}"
     crudini --get "${cfg}" "${section}" 2> /dev/null
 }
 
 cn_get_param() {
     local cfg section param
-    cfg="${CROWSNEST_CONFIG_FILE}"
+    cfg="${CN_CONFIG_FILE}"
     section="${1}"
     param="${2}"
     crudini --get "${cfg}" "${section}" "${param}" 2> /dev/null | \
