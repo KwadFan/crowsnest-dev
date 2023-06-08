@@ -18,8 +18,7 @@ set -Ee
 
 cn_check_config_exist() {
     if [[ ! -f "${CROWSNEST_CONFIG_FILE}" ]]; then
-        cn_log_msg "ERROR: Given configuration file '${CROWSNEST_CONFIG_FILE}' doesn't exist!"
-        cn_log_msg "Stopping $(basename "${0}") ... Goodbye!"
+        cn_config_file_missing
         exit 1
     fi
 }

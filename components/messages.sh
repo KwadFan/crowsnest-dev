@@ -28,6 +28,11 @@ cn_stopped_msg() {
     cn_log_msg "Goodbye..."
 }
 
+cn_config_file_missing() {
+    cn_log_msg "ERROR: Given configuration file '${CROWSNEST_CONFIG_FILE}' doesn't exist!"
+    cn_stopped_msg
+}
+
 cn_missing_cam_section_msg() {
     cn_log_msg "ERROR: No cameras configured! Please see ${CN_DOCS_BASE_URL}${CN_DOCS_CAM_SECTION}."
     cn_stopped_msg
