@@ -44,7 +44,7 @@ cn_print_cfg() {
     mapfile cfg < "${CN_CONFIG_FILE}"
     for i in "${cfg[@]}"; do
         if [[ -n "${CN_SELF_LOG_PATH}" ]]; then
-            printf "%s\t%s\n" "${prefix}" "${i}" >> "${CN_SELF_LOG_PATH}"
+            printf "%s\t%s" "${prefix}" "${i}" >> "${CN_SELF_LOG_PATH}"
         fi
         printf "\t%s\n" "${i}"
     done
