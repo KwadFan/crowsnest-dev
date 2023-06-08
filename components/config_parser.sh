@@ -41,7 +41,7 @@ cn_get_param() {
     section="${1}"
     param="${2}"
     crudini --get "${cfg}" "${section}" "${param}" 2> /dev/null | \
-    sed 's/\#.*//;s/[[:space:]]*$//'
+    sed "s/\#.*//;s/[[:space:]]*$//;s#^~#${HOME}#gi"
     return
 }
 
