@@ -23,7 +23,9 @@ cn_print_cfg() {
     cn_log_msg "INFO: Print Configfile: '${CN_CONFIG_FILE}'"
     (sed '/^#.*/d;/./,$!d' | cut -d'#' -f1) < "${CN_CONFIG_FILE}" | \
     while read -r line; do
-        printf "%s\t\t%s\n" "${prefix}" "${line}" >> "${CROWSNEST_LOG_PATH}"
+        if [[ -n "${CN_SELF_LOG_PATH}" ]]; then
+            printf "%s\t\t%s\n" "${prefix}" "${line}" >> "${CN_SELF_LOG_PATH}"
+        fi
         printf "\t\t%s\n" "${line}"
     done
 }
