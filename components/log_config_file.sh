@@ -37,7 +37,7 @@ cn_print_cfg() {
     mapfile -t cfg < <(sed '/^#.*/d;/./,$!d' "${CN_CONFIG_FILE}" | cut -d'#' -f1)
     for i in "${cfg[@]}"; do
         if [[ -n "${CN_SELF_LOG_PATH}" ]]; then
-            printf "%s\t%s" "${prefix}" "${i}" >> "${CN_SELF_LOG_PATH}"
+            printf "%s\t%s\n" "${prefix}" "${i}" >> "${CN_SELF_LOG_PATH}"
         fi
         printf "\t%s\n" "${i}"
     done
