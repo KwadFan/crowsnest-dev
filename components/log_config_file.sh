@@ -17,15 +17,14 @@
 set -Ee
 
 cn_print_cfg() {
-    local cfg prefix
-    prefix="$(date +'[%D %T]')"
+    local cfg
     cn_log_msg "-------- Configfile: '${CN_CONFIG_FILE}' --------"
     # put a little whitespace here
     cn_log_msg " "
     mapfile -t cfg < <(sed '/^#.*/d;/./,$!d' "${CN_CONFIG_FILE}" | cut -d'#' -f1)
     for i in "${cfg[@]}"; do
         if [[ -n "${CN_SELF_LOG_PATH}" ]]; then
-            printf "%s\t%s\n" "${prefix}" "${i}" >> "${CN_SELF_LOG_PATH}"
+            printf "%s\t%s\n" "${cn_log_prefix}" "${i}" >> "${CN_SELF_LOG_PATH}"
         fi
         printf "\t%s\n" "${i}"
     done
