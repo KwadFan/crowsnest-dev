@@ -16,13 +16,17 @@
 # Exit upon Errors
 set -Ee
 
+CN_DOCS_BASE_URL="https://crowsnest.mainsail.xyz"
+declare -gr CN_DOCS_BASE_URL
+
 cn_stopped_msg() {
     cn_log_msg "ERROR: Stopping $(basename "$0")."
     cn_log_msg "Goodbye..."
 }
 
 cn_missing_cam_section_msg() {
-    cn_log_msg "ERROR: No cameras configured! Please visit https://crowsnest.mainsail.xyz"
+    cn_log_msg "ERROR: No cameras configured! \
+Please visit "${CN_DOCS_BASE_URL}"/configuration/cam-section "
     cn_stopped_msg
 }
 
