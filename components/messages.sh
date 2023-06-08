@@ -29,7 +29,7 @@ cn_stopped_msg() {
 }
 
 cn_missing_cam_section_msg() {
-    cn_log_msg "ERROR: No cameras configured! Please visit ${CN_DOCS_BASE_URL}${CN_DOCS_CAM_SECTION}"
+    cn_log_msg "ERROR: No cameras configured! Please see ${CN_DOCS_BASE_URL}${CN_DOCS_CAM_SECTION}."
     cn_stopped_msg
 }
 
