@@ -57,12 +57,11 @@ if [[ -n "${CROWSNEST_CONFIG_FILE}" ]]; then
     declare -g -r CROWSNEST_CONFIG_FILE
 fi
 
+if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    printf "Given config path: %s\n" "${CROWSNEST_CONFIG_FILE}"
+fi
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: arg_parser.sh\n"
-fi
-
-if [[ "${CN_DEV_MSG}" = "1" ]]; then
-    printf "Given config path: %s\n" "${CROWSNEST_CONFIG_FILE}"
 fi
