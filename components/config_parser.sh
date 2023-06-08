@@ -85,8 +85,7 @@ cn_set_cam_sections() {
         #shellcheck disable=SC2034
         declare -agr CN_CONFIGURED_CAMS=("${name_spaces[@]}")
     else
-        cn_log_msg "ERROR: No cameras configured! ..."
-        cn_stopped_msg
+        cn_missing_cam_section_msg
         exit 1
     fi
 }

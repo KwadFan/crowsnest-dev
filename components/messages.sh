@@ -21,6 +21,11 @@ cn_stopped_msg() {
     cn_log_msg "Goodbye..."
 }
 
+cn_missing_cam_section_msg() {
+    cn_log_msg "ERROR: No cameras configured! Please visit https://crowsnest.mainsail.xyz"
+    cn_stopped_msg
+}
+
 function deprecated_msg_1 {
     cn_log_msg "Parameter 'streamer' is deprecated!"
     cn_log_msg "Please use mode: [ mjpg | multi ]"
