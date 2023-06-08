@@ -97,7 +97,7 @@ init_config_parse() {
 
     (cn_set_config "crowsnest" "CN_SELF_" &)
 
-    (cn_set_cam_sections &&  cn_set_cam_config) &
+    (cn_set_cam_sections &&  cn_set_cam_config &)
 
     wait
 
