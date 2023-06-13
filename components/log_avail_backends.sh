@@ -16,8 +16,11 @@
 # Exit upon Errors
 set -Ee
 
+CN_CUR_USABLE_BACKENDS=(ustreamer camera-streamer)
+declare -gar CN_CUR_USABLE_BACKENDS
+
 cn_init_check_backends() {
-    echo "Hi!"
+    echo "${CN_CUR_USABLE_BACKENDS[@]}"
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
