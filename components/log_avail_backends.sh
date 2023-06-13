@@ -16,7 +16,7 @@
 # Exit upon Errors
 set -Ee
 
-init_check_backends() {
+cn_init_check_backends() {
     echo "Hi!"
 }
 

@@ -83,7 +83,7 @@ main() {
 
     cn_init_argparse "${@}"
 
-    init_config_parse
+    cn_init_config_parse
 
     cn_init_logging
 
@@ -92,6 +92,8 @@ main() {
     cn_init_check_deps
 
     cn_print_cfg
+
+    cn_init_check_backends
 
 }
 
