@@ -29,7 +29,7 @@ cn_check_dep() {
 }
 
 cn_init_check_deps() {
-    cn_log_msg "-------- Dependencies: --------"
+    cn_log_sect_header "Dependencies:"
     for dep in "${CN_SELF_DEPS[@]}"; do
         cn_check_dep "${dep}"
     done

@@ -56,6 +56,10 @@ cn_log_output() {
     done
 }
 
+cn_log_sect_header() {
+    cn_log_msg "-------- ${1} --------"
+}
+
 cn_init_logging() {
     cn_delete_log
     cn_log_header
