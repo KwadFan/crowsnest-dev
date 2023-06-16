@@ -33,6 +33,8 @@ cn_init_check_deps() {
     for dep in "${CN_SELF_DEPS[@]}"; do
         cn_check_dep "${dep}"
     done
+    # put a little whitespace here
+    cn_log_msg " "
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then

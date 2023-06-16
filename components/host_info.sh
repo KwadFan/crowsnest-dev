@@ -53,6 +53,8 @@ cn_print_host() {
         ## Avail disk size
         cn_log_msg "Diskspace (avail. / total): ${disksize}"
     fi
+    # put a little whitespace here
+    cn_log_msg " "
 }
 
 cn_print_host_cfg() {
