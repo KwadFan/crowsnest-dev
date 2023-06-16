@@ -22,11 +22,14 @@ set -Ee
 
 
 cn_log_streamer_version() {
-    local bin
+    local bin version
     for i in "${CN_CUR_USABLE_BACKENDS[@]}"; do
         bin="CN_${i^^}_BIN_PATH"
         if [[ -v "${bin}" ]] && [[ -n "${!bin}" ]]; then
-            cn_log_msg "Version of '${i}': installed: available:'${!bin}' ..."
+            if [[ "${bin}" =~ "ustreamer" ]]; then
+                version="$("${!bin}" -v)"
+            fi
+            cn_log_msg "Version of '${i}': ${version}"
         fi
     done
 }
