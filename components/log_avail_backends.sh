@@ -62,6 +62,9 @@ cn_log_streamer_info() {
     local bin
     for i in "${CN_CUR_USABLE_BACKENDS[@]}"; do
         bin="CN_${i^^}_BIN_PATH"
+        if [[ "${bin_path}" =~ "camera-streamer" ]]; then
+            bin="${bin/\-/\_}"
+        fi
         if [[ -v "${bin}" ]] && [[ -n "${!bin}" ]]; then
             cn_log_msg "Backend '${i}' found in '${!bin}' ..."
         fi
