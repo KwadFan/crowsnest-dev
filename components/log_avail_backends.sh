@@ -58,7 +58,11 @@ cn_init_check_backends() {
         printf "No usable backends found!"
         exit 1
     fi
-    declare -p | grep "CN_*_BIN_PATH"
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        printf "Backends:\n###########\n"
+        declare -p | grep "CN_(.*)_BIN_PATH"
+        printf "###########\n"
+    fi
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
