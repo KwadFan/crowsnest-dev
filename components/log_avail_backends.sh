@@ -60,7 +60,7 @@ cn_log_streamer_info() {
     local -a exposed_var
     exposed_var=()
     for i in "${CN_CUR_USABLE_BACKENDS[@]}"; do
-        exposed_var+=("CN_${i^^}_BIN_PATH")
+        exposed_var+=("${!CN_${i^^}_BIN_PATH}")
     done
     for bin in "${exposed_var[@]}"; do
         echo "\$${bin}"
