@@ -22,7 +22,7 @@ declare -gar CN_CUR_USABLE_BACKENDS
 cn_get_bin_path() {
     local cn_bin sys_bin path
     cn_bin="${CN_WORKDIR_PATH}/bin/${1}/${1}"
-    sys_bin=$(command -v "${1}" | true)
+    sys_bin=$(command -v "${1}" 2> /dev/null)
     if [[ -x "${cn_bin}" ]]; then
         path="${cn_bin}"
     elif [[ -n "${sys_bin}" ]]; then
