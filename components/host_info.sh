@@ -55,6 +55,14 @@ cn_print_host() {
     fi
 }
 
+cn_print_host_cfg() {
+    true
+}
+
+cn_init_print_host() {
+    cn_print_host
+}
+
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: host_info.sh\n"
 fi
