@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -Ee
+set -Eex
 
 
 [[ -n "${CN_CUR_USABLE_BACKENDS[*]}" ]] || \
@@ -47,3 +47,5 @@ cn_init_backend_version() {
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: log_backend_version.sh\n"
 fi
+
+set +x
