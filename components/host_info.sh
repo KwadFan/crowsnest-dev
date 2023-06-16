@@ -56,11 +56,25 @@ cn_print_host() {
 }
 
 cn_print_host_cfg() {
-    true
+    local host_config
+    host_config="/boot/config.txt"
+    if [[ -f "${host_config}" ]]; then
+        if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
+            mapfile -t cfg <<< "${host_config}"
+            for i in "${cfg[@]}"; do
+                if [[ -n "${CN_SELF_LOG_PATH}" ]]; then
+                    printf "%s\t\t%s\n" "$(cn_log_prefix)" "${i}" >> "${CN_SELF_LOG_PATH}"
+                fi
+                printf "\t%s\n" "${i}"
+            done
+        fi
+    fi
 }
 
 cn_init_print_host() {
     cn_print_host
+
+    cn_print_host_cfg
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
