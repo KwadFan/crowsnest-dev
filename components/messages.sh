@@ -63,9 +63,17 @@ cn_config_file_missing() {
     cn_stopped_msg
 }
 
+cn_log_sect_header() {
+    cn_log_msg "-------- ${1} --------"
+}
+
 cn_missing_cam_section_msg() {
     cn_log_msg "ERROR: No cameras configured! Please see ${CN_DOCS_BASE_URL}${CN_DOCS_CAM_SECTION}."
     cn_stopped_msg
+}
+
+cn_streamer_not_found_msg() {
+    cn_log_msg "WARN: Backend '${1}' not found! Can't be configured as backend!"
 }
 
 function deprecated_msg_1 {
