@@ -71,7 +71,7 @@ cn_log_level_invalid_msg(){
 }
 
 cn_log_sect_header() {
-    cn_log_msg "-------- ${1} --------"
+    cn_log_msg "-------- \t${1}\t --------"
 }
 
 cn_missing_cam_section_msg() {
