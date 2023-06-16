@@ -95,6 +95,8 @@ main() {
 
     cn_init_check_backends
 
+    cn_init_backend_version
+
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
