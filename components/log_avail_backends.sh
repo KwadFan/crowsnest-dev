@@ -38,7 +38,7 @@ cn_get_bin_path() {
 cn_set_bin_path() {
     local bin expose_var
     bin="${1}"
-    bin_path="$(cn_get_bin_path "${bin}")"
+    bin_path="$(cn_get_bin_path "${bin/\_/\-}")"
     if [[ -n "${bin_path}" ]]; then
         if [[ "${bin_path}" =~ "camera-streamer" ]]; then
             bin="${bin/\-/\_}"
