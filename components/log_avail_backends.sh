@@ -57,12 +57,17 @@ cn_check_avail_backends() {
 
 cn_log_streamer_info() {
     local bin_path
+    local -a exposed_var
+    exposed_var=()
     for i in "${CN_CUR_USABLE_BACKENDS[@]}"; do
-        bin_path="${!CN_${i^^}_BIN_PATH}"
-        if [[ -n "${bin_path}" ]]; then
-            printf "Backend '%s' found in '%s' ...\n" "${i}" "${bin_path}"
-        fi
+        exposed_var+=("CN_${i}_BIN_PATH")
     done
+    for j in "${exposed_var[@]}"; do
+        echo "$j"
+    done
+    # if [[ -n "${bin_path}" ]]; then
+    #         printf "Backend '%s' found in '%s' ...\n" "${i}" "${bin_path}"
+    #     fi
 }
 
 cn_init_check_backends() {
