@@ -28,30 +28,30 @@ cn_print_host() {
         ## OS Infos
         ## OS Version
         if [[ -f /etc/os-release ]]; then
-            cn_log_msg "Host Info: Distribution: $(grep "PRETTY" /etc/os-release | \
+            cn_log_msg "Distribution: $(grep "PRETTY" /etc/os-release | \
             cut -d '=' -f2 | sed 's/^"//;s/"$//')"
         fi
         ## Release Version of MainsailOS (if file present)
         if [[ -f /etc/mainsailos-release ]]; then
-            cn_log_msg "Host Info: Release: $(cat /etc/mainsailos-release)"
+            cn_log_msg "Release: $(cat /etc/mainsailos-release)"
         fi
         ## Kernel version
-        cn_log_msg "Host Info: Kernel: $(uname -s) $(uname -rm)"
+        cn_log_msg "Kernel: $(uname -s) $(uname -rm)"
         ## Host Machine Infos
         ## Host model
         if [[ -n "${sbc_model}" ]]; then
-            cn_log_msg "Host Info: Model: ${sbc_model}"
+            cn_log_msg "Model: ${sbc_model}"
         fi
         if [[ -n "${generic_model}" ]] &&
         [[ -z "${sbc_model}" ]]; then
-            cn_log_msg "Host Info: Model: ${generic_model}"
+            cn_log_msg "Model: ${generic_model}"
         fi
         ## CPU count
-        cn_log_msg "Host Info: Available CPU Cores: $(nproc)"
+        cn_log_msg "Available CPU Cores: $(nproc)"
         ## Avail mem
-        cn_log_msg "Host Info: Available Memory: ${memtotal}"
+        cn_log_msg "Available Memory: ${memtotal}"
         ## Avail disk size
-        cn_log_msg "Host Info: Diskspace (avail. / total): ${disksize}"
+        cn_log_msg "Diskspace (avail. / total): ${disksize}"
     fi
 }
 
