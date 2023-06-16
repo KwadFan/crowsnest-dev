@@ -17,8 +17,8 @@
 set -Ee
 
 
-[[ -n "${CN_CUR_USABLE_BACKENDS[*]}" ]] || \
-    CN_CUR_USABLE_BACKENDS=(ustreamer camera-streamer)
+# [[ -n "${CN_CUR_USABLE_BACKENDS[*]}" ]] || \
+#     CN_CUR_USABLE_BACKENDS=(ustreamer camera-streamer)
 
 
 cn_log_streamer_version() {
