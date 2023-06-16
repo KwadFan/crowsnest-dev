@@ -48,16 +48,22 @@ cn_set_bin_path() {
     fi
 }
 
+cn_check_avail_backends() {
+    if [[ "${CN_AVAIL_BACKENDS}" -gt "1" ]]; then
+        printf "No usable backends found!"
+        exit 1
+    fi
+}
+
 cn_init_check_backends() {
     cn_log_sect_header "Backends:"
 
     for backend in "${CN_CUR_USABLE_BACKENDS[@]}"; do
         cn_set_bin_path "${backend}"
     done
-    if [[ "${CN_AVAIL_BACKENDS}" -gt "1" ]]; then
-        printf "No usable backends found!"
-        exit 1
-    fi
+    cn_check_avail_backends
+
+
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "Backends:\n###########\n"
         declare -p | grep "CN_.*BIN_PATH"
