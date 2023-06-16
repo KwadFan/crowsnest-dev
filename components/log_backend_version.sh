@@ -29,6 +29,9 @@ cn_log_streamer_version() {
             if [[ "${!bin}" =~ "ustreamer" ]]; then
                 version="$("${!bin}" -v)"
             fi
+            if [[ "${!bin}" =~ "camera-streamer" ]]; then
+                version="$("${!bin}" --version)"
+            fi
             cn_log_msg "Version of '${i}': ${version}"
         fi
     done
