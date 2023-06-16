@@ -19,8 +19,25 @@ set -Ee
 CN_CUR_USABLE_BACKENDS=(ustreamer camera-streamer)
 declare -gar CN_CUR_USABLE_BACKENDS
 
+cn_get_binary_path() {
+    local cn_bin sys_bin path
+    cn_bin="${CN_WORKDIR_PATH}/bin/${1}/${1}"
+    sys_bin=$(command -v "${1}")
+    if [[ -x "${cn_bin}" ]]; then
+        path="${cn_bin}"
+    elif [[ -n "${sys_bin}" ]]; then
+        path="${sys_bin}"
+    else
+        path=""
+    fi
+    echo "${path}"
+
+}
+
 cn_init_check_backends() {
     echo "${CN_CUR_USABLE_BACKENDS[@]}"
+
+    cn_get_binary_path ustreamer
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
