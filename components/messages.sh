@@ -25,9 +25,6 @@ declare -gr CN_DOCS_LOG_LEVEL
 CN_DOCS_CAM_SECTION="/configuration/cam-section"
 declare -gr CN_DOCS_CAM_SECTION
 
-/configuration/crowsnest-section#log_level
-
-
 cn_missing_args_msg() {
     printf "%s\n" "${CN_SELF_TITLE}"
     printf "\nERROR: Missing arguments!\n"
