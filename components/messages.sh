@@ -67,6 +67,7 @@ cn_config_file_missing() {
 
 cn_log_level_invalid_msg(){
     cn_log_msg "ERROR: Set log_level: ${1} is invalid! Please see ${CN_DOCS_BASE_URL}${CN_DOCS_LOG_LEVEL}."
+    cn_stopped_msg
 }
 
 cn_log_sect_header() {
