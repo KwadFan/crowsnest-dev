@@ -60,7 +60,7 @@ cn_init_check_backends() {
     fi
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "Backends:\n###########\n"
-        declare -p | grep "CN_(.*)_BIN_PATH"
+        declare -p | grep "_BIN_PATH"
         printf "###########\n"
     fi
 }
