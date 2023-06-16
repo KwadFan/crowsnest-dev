@@ -27,7 +27,7 @@ cn_log_streamer_version() {
         bin="CN_${i^^}_BIN_PATH"
         if [[ -v "${bin}" ]] && [[ -n "${!bin}" ]]; then
             if [[ "${!bin}" =~ "ustreamer" ]]; then
-                version="${!bin} -v"
+                version="$("${!bin}" -v)"
             fi
             cn_log_msg "Version of '${i}': ${version}"
         fi
