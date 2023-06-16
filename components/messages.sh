@@ -73,7 +73,7 @@ cn_missing_cam_section_msg() {
 }
 
 cn_streamer_not_found_msg() {
-    cn_log_msg "WARN: Backend '${1}' not found! Can't be configured as backend!"
+    cn_log_msg "WARN: Backend '${1}' not found! Can't be configured as mode!"
 }
 
 function deprecated_msg_1 {

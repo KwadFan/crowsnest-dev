@@ -55,13 +55,23 @@ cn_check_avail_backends() {
     fi
 }
 
+cn_log_streamer_info() {
+    for i in "${CN_CUR_USABLE_BACKENDS[@]}"; do
+        if [[ -n "${!CN_${i^^}_BIN_PATH}" ]]; then
+            printf "Backend '%s' found in '%s' ...\n" "${i}" "${!CN_${i^^}_BIN_PATH}"
+        fi
+    done
+}
+
 cn_init_check_backends() {
     cn_log_sect_header "Backends:"
 
     for backend in "${CN_CUR_USABLE_BACKENDS[@]}"; do
         cn_set_bin_path "${backend}"
     done
+
     cn_check_avail_backends
+
 
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
