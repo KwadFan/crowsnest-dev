@@ -59,7 +59,7 @@ cn_log_streamer_info() {
     local bin bin_path
     for i in "${CN_CUR_USABLE_BACKENDS[@]}"; do
         bin="CN_${i^^}_BIN_PATH"
-        if [[ -n "${!bin}" ]]; then
+        if [[ -n "${bin}" ]] && [[ -n "${!bin}" ]]; then
             printf "Backend '%s' found in '%s' ...\n" "${i}" "${!bin}"
         fi
     done
