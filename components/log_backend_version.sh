@@ -44,6 +44,9 @@ cn_init_backend_version() {
     cn_log_sect_header "Backend versions:"
 
     cn_log_streamer_version
+
+    # put a little whitespace here
+    cn_log_msg " "
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then

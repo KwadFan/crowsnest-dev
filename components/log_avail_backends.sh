@@ -69,6 +69,8 @@ cn_log_streamer_info() {
             cn_log_msg "Backend '${i}' found in '${!bin}' ..."
         fi
     done
+    # put a little whitespace here
+    cn_log_msg " "
 }
 
 cn_init_check_backends() {
