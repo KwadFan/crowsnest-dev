@@ -63,7 +63,7 @@ cn_log_streamer_info() {
         exposed_var+=("CN_${i^^}_BIN_PATH")
     done
     for bin in "${exposed_var[@]}"; do
-        echo "$(<"${bin}")"
+        echo "\$${bin}"
     done
     # if [[ -n "${bin_path}" ]]; then
     #         printf "Backend '%s' found in '%s' ...\n" "${i}" "${bin_path}"
