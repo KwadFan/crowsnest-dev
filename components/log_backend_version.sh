@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -Eex
+set -Ee
 
 
 [[ -n "${CN_CUR_USABLE_BACKENDS[*]}" ]] || \
@@ -35,6 +35,9 @@ cn_log_streamer_version() {
             if [[ "${!bin}" =~ "camera-streamer" ]]; then
                 version="$("${!bin}" --version)"
             fi
+            if [[ "${CN_DEV_MSG}" = "1" ]]; then
+                printf "Bin: %s\n" "${bin}"
+            fi
             cn_log_msg "Version of '${i}': ${version}"
         fi
     done
@@ -50,5 +53,3 @@ cn_init_backend_version() {
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: log_backend_version.sh\n"
 fi
-
-set +x
