@@ -16,17 +16,14 @@
 # Exit upon Errors
 set -Ee
 
-
-# [[ -n "${CN_CUR_USABLE_BACKENDS[*]}" ]] || \
-#     CN_CUR_USABLE_BACKENDS=(ustreamer camera-streamer)
-
-
 cn_log_streamer_version() {
     local bin version
     for i in "${CN_CUR_USABLE_BACKENDS[@]}"; do
-        bin="CN_${i^^}_BIN_PATH"
-        if [[ "${bin}" =~ "camera-streamer" ]]; then
+        if [[ "${i}" =~ "camera-streamer" ]]; then
+            bin="CN_${i^^}_BIN_PATH"
             bin="${bin/\-/\_}"
+        else
+            bin="CN_${i^^}_BIN_PATH"
         fi
         if [[ -v "${bin}" ]] && [[ -n "${!bin}" ]]; then
             if [[ "${!bin}" =~ "ustreamer" ]]; then
