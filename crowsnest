@@ -93,7 +93,9 @@ main() {
 
     cn_init_check_deps
 
-    cn_print_cfg
+    if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
+        cn_print_cfg
+    fi
 
     cn_init_check_backends
 
