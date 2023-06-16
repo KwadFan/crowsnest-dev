@@ -71,7 +71,9 @@ cn_log_level_invalid_msg(){
 }
 
 cn_log_sect_header() {
-    cn_log_msg "-------- \t${1}\t --------"
+    local tab
+    tab="$(echo -e "\t\t${1}\t\t")"
+    cn_log_msg "-------- ${tab} --------"
 }
 
 cn_missing_cam_section_msg() {
