@@ -25,6 +25,9 @@ cn_log_streamer_version() {
     local bin version
     for i in "${CN_CUR_USABLE_BACKENDS[@]}"; do
         bin="CN_${i^^}_BIN_PATH"
+        if [[ "${bin}" =~ "camera-streamer" ]]; then
+            bin="${bin/\-/\_}"
+        fi
         if [[ -v "${bin}" ]] && [[ -n "${!bin}" ]]; then
             if [[ "${!bin}" =~ "ustreamer" ]]; then
                 version="$("${!bin}" -v)"
