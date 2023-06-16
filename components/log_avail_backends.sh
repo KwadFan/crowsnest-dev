@@ -40,7 +40,7 @@ cn_set_bin_path() {
     bin="${1}"
     bin_path="$(cn_get_bin_path "${bin}")"
     if [[ -n "${bin_path}" ]]; then
-        expose_var="CN_${bin^^}_BIN_PATH=${bin_path}"
+        expose_var="CN_${bin^^/-/_}_BIN_PATH=${bin_path}"
         declare -gr "${expose_var}"
     else
         cn_streamer_not_found_msg "${bin}"
