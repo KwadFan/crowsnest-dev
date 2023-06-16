@@ -19,6 +19,8 @@ set -Ee
 CN_CUR_USABLE_BACKENDS=(ustreamer camera-streamer)
 declare -gar CN_CUR_USABLE_BACKENDS
 
+CN_AVAIL_BACKENDS=0
+
 cn_get_bin_path() {
     local cn_bin sys_bin path
     cn_bin="${CN_WORKDIR_PATH}/bin/${1}/${1}"
@@ -42,6 +44,7 @@ cn_set_bin_path() {
         declare -gr "${expose_var}"
     else
         cn_streamer_not_found_msg "${bin}"
+        CN_AVAIL_BACKENDS="((${CN_AVAIL_BACKENDS}+1))"
     fi
 }
 
