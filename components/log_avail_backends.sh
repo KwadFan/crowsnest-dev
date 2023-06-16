@@ -45,14 +45,11 @@ cn_set_bin_path() {
     fi
 }
 
-cn_check_backends() {
-    cn_log_sect_header "Backends:"
-}
-
 cn_init_check_backends() {
-    echo "${CN_CUR_USABLE_BACKENDS[@]}"
-
-    cn_check_backends
+    cn_log_sect_header "Backends:"
+    for backend in "${CN_CUR_USABLE_BACKENDS[@]}"; do
+        cn_set_bin_path "${backend}"
+    done
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
