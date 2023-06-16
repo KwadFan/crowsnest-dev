@@ -20,6 +20,14 @@ cn_log_prefix() {
     printf "%s" "$(date +'[%D %T]')"
 }
 
+cn_check_log_level() {
+    if [ -z "${CN_SELF_LOG_LEVEL}" ] ||
+    [[ "${CN_SELF_LOG_LEVEL}" != @(quiet|verbose|debug) ]]; then
+        cn_log_level_invalid_msg "${CN_SELF_LOG_LEVEL}"
+        exit 1
+    fi
+}
+
 cn_delete_log() {
     if [[ "${CN_SELF_DELETE_LOG}" = "true" ]] &&
     [[ -f "${CN_SELF_LOG_PATH}" ]]; then
@@ -57,7 +65,10 @@ cn_log_output() {
 }
 
 cn_init_logging() {
+    cn_check_log_level
+
     cn_delete_log
+
     cn_log_header
 }
 

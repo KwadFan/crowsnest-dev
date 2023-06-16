@@ -19,8 +19,13 @@ set -Ee
 CN_DOCS_BASE_URL="https://crowsnest.mainsail.xyz"
 declare -gr CN_DOCS_BASE_URL
 
+CN_DOCS_LOG_LEVEL="/configuration/crowsnest-section#log_level"
+declare -gr CN_DOCS_LOG_LEVEL
+
 CN_DOCS_CAM_SECTION="/configuration/cam-section"
 declare -gr CN_DOCS_CAM_SECTION
+
+/configuration/crowsnest-section#log_level
 
 
 cn_missing_args_msg() {
@@ -61,6 +66,10 @@ cn_stopped_msg() {
 cn_config_file_missing() {
     cn_log_msg "ERROR: Given configuration file '${CROWSNEST_CONFIG_FILE}' doesn't exist!"
     cn_stopped_msg
+}
+
+cn_log_level_invalid_msg(){
+    cn_log_msg "ERROR: Set log_level: ${1} is invalid! Please see ${CN_DOCS_BASE_URL}${CN_DOCS_LOG_LEVEL}."
 }
 
 cn_log_sect_header() {
