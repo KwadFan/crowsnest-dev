@@ -87,7 +87,9 @@ main() {
 
     cn_init_logging
 
-    cn_print_host
+    if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
+        cn_print_host
+    fi
 
     cn_init_check_deps
 
