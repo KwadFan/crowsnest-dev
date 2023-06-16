@@ -72,7 +72,7 @@ cn_init_check_backends() {
 
     cn_check_avail_backends
 
-
+    cn_log_streamer_info
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "Backends:\n###########\n"
