@@ -102,6 +102,9 @@ main() {
     if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
         cn_init_backend_version
     fi
+
+    cn_init_print_devices
+
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then

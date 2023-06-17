@@ -34,6 +34,11 @@ cn_print_cams() {
     fi
 }
 
+
+cn_init_print_devices() {
+    cn_print_cams
+}
+
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: log_avail_cams.sh\n"
 fi
