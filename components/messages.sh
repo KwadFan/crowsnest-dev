@@ -85,7 +85,8 @@ cn_streamer_not_found_msg() {
 
 
 cn_legacy_stack_msg() {
-    cn_log_msg "WARN: Legacy camera stack enabled! Disable it by removing 'start_x=1' in '/boot/config.txt'"
+    cn_log_msg "WARN: Legacy camera stack enabled! \
+Disable it by removing all occurencies of 'start_x=1' in '/boot/config.txt'"
 }
 
 cam_auto_detect_disabled_msg() {
