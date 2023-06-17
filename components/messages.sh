@@ -88,6 +88,12 @@ cn_legacy_stack_msg() {
     cn_log_msg "WARN: Legacy camera stack enabled! Disable it by removing 'start_x=1' in '/boot/config.txt'"
 }
 
+cam_auto_detect_msg() {
+    cn_log_msg "WARN: Detected 'camera_auto_detect=0', this disables raspicam detection. \
+Change '0' to '1' in '/boot/config.txt' to enable it."
+}
+
+
 function deprecated_msg_1 {
     cn_log_msg "Parameter 'streamer' is deprecated!"
     cn_log_msg "Please use mode: [ mjpg | multi ]"

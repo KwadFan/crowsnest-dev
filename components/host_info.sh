@@ -78,6 +78,9 @@ cn_print_host_cfg() {
             if grep -q "^start_x=1" "${host_config}"; then
                 cn_legacy_stack_msg
             fi
+            if grep -q "^camera_auto_detect=0" "${host_config}"; then
+                cam_auto_detect_msg
+            fi
         fi
         # put a little whitespace here
         cn_log_msg " "
