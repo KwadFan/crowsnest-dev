@@ -75,7 +75,7 @@ cn_print_host_cfg() {
         fi
         if [[ "${CN_SELF_LOG_LEVEL}" = "verbose" ]]; then
             cn_log_sect_header "Host configuration checks:"
-            if grep -q "^start_x=1"; then
+            if grep -q "^start_x=1" "${host_config}"; then
                 legacy_cam_stack_msg
             fi
         fi
