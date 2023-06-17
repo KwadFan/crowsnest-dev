@@ -84,7 +84,8 @@ cn_print_host_cfg() {
             if grep -q "^camera_auto_detect=1" "${host_config}"; then
                 cam_auto_detect_enabled_msg
             fi
-            if grep -q "^#camera_auto_detect=0" && grep -q "^camera_auto_detect=1"; then
+            if grep -q "^#camera_auto_detect=0" "${host_config}" \
+            && grep -q "^camera_auto_detect=1" "${host_config}"; then
                 cn_log_msg "WARN: both found"
             fi
 
