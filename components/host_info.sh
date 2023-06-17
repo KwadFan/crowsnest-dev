@@ -63,7 +63,7 @@ cn_print_host_cfg() {
     if [[ -f "${host_config}" ]]; then
         if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
             mapfile -t cfg < <(cat "${host_config}")
-            cn_log_sect_header "Configfile: '${host_config}'"
+            cn_log_sect_header "Host configuration: '${host_config}'"
             # put a little whitespace here
             cn_log_msg " "
             for i in "${cfg[@]}"; do
