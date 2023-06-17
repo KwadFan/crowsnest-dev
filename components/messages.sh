@@ -90,8 +90,8 @@ Disable it by removing all occurencies of 'start_x=1' in '/boot/config.txt'"
 }
 
 cam_auto_detect_disabled_msg() {
-    cn_log_msg "WARN: Detected 'camera_auto_detect=0', this disables raspicam detection. \
-Change '0' to '1' in '/boot/config.txt' to enable it."
+    cn_log_msg "WARN: Found 'camera_auto_detect=0', this disables raspicam detection. \
+set to 'camera_auto_detect=1' in '/boot/config.txt' to enable it."
 }
 
 cam_auto_detect_enabled_msg() {
