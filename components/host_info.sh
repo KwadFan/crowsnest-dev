@@ -72,9 +72,15 @@ cn_print_host_cfg() {
                 fi
                 printf "\t%s\n" "${i}"
             done
-            # put a little whitespace here
-            cn_log_msg " "
         fi
+        if [[ "${CN_SELF_LOG_LEVEL}" = "verbose" ]]; then
+            cn_log_sect_header "Host configuration checks:"
+            if grep -q "^start_x=1"; then
+                legacy_cam_stack_msg
+            fi
+        fi
+        # put a little whitespace here
+        cn_log_msg " "
     fi
 }
 

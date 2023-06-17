@@ -83,6 +83,11 @@ cn_streamer_not_found_msg() {
     cn_log_msg "WARN: Backend '${1}' not found! Can't be configured as mode!"
 }
 
+
+cn_legacy_stack_msg() {
+    cn_log_msg "WARN: Legacy camera stack enabled! Disable it by removing 'start_x=1' in '/boot/config.txt'"
+}
+
 function deprecated_msg_1 {
     cn_log_msg "Parameter 'streamer' is deprecated!"
     cn_log_msg "Please use mode: [ mjpg | multi ]"
