@@ -79,8 +79,15 @@ cn_print_host_cfg() {
                 cn_legacy_stack_msg
             fi
             if grep -q "^camera_auto_detect=0" "${host_config}"; then
-                cam_auto_detect_msg
+                cam_auto_detect_disabled_msg
             fi
+            if grep -q "^camera_auto_detect=1" "${host_config}"; then
+                cam_auto_detect_enabled_msg
+            fi
+            if grep -q "^#camera_auto_detect=0" && grep -q "^camera_auto_detect=1"; then
+                cn_log_msg "WARN: both found"
+            fi
+
         fi
         # put a little whitespace here
         cn_log_msg " "
