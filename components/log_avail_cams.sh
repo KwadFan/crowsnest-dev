@@ -59,8 +59,10 @@ cn_init_print_devices() {
     cn_print_dev_count
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
-        printf "hw_uvc_dev:\n###########\n"
-        declare -p | grep "CN_UVC"
+        printf "log_avail_cam:\n###########\n"
+        printf "Libcamera dev count: %s" "$(cn_get_libcamera_dev_count)"
+        printf "UVC dev count: %s" "$(cn_get_uvc_dev_count)"
+        printf "Total dev count: %s" "$(cn_get_dev_count)"
         printf "###########\n"
     fi
 }
