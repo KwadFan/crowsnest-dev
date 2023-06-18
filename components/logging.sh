@@ -67,7 +67,7 @@ cn_log_output() {
 cn_log_err_dump() {
     prefix="DUMP:"
     while read -r line; do
-        line="${line//^[0-9].*+[-|:]/$'\t'}"
+        line="${line//^(.*[0-9])+[-|:]/$'\t'}"
         if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
             cn_log_msg "${prefix} ${line}"
         fi
