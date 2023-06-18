@@ -83,11 +83,11 @@ cn_streamer_not_found_msg() {
     cn_log_msg "WARN: Backend '${1}' not found! Can't be configured as mode!"
 }
 
-
-cn_legacy_stack_msg() {
-    cn_log_msg "WARN: Legacy camera stack enabled! \
-Disable it by removing all occurencies of 'start_x=1' in '/boot/config.txt'"
-}
+# discussable ...
+# cn_legacy_stack_msg() {
+#     cn_log_msg "WARN: Legacy camera stack enabled! \
+# Disable it by removing all occurencies of 'start_x=1' in '/boot/config.txt'"
+# }
 
 cam_auto_detect_disabled_msg() {
     cn_log_msg "WARN: Found 'camera_auto_detect=0', this disables raspicam detection. \
@@ -96,6 +96,15 @@ Set to 'camera_auto_detect=1' in '/boot/config.txt' to enable it."
 
 cam_auto_detect_enabled_msg() {
     cn_log_msg "INFO: Detected 'libcamera' stack enabled (camera_auto_detect=1) ..."
+}
+
+cn_camera_count_msg() {
+    cn_log_msg "INFO: Found ${1} total available Device(s)"
+}
+
+cn_no_usable_cams_found_msg() {
+    cn_log_msg "ERROR: No usable cameras found!"
+    cn_stopped_msg
 }
 
 function deprecated_msg_1 {

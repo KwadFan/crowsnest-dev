@@ -20,7 +20,6 @@ CN_LIBCAMERA_BIN_PATH=""
 CN_LIBCAMERA_AVAIL="0"
 CN_LIBCAMERA_OUTPUT_ARRAY=()
 CN_LIBCAMERA_DEV_PATH=""
-CN_LIBCAMERA_DEV_COUNT="0"
 
 cn_check_libcamera_hello_bin() {
     local bin
@@ -59,12 +58,12 @@ cn_set_libcamera_dev_path() {
     fi
 }
 
-cn_set_libcamera_dev_count() {
+cn_get_libcamera_dev_count() {
     if [[ -n "$(cn_get_libcamera_dev_path)" ]]; then
-        CN_LIBCAMERA_DEV_COUNT="1"
+        printf "1"
+    else
+        printf "0"
     fi
-    # shellcheck disable=SC2034
-    declare -gr CN_LIBCAMERA_DEV_COUNT
 }
 
 cn_init_hw_libcamera() {

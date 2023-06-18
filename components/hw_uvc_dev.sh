@@ -113,6 +113,10 @@ cn_get_supported_controls() {
     fi
 }
 
+cn_get_uvc_dev_count() {
+    printf "%s" "${#CN_UVC_BY_ID[@]}"
+}
+
 cn_init_hw_uvc() {
 
     cn_set_uvc_by_id_paths

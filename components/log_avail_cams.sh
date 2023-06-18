@@ -16,7 +16,6 @@
 # Exit upon Errors
 set -Ee
 
-
 cn_print_cams() {
     local total v4l
     v4l="$(find /dev/v4l/by-id/ -iname "*index0" 2> /dev/null | wc -l)"
@@ -35,8 +34,20 @@ cn_print_cams() {
     fi
 }
 
-cn_set_dev_count() {
-    true
+cn_get_dev_count() {
+    local libcamera total uvc
+    libcamera="$(cn_get_libcamera_dev_count)"
+    uvc="$(cn_get_uvc_dev_count)"
+    total="$((libcamera+uvc))"
+    printf "%s" "${total}"
+}
+
+cn_print_dev_count() {
+    if [[ "$(cn_get_dev_count)" != "0" ]]; then
+        cn_camera_count_msg "$(cn_get_dev_count)"
+    else
+        cn_no_usable_cams_found_msg
+    fi
 }
 
 cn_print_devices() {
@@ -45,6 +56,13 @@ cn_print_devices() {
     # put some whitespace here
     cn_log_msg " "
 
+    cn_print_dev_count
+
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        printf "hw_uvc_dev:\n###########\n"
+        declare -p | grep "CN_UVC"
+        printf "###########\n"
+    fi
 }
 
 cn_init_print_devices() {
