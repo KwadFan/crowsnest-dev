@@ -33,7 +33,7 @@ cn_get_uvc_by_path_paths() {
     cn_get_uvc_path_by "path" | sed '/.*isp.*/d; /.*codec.*/d; /.*csi.*/d'
 }
 
-cn_set_uvc_by_id_path() {
+cn_set_uvc_by_id_paths() {
     local by_id avail
     avail="$(cn_get_uvc_path_by "id")"
     for by_id in ${avail}; do
@@ -45,7 +45,7 @@ cn_set_uvc_by_id_path() {
     fi
 }
 
-cn_set_uvc_by_path_path() {
+cn_set_uvc_by_path_paths() {
     local by_path
     for by_path in $(cn_get_uvc_by_path_paths); do
         CN_UVC_BY_PATH+=( "${by_path}" )
@@ -111,9 +111,9 @@ cn_get_supported_controls() {
 
 cn_init_hw_uvc() {
 
-    cn_set_uvc_by_id_path
+    cn_set_uvc_by_id_paths
 
-    cn_set_uvc_by_path_path
+    cn_set_uvc_by_path_paths
 
     cn_set_alternate_valid_path
 
