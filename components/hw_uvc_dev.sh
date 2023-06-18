@@ -18,7 +18,6 @@ set -Ee
 
 CN_UVC_BY_ID=()
 CN_UVC_BY_PATH=()
-
 CN_UVC_VALID_DEVICES=()
 
 get_uvc_by_id_path() {
@@ -27,12 +26,21 @@ get_uvc_by_id_path() {
     for by_id in ${avail}; do
         CN_UVC_BY_ID+=( "${by_id}" )
     done
-    if [[ "${CN_DEV_MSG}" = "1" ]]; then
-        printf "hw_uvc_dev.sh: %s\n" "${avail}"
-    fi
 
     if [[ "${#CN_UVC_BY_ID[@]}" != "0" ]]; then
         declare -gar CN_UVC_BY_ID
+    fi
+}
+
+get_uvc_by_path_path() {
+    local by_path avail
+    avail="$(find /dev/v4l/by-path/ -iname "*index0" 2> /dev/null)"
+    for by_path in ${avail}; do
+        CN_UVC_BY_PATH+=( "${by_path}" )
+    done
+
+    if [[ "${#CN_UVC_BY_PATH[@]}" != "0" ]]; then
+        declare -gar CN_UVC_BY_PATH
     fi
 }
 
