@@ -76,8 +76,6 @@ cn_init_hw_libcamera() {
 
     cn_set_libcamera_dev_path
 
-    cn_set_libcamera_dev_count
-
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "hw_libcamera:\n###########\n"
         declare -p | grep "CN_LIBCAMERA"
