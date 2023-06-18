@@ -99,11 +99,11 @@ cam_auto_detect_enabled_msg() {
 }
 
 cn_camera_count_msg() {
-    cn_log_msg "INFO: Found ${1} total available Device(s)"
+    cn_log_msg "INFO: Found ${1} total available camera(s)"
 }
 
 cn_no_usable_cams_found_msg() {
-    cn_log_msg "ERROR: No usable cameras found!"
+    cn_log_msg "ERROR: No usable camera(s) found!"
     cn_stopped_msg
 }
 
