@@ -24,16 +24,16 @@ cn_get_uvc_path_by() {
     local path_type
     path_type="${1}"
     if ! find /dev/v4l/by-"${path_type}"/ -iname "*index0" 2> /dev/null; then
-        printf "nil"
+        printf "null"
     fi
 }
 
 cn_get_uvc_by_path_paths() {
     # strip out CSI, codecs and ISP's
-    if [[ "${CN_UVC_BY_ID[0]}" != "nil" ]]; then
+    if [[ "${CN_UVC_BY_ID[0]}" != "null" ]]; then
         cn_get_uvc_path_by "path" | sed '/.*isp.*/d; /.*codec.*/d; /.*csi.*/d'
     else
-        printf "nil"
+        printf "null"
     fi
 }
 
