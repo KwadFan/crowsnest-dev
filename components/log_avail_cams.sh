@@ -37,8 +37,7 @@ cn_print_cams() {
 
 
 cn_init_print_devices() {
-    # cn_print_cams
-    foobar
+    cn_init_hw_uvc
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
