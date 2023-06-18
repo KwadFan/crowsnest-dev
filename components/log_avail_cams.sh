@@ -35,10 +35,8 @@ cn_print_cams() {
 }
 
 cn_get_dev_count() {
-    local libcamera total uvc
-    libcamera="$(cn_get_libcamera_dev_count)"
-    uvc="$(cn_get_uvc_dev_count)"
-    total="$((libcamera+uvc))"
+    local total
+    total="$(($(cn_get_libcamera_dev_count)+$(cn_get_uvc_dev_count)))"
     printf "%s" "${total}"
 }
 
