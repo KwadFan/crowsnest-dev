@@ -55,14 +55,23 @@ cn_set_uvc_by_path_path() {
 }
 
 cn_get_alternate_valid_path() {
+    local alternate_path
+    local -a path
+    path=()
     if [[ "${#CN_UVC_BY_PATH[@]}" != "0" ]]; then
-        true
+        for alternate_path in $(cn_get_uvc_by_path_paths); do
+            path+=("$(readlink "${alternate_path}" | sed 's/^\.\.\/\.\./\/dev/')")
+        done
+        echo "${path[@]}"
     fi
 }
 
 cn_set_alternate_valid_path() {
+    local add_alternate
     if [[ "${#CN_UVC_BY_PATH[@]}" != "0" ]]; then
-        true
+        for add_alternate in $(cn_get_alternate_valid_path); do
+            CN_UVC_VALID_DEVICES+=( "${add_alternate}" )
+        done
     fi
 }
 
