@@ -116,6 +116,8 @@ cn_get_supported_controls() {
 cn_get_uvc_dev_count() {
     if [[ "${CN_UVC_BY_ID[0]}" != "null" ]]; then
         printf "%s" "${#CN_UVC_BY_ID[@]}"
+    else
+        printf "0"
     fi
 }
 
