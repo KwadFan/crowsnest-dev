@@ -37,8 +37,13 @@ cn_set_libcamera_avail() {
     if [[ "${CN_LIBCAMERA_BIN_PATH}" != "null" ]]; then
         CN_LIBCAMERA_AVAIL="1"
     fi
-    # shellcheck disable=SC2034
     declare -gr CN_LIBCAMERA_AVAIL
+}
+
+cn_set_libcamera_output_array() {
+    if [[ "${CN_LIBCAMERA_AVAIL}" = "1" ]]; then
+        "${CN_LIBCAMERA_BIN_PATH}" --list-cameras
+    fi
 }
 
 cn_init_hw_libcamera() {
