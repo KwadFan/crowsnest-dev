@@ -48,8 +48,7 @@ cn_set_libcamera_output_array() {
 }
 
 cn_get_libcamera_dev_path() {
-    # cut -f2 -d'(' <<< "${CN_LIBCAMERA_OUTPUT_ARRAY[*]}"
-    awk 'BEGINN { FS = "(" } {print $2} { FS= ")" } {print $1}' <<< "${CN_LIBCAMERA_OUTPUT_ARRAY[*]}"
+    cut -f2 -d'(' <<< "${CN_LIBCAMERA_OUTPUT_ARRAY[*]}" | cut -f1 -d')'
 }
 
 cn_set_libcamera_dev_path() {
