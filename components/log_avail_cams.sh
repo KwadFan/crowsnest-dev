@@ -35,9 +35,15 @@ cn_print_cams() {
     fi
 }
 
+cn_set_dev_count() {
+    true
+}
+
 cn_print_devices() {
 
     cn_log_sect_header "Detect available devices:"
+    # put some whitespace here
+    cn_log_msg " "
 
 }
 
