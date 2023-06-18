@@ -114,7 +114,9 @@ cn_get_supported_controls() {
 }
 
 cn_get_uvc_dev_count() {
-    printf "%s" "${#CN_UVC_BY_ID[@]}"
+    if [[ "${CN_UVC_BY_ID[0]}" != "null" ]]; then
+        printf "%s" "${#CN_UVC_BY_ID[@]}"
+    fi
 }
 
 cn_uvc_model_twin_detection() {
