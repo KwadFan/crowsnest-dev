@@ -85,7 +85,3 @@ cn_init_hw_uvc() {
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: hw_uvc_dev.sh\n"
 fi
-
-
-
-# avail="$(find /dev/v4l/by-id/ -iname "*index0" 2> /dev/null)"
