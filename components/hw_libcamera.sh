@@ -33,7 +33,14 @@ cn_check_libcamera_hello_bin() {
 
 
 cn_init_hw_libcamera() {
+
     cn_check_libcamera_hello_bin
+
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        printf "hw_libcamera:\n###########\n"
+        declare -p | grep "CN_LIBCAMERA"
+        printf "###########\n"
+    fi
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
