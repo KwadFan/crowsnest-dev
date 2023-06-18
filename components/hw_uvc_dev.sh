@@ -83,6 +83,29 @@ cn_assign_valid_array() {
     declare -gar CN_UVC_VALID_DEVICES
 }
 
+cn_get_avail_formats() {
+    local device
+    local -a formats
+    device="${1}"
+    if [[ "${CN_UVC_VALID_DEVICES[*]}" =~ ${device} ]]; then
+        readarray -t formats < <(v4l2-ctl -d "${device}" --list-formats-ext)
+        echo "${formats[@]}"
+    else
+        return
+    fi
+}
+
+cn_get_supported_controls() {
+    local device
+    local -a formats
+    device="${1}"
+    if [[ "${CN_UVC_VALID_DEVICES[*]}" =~ ${device} ]]; then
+        readarray -t formats < <(v4l2-ctl -d "${device}" --list-ctrls-menus)
+        echo "${formats[@]}"
+    else
+        return
+    fi
+}
 
 cn_init_hw_uvc() {
 
