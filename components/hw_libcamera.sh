@@ -52,6 +52,8 @@ cn_init_hw_libcamera() {
 
     cn_set_libcamera_avail
 
+    cn_set_libcamera_output_array
+
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "hw_libcamera:\n###########\n"
