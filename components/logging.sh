@@ -73,9 +73,9 @@ cn_log_err_dump() {
         msg="${prefix} ${line}"
         if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
             if [[ "${msg}" =~ ^${prefix}[[:space:]][0-9].* ]]; then
-                cn_log_msg "..."
-            else
                 cn_log_msg "${msg}"
+            else
+                cn_log_msg "..."
             fi
         fi
     done
