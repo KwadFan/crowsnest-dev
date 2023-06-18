@@ -51,6 +51,12 @@ cn_get_libcamera_dev_path() {
     grep "/base/soc" <<< "${CN_LIBCAMERA_OUTPUT_ARRAY}"
 }
 
+cn_set_libcamera_dev_path() {
+    CN_LIBCAMERA_DEV_PATH="$(cn_get_libcamera_dev_path)"
+    # shellcheck disable=SC2034
+    declare -gr CN_LIBCAMERA_DEV_PATH
+}
+
 cn_init_hw_libcamera() {
 
     cn_check_libcamera_hello_bin
