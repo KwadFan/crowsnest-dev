@@ -17,6 +17,8 @@
 set -Ee
 
 CN_LIBCAMERA_BIN_PATH=""
+CN_LIBCAMERA_AVAIL="0"
+CN_LIBCAMERA_OUTPUT_ARRAY=()
 CN_LIBCAMERA_DEV_PATH=""
 
 
@@ -31,10 +33,20 @@ cn_check_libcamera_hello_bin() {
     declare -gr CN_LIBCAMERA_BIN_PATH
 }
 
+cn_set_libcamera_avail() {
+    if [[ "${CN_LIBCAMERA_BIN_PATH}" != "null" ]]; then
+        CN_LIBCAMERA_AVAIL="1"
+    fi
+    # shellcheck disable=SC2034
+    declare -gr CN_LIBCAMERA_AVAIL
+}
 
 cn_init_hw_libcamera() {
 
     cn_check_libcamera_hello_bin
+
+    cn_set_libcamera_avail
+
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "hw_libcamera:\n###########\n"
