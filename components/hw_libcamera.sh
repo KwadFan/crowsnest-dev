@@ -44,6 +44,7 @@ cn_set_libcamera_output_array() {
     if [[ "${CN_LIBCAMERA_AVAIL}" = "1" ]]; then
         readarray -t CN_LIBCAMERA_OUTPUT_ARRAY < <("${CN_LIBCAMERA_BIN_PATH}" --list-cameras)
     fi
+    declare -gr CN_LIBCAMERA_OUTPUT_ARRAY
 }
 
 cn_init_hw_libcamera() {
