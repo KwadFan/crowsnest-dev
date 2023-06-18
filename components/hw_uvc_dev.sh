@@ -34,8 +34,8 @@ get_uvc_by_id_path() {
 
 get_uvc_by_path_path() {
     local by_path avail
-    avail="$(find /dev/v4l/by-path/ -iname "*index0" 2> /dev/null)"
-    avail="${avail/.*isp.*//}"
+    avail="$(find /dev/v4l/by-path/ -iname "*index0" 2> /dev/null \
+        | sed '/.*isp.*/d' )"
     for by_path in ${avail}; do
         CN_UVC_BY_PATH+=( "${by_path}" )
     done
