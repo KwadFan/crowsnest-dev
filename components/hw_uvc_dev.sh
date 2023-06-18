@@ -27,6 +27,10 @@ get_uvc_by_id_path() {
     for by_id in ${avail}; do
         CN_UVC_BY_ID+=( "${by_id}" )
     done
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        printf "hw_uvc_dev.sh: %s\n" "${avail}"
+    fi
+
     if [[ "${#CN_UVC_BY_ID[@]}" != "0" ]]; then
         declare -gar CN_UVC_BY_ID
     fi
@@ -49,7 +53,7 @@ cn_init_hw_uvc() {
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
-    printf "Sourced component: hw_uvc_dev.sh.sh\n"
+    printf "Sourced component: hw_uvc_dev.sh\n"
 fi
 
 
