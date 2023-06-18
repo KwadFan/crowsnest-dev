@@ -16,6 +16,7 @@
 # Exit upon Errors
 set -Ee
 
+
 cn_print_cams() {
     local total v4l
     v4l="$(find /dev/v4l/by-id/ -iname "*index0" 2> /dev/null | wc -l)"
@@ -36,7 +37,7 @@ cn_print_cams() {
 
 
 cn_init_print_devices() {
-    cn_print_cams
+    # cn_print_cams
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then

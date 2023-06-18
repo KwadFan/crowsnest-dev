@@ -52,6 +52,7 @@ cn_err_exit() {
     if [ "${1}" != "0" ]; then
         cn_log_msg "ERROR: Error ${1} occured on line ${line_trace}"
         cn_log_msg "==> Error occured in file: ${file_trace} -> ${func_trace}"
+        grep -B 2 -A 5 "${func_trace}" "${file_trace}" | cn_log_output
         cn_stopped_msg
     fi
     if [ -n "$(jobs -pr)" ]; then
