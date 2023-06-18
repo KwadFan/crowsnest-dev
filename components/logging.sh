@@ -72,7 +72,7 @@ cn_log_err_dump() {
         line="${line//[-|:]/$'\t'}"
         msg="${prefix} ${line}"
         if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
-            if [[ "${msg}" =~ ${prefix}*[[:blank:]] ]]; then
+            if [[ "${msg}" =~ ${prefix}+(.*[[:blank:]]) ]]; then
                 cn_log_msg "..."
             else
                 cn_log_msg "${msg}"
