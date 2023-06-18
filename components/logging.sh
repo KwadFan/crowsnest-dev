@@ -67,7 +67,7 @@ cn_log_output() {
 cn_log_err_dump() {
     prefix="DUMP:"
     while read -r line; do
-        line="${line//-/foo/}"
+        line="${line//[-|:]/foo/}"
 
         if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
             cn_log_msg "${prefix} ${line}"
