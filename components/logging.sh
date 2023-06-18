@@ -64,6 +64,15 @@ cn_log_output() {
     done
 }
 
+cn_log_err_dump() {
+    prefix="DUMP:"
+    while read -r line; do
+        if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
+            cn_log_msg "${line}"
+        fi
+    done
+}
+
 cn_init_logging() {
     cn_check_log_level
 
