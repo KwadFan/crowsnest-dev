@@ -42,15 +42,31 @@ cn_log_header() {
 }
 
 cn_log_msg() {
-    local msg
-    msg="${1}"
-    # print to log file
     # log to stdout only if log_path is missing
     if [[ -n "${CN_SELF_LOG_PATH}" ]]; then
-        printf "%s %s\n" "$(cn_log_prefix)" "${msg}" >> "${CN_SELF_LOG_PATH}"
+        printf "%s %s\n" "$(cn_log_prefix)" "${1}" >> "${CN_SELF_LOG_PATH}"
     fi
     # print to stdout/journald
-    printf "%s\n" "${msg}"
+    printf "%s\n" "${1}"
+}
+
+cn_log_info_msg() {
+    prefix="INFO:"
+    cn_log_msg "${prefix} ${1}"
+}
+
+cn_log_warn_msg() {
+    prefix="WARN:"
+    cn_log_msg "${prefix} ${1}"
+}
+
+cn_log_err_msg() {
+    prefix="ERROR:"
+    cn_log_msg "${prefix} ${1}"
+}
+
+cn_log_sect_header() {
+    cn_log_msg "-------- ${1} --------"
 }
 
 #call '| log_output "<prefix>"'

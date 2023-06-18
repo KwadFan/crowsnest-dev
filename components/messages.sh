@@ -56,31 +56,27 @@ cn_missing_cfg_path() {
 }
 
 cn_stopped_msg() {
-    cn_log_msg "ERROR: Stopping $(basename "$0")."
+    cn_log_err_msg "Stopping $(basename "$0")."
     cn_log_msg "Goodbye..."
 }
 
 cn_config_file_missing() {
-    cn_log_msg "ERROR: Given configuration file '${CROWSNEST_CONFIG_FILE}' doesn't exist!"
+    cn_log_err_msg "Given configuration file '${CROWSNEST_CONFIG_FILE}' doesn't exist!"
     cn_stopped_msg
 }
 
 cn_log_level_invalid_msg(){
-    cn_log_msg "WARN: Set log_level: ${1} is invalid! Please see ${CN_DOCS_BASE_URL}${CN_DOCS_LOG_LEVEL}."
+    cn_log_warn_msg "Set log_level: ${1} is invalid! Please see ${CN_DOCS_BASE_URL}${CN_DOCS_LOG_LEVEL}."
     cn_stopped_msg
 }
 
-cn_log_sect_header() {
-    cn_log_msg "-------- ${1} --------"
-}
-
 cn_missing_cam_section_msg() {
-    cn_log_msg "ERROR: No cameras configured! Please see ${CN_DOCS_BASE_URL}${CN_DOCS_CAM_SECTION}."
+    cn_log_err_msg "No cameras configured! Please see ${CN_DOCS_BASE_URL}${CN_DOCS_CAM_SECTION}."
     cn_stopped_msg
 }
 
 cn_streamer_not_found_msg() {
-    cn_log_msg "WARN: Backend '${1}' not found! Can't be configured as mode!"
+    cn_log_warn_msg "Backend '${1}' not found! Can't be configured as mode!"
 }
 
 # discussable ...
@@ -90,23 +86,26 @@ cn_streamer_not_found_msg() {
 # }
 
 cam_auto_detect_disabled_msg() {
-    cn_log_msg "WARN: Found 'camera_auto_detect=0', this disables raspicam detection. \
+    cn_log_warn_msg "Found 'camera_auto_detect=0', this disables raspicam detection. \
 Set to 'camera_auto_detect=1' in '/boot/config.txt' to enable it."
 }
 
 cam_auto_detect_enabled_msg() {
-    cn_log_msg "INFO: Detected 'libcamera' stack enabled (camera_auto_detect=1) ..."
+    cn_log_info_msg "Detected 'libcamera' stack enabled (camera_auto_detect=1) ..."
 }
 
 cn_camera_count_msg() {
-    cn_log_msg "INFO: Found ${1} total available camera(s)"
+    cn_log_info_msg "Found ${1} total available camera(s)"
 }
 
 cn_no_usable_cams_found_msg() {
-    cn_log_msg "ERROR: No usable camera(s) found!"
+    cn_log_err_msg "No usable camera(s) found!"
     cn_stopped_msg
 }
 
+cn_uvc_model_twin_detection_msg() {
+    true
+}
 
 # below marked as deprecated!
 # function deprecated_msg_1 {
