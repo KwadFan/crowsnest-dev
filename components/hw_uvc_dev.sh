@@ -60,6 +60,12 @@ cn_get_alternate_valid_path() {
     fi
 }
 
+cn_set_alternate_valid_path() {
+    if [[ "${#CN_UVC_BY_PATH[@]}" != "0" ]]; then
+        true
+    fi
+}
+
 cn_assign_valid_array() {
     local cam
     for cam in "${CN_UVC_BY_ID[@]}" "${CN_UVC_BY_PATH[@]}"; do
