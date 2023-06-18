@@ -47,13 +47,16 @@ cn_set_libcamera_output_array() {
 }
 
 cn_get_libcamera_dev_path() {
-    cut -f2 -d'(' <<< "${CN_LIBCAMERA_OUTPUT_ARRAY[*]}" | cut -f1 -d')'
+    if grep -q "/base/soc" <<< "${CN_LIBCAMERA_OUTPUT_ARRAY[*]}"; then
+        cut -f2 -d'(' <<< "${CN_LIBCAMERA_OUTPUT_ARRAY[*]}" | cut -f1 -d')'
+    else
+        printf "null"
+    fi
 }
 
 cn_set_libcamera_dev_path() {
     if [[ "${CN_LIBCAMERA_AVAIL}" = "1" ]]; then
         CN_LIBCAMERA_DEV_PATH="$(cn_get_libcamera_dev_path)"
-        CN_LIBCAMERA_DEV_PATH="${CN_LIBCAMERA_DEV_PATH//No.*/null}"
         # shellcheck disable=SC2034
         declare -gr CN_LIBCAMERA_DEV_PATH
     fi
