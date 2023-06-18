@@ -30,7 +30,11 @@ cn_get_uvc_path_by() {
 
 cn_get_uvc_by_path_paths() {
     # strip out CSI, codecs and ISP's
-    cn_get_uvc_path_by "path" | sed '/.*isp.*/d; /.*codec.*/d; /.*csi.*/d'
+    if [[ "${CN_UVC_BY_ID[0]}" != "nil" ]]; then
+        cn_get_uvc_path_by "path" | sed '/.*isp.*/d; /.*codec.*/d; /.*csi.*/d'
+    else
+        printf "nil"
+    fi
 }
 
 cn_set_uvc_by_id_paths() {
