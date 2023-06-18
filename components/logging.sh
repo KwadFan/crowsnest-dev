@@ -70,6 +70,7 @@ cn_log_err_dump() {
 
     while read -r line; do
         line="${line//[-|:]/$'\t'}"
+        printf "DEBUG: line: %s\n" "${line}"
         if [[ -z "${line}" ]]; then
                 prefix="..."
         fi
