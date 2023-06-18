@@ -52,9 +52,11 @@ cn_get_libcamera_dev_path() {
 }
 
 cn_set_libcamera_dev_path() {
-    CN_LIBCAMERA_DEV_PATH="$(cn_get_libcamera_dev_path)"
-    # shellcheck disable=SC2034
-    declare -gr CN_LIBCAMERA_DEV_PATH
+    if [[ "${CN_LIBCAMERA_AVAIL}" = "1" ]]; then
+        CN_LIBCAMERA_DEV_PATH="$(cn_get_libcamera_dev_path)"
+        # shellcheck disable=SC2034
+        declare -gr CN_LIBCAMERA_DEV_PATH
+    fi
 }
 
 cn_init_hw_libcamera() {
