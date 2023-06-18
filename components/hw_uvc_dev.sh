@@ -27,7 +27,7 @@ get_uvc_by_id_path() {
     for by_id in ${avail}; do
         CN_UVC_BY_ID+=( "${by_id}" )
     done
-    if [[ "${#CN_UVC_BY_ID[*]}" != "0" ]]; then
+    if [[ "${#CN_UVC_BY_ID[@]}" != "0" ]]; then
         declare -gar CN_UVC_BY_ID
     fi
 }
