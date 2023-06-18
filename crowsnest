@@ -107,6 +107,10 @@ main() {
         cn_init_backend_version
     fi
 
+    cn_init_hw_uvc
+
+    cn_init_hw_libcamera
+
     cn_init_print_devices
 
 }

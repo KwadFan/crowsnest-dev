@@ -43,8 +43,6 @@ cn_print_devices() {
 
 cn_init_print_devices() {
 
-    cn_init_hw_uvc
-
     cn_print_devices
 }
 
