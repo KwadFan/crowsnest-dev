@@ -51,6 +51,10 @@ cn_set_uvc_by_path_paths() {
         CN_UVC_BY_PATH+=( "${by_path}" )
     done
 
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        printf "DEBUG: CN_UVC_BY_PATH= %s" "$(declare -p | grep "CN_UVC_BY_PATH")"
+    fi
+
     if [[ "${#CN_UVC_BY_PATH[@]}" != "0" ]]; then
         declare -gar CN_UVC_BY_PATH
     fi
