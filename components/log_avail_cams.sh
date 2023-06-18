@@ -50,7 +50,7 @@ cn_print_dev_count() {
     fi
 }
 
-cn_print_devices() {
+cn_init_print_devices() {
 
     cn_log_sect_header "Detect available devices:"
     # put some whitespace here
@@ -63,11 +63,6 @@ cn_print_devices() {
         declare -p | grep "CN_UVC"
         printf "###########\n"
     fi
-}
-
-cn_init_print_devices() {
-
-    cn_print_devices
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
