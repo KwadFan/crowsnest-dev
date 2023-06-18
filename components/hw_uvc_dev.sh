@@ -20,15 +20,20 @@ CN_UVC_BY_ID=()
 CN_UVC_BY_PATH=()
 CN_UVC_VALID_DEVICES=()
 
-get_uvc_path_by() {
+cn_get_uvc_path_by() {
     local path_type
     path_type="${1}"
     find /dev/v4l/by-"${path_type}"/ -iname "*index0" 2> /dev/null
 }
 
-get_uvc_by_id_path() {
+cn_get_uvc_by_path_paths() {
+    # strip out CSI, codecs and ISP's
+    cn_get_uvc_path_by "path" | sed '/.*isp.*/d; /.*codec.*/d; /.*csi.*/d'
+}
+
+cn_set_uvc_by_id_path() {
     local by_id avail
-    avail="$(get_uvc_path_by "id")"
+    avail="$(cn_get_uvc_path_by "id")"
     for by_id in ${avail}; do
         CN_UVC_BY_ID+=( "${by_id}" )
     done
@@ -38,10 +43,9 @@ get_uvc_by_id_path() {
     fi
 }
 
-get_uvc_by_path_path() {
-    local by_path avail
-    avail="$(get_uvc_path_by "path" | sed '/.*isp.*/d; /.*codec.*/d; /.*csi.*/d')"
-    for by_path in ${avail}; do
+cn_set_uvc_by_path_path() {
+    local by_path
+    for by_path in $(cn_get_uvc_by_path_paths); do
         CN_UVC_BY_PATH+=( "${by_path}" )
     done
 
@@ -50,7 +54,7 @@ get_uvc_by_path_path() {
     fi
 }
 
-get_alternate_valid_path() {
+cn_get_alternate_valid_path() {
     if [[ "${#CN_UVC_BY_PATH[@]}" != "0" ]]; then
         true
     fi
@@ -67,11 +71,11 @@ cn_assign_valid_array() {
 
 cn_init_hw_uvc() {
 
-    get_uvc_by_id_path
+    cn_set_uvc_by_id_path
 
-    get_uvc_by_path_path
+    cn_set_uvc_by_path_path
 
-    get_alternate_valid_path
+    cn_set_alternate_valid_path
 
     cn_assign_valid_array
 
