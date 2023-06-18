@@ -65,13 +65,14 @@ cn_log_output() {
 }
 
 cn_log_err_dump() {
-    local prefix
+    local line msg prefix
     prefix="DUMP -> Line#"
 
     while read -r line; do
         line="${line//[-|:]/$'\t'}"
+        msg="${prefix} ${line}"
         if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
-                cn_log_msg "${prefix} ${line}"
+                cn_log_msg "${msg}"
         fi
     done
 }
