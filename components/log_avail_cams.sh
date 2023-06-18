@@ -60,9 +60,9 @@ cn_init_print_devices() {
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "log_avail_cam:\n###########\n"
-        printf "Libcamera dev count: %s" "$(cn_get_libcamera_dev_count)"
-        printf "UVC dev count: %s" "$(cn_get_uvc_dev_count)"
-        printf "Total dev count: %s" "$(cn_get_dev_count)"
+        printf "Libcamera dev count: %s\n" "$(cn_get_libcamera_dev_count)"
+        printf "UVC dev count: %s\n" "$(cn_get_uvc_dev_count)"
+        printf "Total dev count: %s\n" "$(cn_get_dev_count)"
         printf "###########\n"
     fi
 }
