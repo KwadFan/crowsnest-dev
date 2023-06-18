@@ -47,6 +47,10 @@ cn_set_libcamera_output_array() {
     declare -gr CN_LIBCAMERA_OUTPUT_ARRAY
 }
 
+cn_get_libcamera_dev_path() {
+    grep "/base/soc" <<< "${CN_LIBCAMERA_OUTPUT_ARRAY}"
+}
+
 cn_init_hw_libcamera() {
 
     cn_check_libcamera_hello_bin
