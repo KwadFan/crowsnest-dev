@@ -48,7 +48,7 @@ cn_set_libcamera_output_array() {
 }
 
 cn_get_libcamera_dev_path() {
-    grep "/base/soc" <<< "${CN_LIBCAMERA_OUTPUT_ARRAY[*]}"
+    cut -f2 -d'(' <<< "${CN_LIBCAMERA_OUTPUT_ARRAY[*]}"
 }
 
 cn_set_libcamera_dev_path() {
