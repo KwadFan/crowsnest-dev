@@ -36,7 +36,7 @@ cn_print_cams() {
 }
 
 cn_print_devices() {
-    cn_log_sect_header "Camera(s):"
+    cn_log_sect_header "Detect available devices:"
 }
 
 cn_init_print_devices() {
