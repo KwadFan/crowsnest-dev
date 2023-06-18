@@ -35,9 +35,15 @@ cn_print_cams() {
     fi
 }
 
+cn_print_devices() {
+    cn_log_sect_header "Camera(s):"
+}
 
 cn_init_print_devices() {
+
     cn_init_hw_uvc
+
+    cn_print_devices
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
