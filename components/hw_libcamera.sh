@@ -53,13 +53,14 @@ cn_get_libcamera_dev_path() {
 cn_set_libcamera_dev_path() {
     if [[ "${CN_LIBCAMERA_AVAIL}" = "1" ]]; then
         CN_LIBCAMERA_DEV_PATH="$(cn_get_libcamera_dev_path)"
+        CN_LIBCAMERA_DEV_PATH="${CN_LIBCAMERA_DEV_PATH//No/null}"
         # shellcheck disable=SC2034
         declare -gr CN_LIBCAMERA_DEV_PATH
     fi
 }
 
 cn_get_libcamera_dev_count() {
-    if [[ -n "$(cn_get_libcamera_dev_path)" ]]; then
+    if [[ "$(cn_get_libcamera_dev_path)" != "null" ]]; then
         printf "1"
     else
         printf "0"
