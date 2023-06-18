@@ -48,7 +48,8 @@ cn_set_libcamera_output_array() {
 }
 
 cn_get_libcamera_dev_path() {
-    cut -f2 -d'(' <<< "${CN_LIBCAMERA_OUTPUT_ARRAY[*]}" | sed 's/\).*//'
+    # cut -f2 -d'(' <<< "${CN_LIBCAMERA_OUTPUT_ARRAY[*]}"
+    awk -F'(' '{print $1}' <<< "${CN_LIBCAMERA_OUTPUT_ARRAY[*]}"
 }
 
 cn_set_libcamera_dev_path() {
