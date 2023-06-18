@@ -57,6 +57,8 @@ cn_init_hw_uvc() {
 
     get_uvc_by_id_path
 
+    get_uvc_by_path_path
+
     cn_assign_valid_array
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
