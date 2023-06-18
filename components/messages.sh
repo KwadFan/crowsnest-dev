@@ -56,7 +56,7 @@ cn_missing_cfg_path() {
 }
 
 cn_stopped_msg() {
-    cn_log_err_msg "Stopping $(basename "$0")."
+    cn_log_err_msg "Stopping $(basename "${0}")."
     cn_log_msg "Goodbye..."
 }
 
