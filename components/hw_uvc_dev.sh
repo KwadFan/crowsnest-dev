@@ -23,7 +23,9 @@ CN_UVC_VALID_DEVICES=()
 cn_get_uvc_path_by() {
     local path_type
     path_type="${1}"
-    find /dev/v4l/by-"${path_type}"/ -iname "*index0" 2> /dev/null
+    if ! find /dev/v4l/by-"${path_type}"/ -iname "*index0" 2> /dev/null; then
+        printf ""
+    fi
 }
 
 cn_get_uvc_by_path_paths() {
