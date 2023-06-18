@@ -70,8 +70,8 @@ cn_log_err_dump() {
 
     while read -r line; do
         line="${line//[-|:]/$'\t'}"
-        if [[ "${line}" = [[:blank:]] ]]; then
-            echo foo
+        if [[ "${line}" = *[[:blank:]] ]]; then
+            cn_log_msg "foo"
         fi
         if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
                 cn_log_msg "${prefix} ${line}"
