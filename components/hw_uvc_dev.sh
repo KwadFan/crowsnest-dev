@@ -20,7 +20,7 @@ CN_UVC_BY_ID=()
 CN_UVC_BY_PATH=()
 CN_UVC_VALID_DEVICES=()
 
-get_uvc_avail_by() {
+get_uvc_path_by() {
     local path_type
     path_type="${1}"
     find /dev/v4l/by-"${path_type}"/ -iname "*index0" 2> /dev/null
@@ -28,7 +28,7 @@ get_uvc_avail_by() {
 
 get_uvc_by_id_path() {
     local by_id avail
-    avail="$(get_uvc_avail_by "id")"
+    avail="$(get_uvc_path_by "id")"
     for by_id in ${avail}; do
         CN_UVC_BY_ID+=( "${by_id}" )
     done
@@ -40,7 +40,7 @@ get_uvc_by_id_path() {
 
 get_uvc_by_path_path() {
     local by_path avail
-    avail="$(get_uvc_avail_by "path" | sed '/.*isp.*/d; /.*codec.*/d; /.*csi.*/d')"
+    avail="$(get_uvc_path_by "path" | sed '/.*isp.*/d; /.*codec.*/d; /.*csi.*/d')"
     for by_path in ${avail}; do
         CN_UVC_BY_PATH+=( "${by_path}" )
     done
