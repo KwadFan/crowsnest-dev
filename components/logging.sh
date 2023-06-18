@@ -70,7 +70,7 @@ cn_log_err_dump() {
 
     while read -r line; do
         line="${line//[-|:]/$'\t'}"
-        printf "DEBUG: line: %s\n" "${line}"
+        printf "DEBUG: line: %s\n" "${line/\t/...}"
         if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
                 cn_log_msg "${prefix} ${line}"
         fi
