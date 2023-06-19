@@ -85,7 +85,7 @@ cn_log_err_dump() {
     prefix="DUMP -> Line#"
 
     while read -r line; do
-        line="${line//^.*[0-9][-|:].*/$'\t'}"
+        line="$(sed '0,/-/\t/' <<< "${line}")"
         msg="${prefix} ${line}"
         if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
             if [[ "${msg}" =~ ^${prefix}[[:space:]][0-9].* ]]; then
