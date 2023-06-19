@@ -19,9 +19,8 @@ set -Ee
 cn_init_hw_legacy () {
 
 
-
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
-        printf "hw_uvc_dev:\n###########\n"
+        printf "hw_legacy_cam:\n###########\n"
         declare -p | grep "CN_LEGACY"
         printf "###########\n"
     fi
