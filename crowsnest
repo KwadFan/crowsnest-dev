@@ -111,6 +111,8 @@ main() {
 
     cn_init_hw_libcamera
 
+    cn_init_hw_legacy
+
     cn_init_print_devices
 
 }
