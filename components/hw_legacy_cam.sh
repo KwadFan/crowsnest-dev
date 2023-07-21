@@ -18,12 +18,17 @@ set -Ee
 
 cn_init_hw_legacy () {
 
+
+
     cn_log_msg "Do something .."
-    if [[ "${CN_DEV_MSG}" = "1" ]]; then
-        printf "hw_legacy_cam:\n###########\n"
-        declare -p | grep "CN_LEGACY"
-        printf "###########\n"
-    fi
+
+
+
+    # if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    #     printf "hw_legacy_cam:\n###########\n"
+    #     declare -p | grep "CN_LEGACY"
+    #     printf "###########\n"
+    # fi
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
