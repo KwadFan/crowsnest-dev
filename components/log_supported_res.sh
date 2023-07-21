@@ -22,6 +22,7 @@ cn_get_supported_formats() {
     device="${1}"
     v4l2ctl="$(command -v v4l2-ctl)"
     if [[ -n "${v4l2ctl}" ]] && [[ -n "${device}" ]]; then
+        cn_supported_formats_msg
         "${v4l2ctl}" --list-formats-ext --device "${device}" \
         | sed '1,3d'
     fi
