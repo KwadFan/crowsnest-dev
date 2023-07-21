@@ -109,6 +109,12 @@ cn_uvc_model_twin_detection_msg() {
     true
 }
 
+cn_legacy_dev_msg() {
+    cn_log_sect_header "Legacy Raspicam found"
+    # put some whitespace here
+    cn_log_msg " "
+}
+
 # below marked as deprecated!
 # function deprecated_msg_1 {
 #     cn_log_msg "Parameter 'streamer' is deprecated!"
