@@ -51,11 +51,28 @@ cn_get_legacy_dev_count() {
     fi
 }
 
+cn_get_legacy_dev_path() {
+    local dev_path v4l2ctl_bin
+    v4l2ctl_bin="$(command -v v4l2-ctl)"
+    dev_path="$(
+        ${v4l2ctl_bin} --list-devices | grep "mmal" -A 1 \
+        | sed '1d;s/^[[:blank:]]//g'
+        )"
+    if [[ "${dev_path}" ~= ^/dev/video[0-9] ]]: then
+        CN_LEGACY_DEV_PATH="${dev_path}"
+    else
+        CN_LEGACY_DEV_PATH="null"
+    fi
+    declare -gr CN_LEGACY_DEV_PATH
+}
+
 cn_init_hw_legacy() {
     if [[ "${CN_LIBCAMERA_DEV_PATH}" == "null" ]]; then
         cn_get_vcgencmd_path
 
         cn_get_legacy_dev_avail
+
+        cn_get_legacy_dev_path
     fi
 
 
