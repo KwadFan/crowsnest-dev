@@ -54,6 +54,10 @@ cn_log_libcamera_dev() {
     fi
 }
 
+cn_log_uvc_dev() {
+
+}
+
 cn_init_print_devices() {
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
@@ -71,9 +75,11 @@ cn_init_print_devices() {
 
     cn_print_dev_count
 
-    cn_log_legacy_dev
+    #cn_log_legacy_dev
 
-    cn_log_libcamera_dev
+    #cn_log_libcamera_dev
+
+    cn_log_uvc_dev
 
 }
 
