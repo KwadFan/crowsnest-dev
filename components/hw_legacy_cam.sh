@@ -52,14 +52,10 @@ cn_get_legacy_dev_count() {
 }
 
 cn_init_hw_legacy() {
-
-
     if [[ "${CN_LIBCAMERA_DEV_PATH}" == "null" ]]; then
-
         cn_get_vcgencmd_path
 
         cn_get_legacy_dev_avail
-
     fi
 
 
