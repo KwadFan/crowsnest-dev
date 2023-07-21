@@ -80,6 +80,14 @@ cn_log_output() {
     done
 }
 
+cn_log_v4l2ctl_output() {
+    while read -r line; do
+        if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
+            cn_log_msg "$(echo -e "\t\t")${line}"
+        fi
+    done
+}
+
 cn_log_err_dump() {
     local line msg prefix
     prefix="DUMP -> Line#"
