@@ -44,7 +44,7 @@ cn_get_supported_ctrls() {
 cn_log_v4l2ctl_output() {
     while read -r line; do
         if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
-            cn_log_msg "$(echo -e "\t")${line}"
+            cn_log_msg "$(echo -e "\t\t")${line}"
         fi
     done
 }
