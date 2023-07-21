@@ -43,6 +43,14 @@ cn_get_legacy_dev_avail() {
     declare -gr CN_LEGACY_DEV_AVAIL
 }
 
+cn_get_legacy_dev_count() {
+    if [[ "${CN_LEGACY_DEV_AVAIL}" = "1" ]]; then
+        printf "1"
+    else
+        printf "0"
+    fi
+}
+
 cn_init_hw_legacy() {
 
 
