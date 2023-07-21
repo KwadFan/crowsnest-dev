@@ -40,6 +40,8 @@ cn_log_legacy_dev() {
 
         cn_get_supported_formats "${CN_LEGACY_DEV_PATH}"
 
+        cn_get_supported_ctrls "${CN_LEGACY_DEV_PATH}"
+
     fi
 }
 
