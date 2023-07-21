@@ -26,7 +26,7 @@ cn_check_vcgencmd () {
         CN_LEGACY_VCGENCMD_BIN="null"
     fi
     # shellcheck disable=SC2034
-    declare -r CN_LEGACY_VCGENCMD_BIN
+    declare -gr CN_LEGACY_VCGENCMD_BIN
 
 }
 
