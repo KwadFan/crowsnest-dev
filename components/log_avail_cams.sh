@@ -38,8 +38,10 @@ cn_log_legacy_dev() {
 
         cn_dev_video_path_msg "${CN_LEGACY_DEV_PATH}"
 
+        cn_supported_formats_msg
         cn_get_supported_formats "${CN_LEGACY_DEV_PATH}" | cn_log_output_noquiet
 
+        cn_supported_ctrls_msg
         cn_get_supported_ctrls "${CN_LEGACY_DEV_PATH}" | cn_log_output_noquiet
 
     fi
