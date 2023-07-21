@@ -115,6 +115,10 @@ cn_legacy_dev_msg() {
     cn_log_msg " "
 }
 
+cn_dev_video_path_msg() {
+    cn_log_msg "Device path (/dev/video?): ${1}"
+}
+
 # below marked as deprecated!
 # function deprecated_msg_1 {
 #     cn_log_msg "Parameter 'streamer' is deprecated!"
