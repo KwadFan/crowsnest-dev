@@ -28,6 +28,17 @@ cn_get_supported_formats() {
     fi
 }
 
+cn_get_supported_ctrls() {
+    local device v4l2ctl
+    device="${1}"
+    v4l2ctl="$(command -v v4l2-ctl)"
+    if [[ -n "${v4l2ctl}" ]] && [[ -n "${device}" ]]; then
+        cn_supported_ctrls_msg
+        "${v4l2ctl}" --list-ctrls-menu --device "${device}" \
+        | sed '1,3d'
+    fi
+}
+
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: log_v4l2ctl_output.sh\n"
 fi

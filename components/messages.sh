@@ -139,6 +139,12 @@ cn_supported_formats_msg() {
     cn_log_msg " "
 }
 
+cn_supported_ctrls_msg() {
+    cn_log_msg "Supported controls:"
+    # put some whitespace here
+    cn_log_msg " "
+}
+
 # below marked as deprecated!
 # function deprecated_msg_1 {
 #     cn_log_msg "Parameter 'streamer' is deprecated!"
