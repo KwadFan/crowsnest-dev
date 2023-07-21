@@ -50,6 +50,8 @@ cn_init_hw_legacy() {
 
         cn_get_vcgencmd_path
 
+        cn_get_legacy_dev_avail
+
     fi
 
 
