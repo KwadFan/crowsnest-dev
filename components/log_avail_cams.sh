@@ -33,12 +33,6 @@ cn_print_dev_count() {
 
 cn_init_print_devices() {
 
-    cn_log_sect_header "Detect available devices:"
-    # put some whitespace here
-    cn_log_msg " "
-
-    cn_print_dev_count
-
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "log_avail_cam:\n###########\n"
         printf "Libcamera dev count: %s\n" "$(cn_get_libcamera_dev_count)"
@@ -46,6 +40,13 @@ cn_init_print_devices() {
         printf "Total dev count: %s\n" "$(cn_get_dev_count)"
         printf "###########\n"
     fi
+
+    cn_log_sect_header "Detect available devices:"
+    # put some whitespace here
+    cn_log_msg " "
+
+    cn_print_dev_count
+
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
