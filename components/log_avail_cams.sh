@@ -31,6 +31,14 @@ cn_print_dev_count() {
     fi
 }
 
+cn_log_legacy_dev() {
+    if [[ "${CN_LEGACY_DEV_AVAIL}" = "1" ]]; then
+        cn_log_sect_header "Legacy Raspicam found"
+        # put some whitespace here
+        cn_log_msg " "
+    fi
+}
+
 cn_init_print_devices() {
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
@@ -47,6 +55,8 @@ cn_init_print_devices() {
     cn_log_msg " "
 
     cn_print_dev_count
+
+    cn_log_legacy_dev
 
 }
 
