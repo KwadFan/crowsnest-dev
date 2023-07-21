@@ -23,7 +23,7 @@ cn_get_supported_formats() {
     v4l2ctl="$(command -v v4l2-ctl)"
     if [[ -n "${v4l2ctl}" ]] && [[ -n "${device}" ]]; then
         "${v4l2ctl}" --list-formats-ext --device "${device}" \
-        | sed '1,3d'
+        | sed '1,3d' | cn_log_v4l2ctl_output
         # put some whitespace here
         printf "\n"
     fi
@@ -35,10 +35,18 @@ cn_get_supported_ctrls() {
     v4l2ctl="$(command -v v4l2-ctl)"
     if [[ -n "${v4l2ctl}" ]] && [[ -n "${device}" ]]; then
         "${v4l2ctl}" --list-ctrls-menu --device "${device}" \
-        | sed '1,3d'
+        | sed '1,3d' | cn_log_v4l2ctl_output
         # put some whitespace here
         printf "\n"
     fi
+}
+
+cn_log_v4l2ctl_output() {
+    while read -r line; do
+        if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
+            cn_log_msg "$(echo -e "\t")${line}"
+        fi
+    done
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
