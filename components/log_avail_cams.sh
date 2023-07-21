@@ -64,6 +64,8 @@ cn_init_print_devices() {
 
     cn_log_legacy_dev
 
+    cn_log_libcamera_dev
+
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
