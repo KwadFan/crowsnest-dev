@@ -116,7 +116,15 @@ cn_legacy_dev_msg() {
 }
 
 cn_dev_video_path_msg() {
-    cn_log_msg "Device path (/dev/video?): ${1}"
+    cn_log_msg "Device path: ${1}"
+}
+
+cn_dev_byid_path_msg() {
+    cn_log_msg "Device path (by-id): ${1}"
+}
+
+cn_dev_bypath_path_msg() {
+    cn_log_msg "Device path (by-path): ${1}"
 }
 
 # below marked as deprecated!
