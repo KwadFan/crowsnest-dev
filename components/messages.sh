@@ -96,6 +96,8 @@ cam_auto_detect_enabled_msg() {
 
 cn_camera_count_msg() {
     cn_log_info_msg "Found ${1} total available camera(s)"
+    # put some whitespace here
+    cn_log_msg " "
 }
 
 cn_no_usable_cams_found_msg() {

@@ -19,7 +19,7 @@ set -Ee
 cn_get_dev_count() {
     local total
     total="$(($(cn_get_libcamera_dev_count)+$(cn_get_uvc_dev_count)+$(cn_get_legacy_dev_count)))"
-    printf "%s\n\n" "${total}"
+    printf "%s" "${total}"
 }
 
 cn_print_dev_count() {
