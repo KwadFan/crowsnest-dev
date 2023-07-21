@@ -63,6 +63,7 @@ cn_get_legacy_dev_path() {
     else
         CN_LEGACY_DEV_PATH="null"
     fi
+    #shellcheck disable=SC2034
     declare -gr CN_LEGACY_DEV_PATH
 }
 
