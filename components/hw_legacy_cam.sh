@@ -58,7 +58,7 @@ cn_get_legacy_dev_path() {
         ${v4l2ctl_bin} --list-devices | grep "mmal" -A 1 \
         | sed '1d;s/^[[:blank:]]//g'
         )"
-    if [[ "${dev_path}" ~= ^/dev/video[0-9] ]]: then
+    if [[ "${dev_path}" =~ ^/dev/video[0-9] ]]; then
         CN_LEGACY_DEV_PATH="${dev_path}"
     else
         CN_LEGACY_DEV_PATH="null"
