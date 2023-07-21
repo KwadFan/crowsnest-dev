@@ -35,7 +35,11 @@ cn_log_legacy_dev() {
     if [[ "${CN_LEGACY_DEV_AVAIL}" = "1" ]] \
     && [[ "${CN_LEGACY_DEV_PATH}" != "null" ]]; then
         cn_legacy_dev_msg
+
         cn_dev_video_path_msg "${CN_LEGACY_DEV_PATH}"
+
+        cn_get_supported_formats "${CN_LEGACY_DEV_PATH}"
+
     fi
 }
 

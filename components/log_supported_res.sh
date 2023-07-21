@@ -17,24 +17,15 @@
 set -Ee
 
 
-
-
-# cn_init_hw_legacy() {
-#     if [[ "${CN_LIBCAMERA_DEV_PATH}" == "null" ]]; then
-#         cn_get_vcgencmd_path
-
-#         cn_get_legacy_dev_avail
-
-#         cn_get_legacy_dev_path
-#     fi
-
-
-#     if [[ "${CN_DEV_MSG}" = "1" ]]; then
-#         printf "hw_legacy_cam:\n###########\n"
-#         declare -p | grep "CN_LEGACY"
-#         printf "###########\n"
-#     fi
-# }
+cn_get_supported_formats() {
+    local device v4l2ctl
+    device="${1}"
+    v4l2ctl="$(command -v v4l2-ctl)"
+    if [[ -n "${v4l2ctl}" ]] && [[ -n "${device}" ]]; then
+        "${v4l2ctl}" --list-formats-ext --device "${device}" \
+        | sed '1,3d'
+    fi
+}
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: log_supported_res.sh\n"
