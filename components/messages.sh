@@ -110,7 +110,7 @@ cn_uvc_model_twin_detection_msg() {
 }
 
 cn_legacy_dev_msg() {
-    cn_log_sect_header "Legacy Raspicam found"
+    cn_log_sect_header "Legacy Raspicam found!"
     # put some whitespace here
     cn_log_msg " "
 }
@@ -125,6 +125,12 @@ cn_dev_byid_path_msg() {
 
 cn_dev_bypath_path_msg() {
     cn_log_msg "Device path (by-path): ${1}"
+}
+
+cn_libcamera_dev_msg() {
+    cn_log_sect_header "Libcamera Raspicam found!"
+    # put some whitespace here
+    cn_log_msg " "
 }
 
 # below marked as deprecated!
