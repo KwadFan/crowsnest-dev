@@ -19,7 +19,7 @@ set -Ee
 cn_init_hw_legacy () {
 
 
-    if [[ "${CN_LIBCAMERA_DEV_PATH}" != "null" ]]; then
+    if [[ "${CN_LIBCAMERA_DEV_PATH}" == "null" ]]; then
 
         cn_log_msg "Do something .."
 
