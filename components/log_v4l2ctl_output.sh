@@ -36,6 +36,8 @@ cn_get_supported_ctrls() {
         cn_supported_ctrls_msg
         "${v4l2ctl}" --list-ctrls-menu --device "${device}" \
         | sed '1,3d'
+        # put some whitespace here
+        printf "\n"
     fi
 }
 
