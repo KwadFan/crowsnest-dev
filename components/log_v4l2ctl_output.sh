@@ -25,6 +25,8 @@ cn_get_supported_formats() {
         cn_supported_formats_msg
         "${v4l2ctl}" --list-formats-ext --device "${device}" \
         | sed '1,3d'
+        # put some whitespace here
+        printf "\n"
     fi
 }
 
