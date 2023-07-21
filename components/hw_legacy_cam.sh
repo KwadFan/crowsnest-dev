@@ -17,7 +17,7 @@
 set -Ee
 
 
-cn_get_vcgencmd_path () {
+cn_get_vcgencmd_path() {
     local vcgencmd_bin_path
     vcgencmd_bin_path="$(command -v vcgencmd)"
     if [[ -n "${vcgencmd_bin_path}" ]]; then
@@ -29,7 +29,21 @@ cn_get_vcgencmd_path () {
     declare -gr CN_LEGACY_VCGENCMD_BIN
 }
 
-cn_init_hw_legacy () {
+cn_get_legacy_dev_avail() {
+    local legacy_avail
+    if [[ "${CN_LEGACY_VCGENCMD_BIN}" != "null" ]]; then
+        legacy_avail="$("${CN_LEGACY_VCGENCMD_BIN}" get_camera | cut -d',' -f1)"
+        if [[ "${legacy_avail}" = "supported=1 detected=1" ]]; then
+            CN_LEGACY_DEV_AVAIL="1"
+        else
+            CN_LEGACY_DEV_AVAIL="0"
+        fi
+    fi
+    # shellcheck disable=SC2034
+    declare -gr CN_LEGACY_DEV_AVAIL
+}
+
+cn_init_hw_legacy() {
 
 
     if [[ "${CN_LIBCAMERA_DEV_PATH}" == "null" ]]; then
