@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#### log_supported_res.sh - Write supported resolutions to log
+#### log_v4l2ctl_output.sh - Write supported resolutions to log
 
 #### crowsnest - A webcam Service for multiple Cams and Stream Services.
 ####
@@ -29,5 +29,5 @@ cn_get_supported_formats() {
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
-    printf "Sourced component: log_supported_res.sh\n"
+    printf "Sourced component: log_v4l2ctl_output.sh\n"
 fi
