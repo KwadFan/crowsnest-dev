@@ -55,7 +55,7 @@ cn_log_libcamera_dev() {
 }
 
 cn_log_uvc_dev() {
-
+    return
 }
 
 cn_init_print_devices() {
