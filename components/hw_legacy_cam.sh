@@ -17,7 +17,7 @@
 set -Ee
 
 
-cn_check_vcgencmd () {
+cn_get_vcgencmd_path () {
     local vcgencmd_bin_path
     vcgencmd_bin_path="$(command -v vcgencmd)"
     if [[ -n "${vcgencmd_bin_path}" ]]; then
@@ -27,7 +27,6 @@ cn_check_vcgencmd () {
     fi
     # shellcheck disable=SC2034
     declare -gr CN_LEGACY_VCGENCMD_BIN
-
 }
 
 cn_init_hw_legacy () {
@@ -35,7 +34,7 @@ cn_init_hw_legacy () {
 
     if [[ "${CN_LIBCAMERA_DEV_PATH}" == "null" ]]; then
 
-        cn_check_vcgencmd
+        cn_get_vcgencmd_path
 
     fi
 
