@@ -18,7 +18,7 @@ set -Ee
 
 
 CN_LEGACY_DEV_AVAIL="0"
-CN_LEGACY_DEV_PATH="null"
+
 
 cn_get_vcgencmd_path() {
     local vcgencmd_bin_path
@@ -33,9 +33,8 @@ cn_get_legacy_dev_avail() {
     local legacy_avail
     if [[ "${CN_LEGACY_VCGENCMD_BIN}" != "null" ]]; then
         legacy_avail="$("${CN_LEGACY_VCGENCMD_BIN}" get_camera | cut -d',' -f1)"
-        if [[ "${legacy_avail}" = "supported=1 detected=1" ]]; then
-            CN_LEGACY_DEV_AVAIL="1"
-        fi
+        [[ "${legacy_avail}" = "supported=1 detected=1" ]] \
+        && CN_LEGACY_DEV_AVAIL="1" || CN_LEGACY_DEV_PATH="null"
     fi
     # shellcheck disable=SC2034
     declare -gr CN_LEGACY_DEV_AVAIL
