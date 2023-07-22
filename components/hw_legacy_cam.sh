@@ -16,16 +16,15 @@
 # Exit upon Errors
 set -Ee
 
-CN_LEGACY_VCGENCMD_BIN="null"
+
 CN_LEGACY_DEV_AVAIL="0"
 CN_LEGACY_DEV_PATH="null"
 
 cn_get_vcgencmd_path() {
     local vcgencmd_bin_path
     vcgencmd_bin_path="$(command -v vcgencmd)"
-    if [[ -n "${vcgencmd_bin_path}" ]]; then
-        CN_LEGACY_VCGENCMD_BIN="${vcgencmd_bin_path}"
-    fi
+    [[ -n "${vcgencmd_bin_path}" ]] && CN_LEGACY_VCGENCMD_BIN="${vcgencmd_bin_path}" \
+    || CN_LEGACY_VCGENCMD_BIN="null"
     # shellcheck disable=SC2034
     declare -gr CN_LEGACY_VCGENCMD_BIN
 }
@@ -65,18 +64,18 @@ cn_get_legacy_dev_path() {
 }
 
 cn_init_hw_legacy() {
-    if [[ "${CN_DEV_MSG}" = "1" ]]; then
-        printf "hw_legacy_cam:\n###########\n"
-        declare -p | grep "CN_LEGACY"
-        printf "###########\n"
-    fi
-
     if [[ "${CN_LIBCAMERA_DEV_PATH}" == "null" ]]; then
         cn_get_vcgencmd_path
 
         cn_get_legacy_dev_avail
 
         cn_get_legacy_dev_path
+    fi
+
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        printf "hw_legacy_cam:\n###########\n"
+        declare -p | grep "CN_LEGACY"
+        printf "###########\n"
     fi
 }
 
