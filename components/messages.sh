@@ -109,6 +109,12 @@ cn_uvc_model_twin_detection_msg() {
     true
 }
 
+cn_uvc_dev_msg() {
+    cn_log_sect_header "Legacy Raspicam found!"
+    # put some whitespace here
+    cn_log_msg " "
+}
+
 cn_legacy_dev_msg() {
     cn_log_sect_header "Legacy Raspicam found!"
     # put some whitespace here

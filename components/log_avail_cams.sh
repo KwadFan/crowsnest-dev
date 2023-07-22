@@ -58,9 +58,18 @@ cn_log_libcamera_dev() {
     fi
 }
 
+cn_get_uvc_header_name() {
+    local name
+    name="${1/usb-/}"
+
+    printf "%s" "${name}"
+}
+
 cn_log_uvc_dev() {
     local device
     for device in "${CN_UVC_BY_ID[@]}"; do
+        cn_log_sect_header "$(cn_get_uvc_header_name "${device}")"
+
         cn_supported_formats_msg
         cn_get_supported_formats "${device}" | cn_log_v4l2ctl_output
 
