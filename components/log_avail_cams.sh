@@ -78,7 +78,7 @@ cn_get_uvc_device_paths() {
     local by_path enum_path device
     device="${1}"
     enum_path="$(readlink "${device}" | sed 's/^\.\.\/\.\./\/dev/')"
-    by_path="$(cn_get_uvc_device_by_path "${device}")"
+    by_path="$(cn_get_uvc_device_by_path "${enum_path}")"
 
     cn_dev_video_path_msg "${enum_path}"
     cn_dev_byid_path_msg "${device}"
