@@ -68,7 +68,7 @@ cn_get_uvc_header_name() {
 cn_log_uvc_dev() {
     local device
     for device in "${CN_UVC_BY_ID[@]}"; do
-        cn_log_sect_header "$(cn_get_uvc_header_name "${device}")"
+        cn_log_sect_header "UVC device: $(cn_get_uvc_header_name "${device}") found!"
         # add some whitespace
         cn_log_msg " "
 
