@@ -90,9 +90,8 @@ cn_get_uvc_device_paths() {
 cn_log_uvc_dev() {
     local device
     for device in "${CN_UVC_BY_ID[@]}"; do
+
         cn_uvc_dev_msg "$(cn_get_uvc_header_name "${device}")"
-        # add some whitespace
-        cn_log_msg " "
 
         cn_get_uvc_device_paths "${device}"
 
