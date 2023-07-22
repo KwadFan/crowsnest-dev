@@ -118,8 +118,9 @@ cn_init_print_devices() {
     # put some whitespace here
     cn_log_msg " "
 
+    cn_print_dev_count
+
     if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
-        cn_print_dev_count
 
         cn_log_legacy_dev
 
