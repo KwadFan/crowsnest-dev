@@ -66,6 +66,16 @@ cn_get_uvc_header_name() {
     printf "%s" "${name}"
 }
 
+cn_get_uvc_device_paths() {
+    local enum_path device
+    device="${1}"
+    enum_path="$(readlink "${device}" | sed 's/^\.\.\/\.\./\/dev/')"
+
+    cn_dev_video_path_msg "${enum_path}"
+    cn_dev_byid_path_msg "${device}"
+    cn_dev_bypath_path_msg
+}
+
 cn_log_uvc_dev() {
     local device
     for device in "${CN_UVC_BY_ID[@]}"; do
