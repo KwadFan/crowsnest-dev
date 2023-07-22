@@ -110,7 +110,7 @@ cn_uvc_model_twin_detection_msg() {
 }
 
 cn_uvc_dev_msg() {
-    cn_log_sect_header "Legacy Raspicam found!"
+    cn_log_sect_header "UVC device: ${1} found!"
     # put some whitespace here
     cn_log_msg " "
 }
