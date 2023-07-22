@@ -75,7 +75,7 @@ cn_init_print_devices() {
 
     cn_print_dev_count
 
-    cn_log_legacy_dev
+    #cn_log_legacy_dev
 
     #cn_log_libcamera_dev
 

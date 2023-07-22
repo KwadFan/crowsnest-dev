@@ -16,9 +16,6 @@
 # Exit upon Errors
 set -Ee
 
-
-
-
 cn_get_vcgencmd_path() {
     local vcgencmd_bin_path
     vcgencmd_bin_path="$(command -v vcgencmd)"
