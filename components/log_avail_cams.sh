@@ -114,19 +114,19 @@ cn_init_print_devices() {
         printf "Total dev count: %s\n" "$(cn_get_dev_count)"
         printf "###########\n"
     fi
-
     cn_log_sect_header "Detect available devices:"
     # put some whitespace here
     cn_log_msg " "
 
-    cn_print_dev_count
+    if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
+        cn_print_dev_count
 
-    cn_log_legacy_dev
+        cn_log_legacy_dev
 
-    cn_log_libcamera_dev
+        cn_log_libcamera_dev
 
-    cn_log_uvc_dev
-
+        cn_log_uvc_dev
+    fi
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
