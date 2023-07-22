@@ -60,7 +60,7 @@ cn_log_libcamera_dev() {
 
 cn_get_uvc_header_name() {
     local name
-    name="${1/usb-/}"
+    name="$(basename "${1}")"
 
     printf "%s" "${name}"
 }
