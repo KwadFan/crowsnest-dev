@@ -66,14 +66,25 @@ cn_get_uvc_header_name() {
     printf "%s" "${name}"
 }
 
+cn_get_uvc_device_by_path() {
+    find /dev/v4l/by-path -exec ls -dl {} \; \
+    | grep "${1}$" \
+    | cut -f2- -d '/' \
+    | cut -f1 -d ' ' \
+    | sed 's|dev|/dev|'
+}
+
 cn_get_uvc_device_paths() {
-    local enum_path device
+    local by_path enum_path device
     device="${1}"
     enum_path="$(readlink "${device}" | sed 's/^\.\.\/\.\./\/dev/')"
+    by_path="$(cn_get_uvc_device_by_path "${device}")"
 
     cn_dev_video_path_msg "${enum_path}"
     cn_dev_byid_path_msg "${device}"
-    cn_dev_bypath_path_msg
+    cn_dev_bypath_path_msg "${by_path}"
+    # add some whitespace
+    cn_log_msg " "
 }
 
 cn_log_uvc_dev() {
