@@ -17,7 +17,6 @@
 set -Ee
 
 
-CN_LEGACY_DEV_AVAIL="0"
 
 
 cn_get_vcgencmd_path() {
@@ -34,18 +33,14 @@ cn_get_legacy_dev_avail() {
     if [[ "${CN_LEGACY_VCGENCMD_BIN}" != "null" ]]; then
         legacy_avail="$("${CN_LEGACY_VCGENCMD_BIN}" get_camera | cut -d',' -f1)"
         [[ "${legacy_avail}" = "supported=1 detected=1" ]] \
-        && CN_LEGACY_DEV_AVAIL="1" || CN_LEGACY_DEV_PATH="null"
+        && CN_LEGACY_DEV_AVAIL="1" || CN_LEGACY_DEV_AVAIL="0"
     fi
     # shellcheck disable=SC2034
     declare -gr CN_LEGACY_DEV_AVAIL
 }
 
 cn_get_legacy_dev_count() {
-    if [[ "${CN_LEGACY_DEV_AVAIL}" = "1" ]]; then
-        printf "1"
-    else
-        printf "0"
-    fi
+    [[ "${CN_LEGACY_DEV_AVAIL}" = "1" ]] && printf "1" || printf "0"
 }
 
 cn_get_legacy_dev_path() {
@@ -55,9 +50,9 @@ cn_get_legacy_dev_path() {
         ${v4l2ctl_bin} --list-devices | grep "mmal" -A 1 \
         | sed '1d;s/^[[:blank:]]//g'
         )"
-    if [[ "${dev_path}" =~ ^/dev/video[0-9] ]]; then
-        CN_LEGACY_DEV_PATH="${dev_path}"
-    fi
+    [[ "${dev_path}" =~ ^/dev/video[0-9] ]] \
+    && CN_LEGACY_DEV_PATH="${dev_path}" \
+    || CN_LEGACY_DEV_PATH="null"
     #shellcheck disable=SC2034
     declare -gr CN_LEGACY_DEV_PATH
 }
