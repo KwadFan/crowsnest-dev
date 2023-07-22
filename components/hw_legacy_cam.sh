@@ -16,7 +16,7 @@
 # Exit upon Errors
 set -Ee
 
-CN_LEGACY_VCGENCMD_BIN=""
+CN_LEGACY_VCGENCMD_BIN="null"
 CN_LEGACY_DEV_AVAIL="0"
 CN_LEGACY_DEV_PATH="null"
 
@@ -25,8 +25,6 @@ cn_get_vcgencmd_path() {
     vcgencmd_bin_path="$(command -v vcgencmd)"
     if [[ -n "${vcgencmd_bin_path}" ]]; then
         CN_LEGACY_VCGENCMD_BIN="${vcgencmd_bin_path}"
-    else
-        CN_LEGACY_VCGENCMD_BIN="null"
     fi
     # shellcheck disable=SC2034
     declare -gr CN_LEGACY_VCGENCMD_BIN
