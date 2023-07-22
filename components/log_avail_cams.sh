@@ -61,6 +61,7 @@ cn_log_libcamera_dev() {
 cn_get_uvc_header_name() {
     local name
     name="$(basename "${1}")"
+    name="${name/-video-index[0-9]//}"
 
     printf "%s" "${name}"
 }
