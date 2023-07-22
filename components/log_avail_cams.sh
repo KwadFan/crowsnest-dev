@@ -97,10 +97,10 @@ cn_log_uvc_dev() {
         cn_get_uvc_device_paths "${device}"
 
         cn_supported_formats_msg
-        #cn_get_supported_formats "${device}" | cn_log_v4l2ctl_output
+        cn_get_supported_formats "${device}" | cn_log_v4l2ctl_output
 
         cn_supported_ctrls_msg
-        #cn_get_supported_ctrls "${device}" | cn_log_v4l2ctl_output
+        cn_get_supported_ctrls "${device}" | cn_log_v4l2ctl_output
     done
 }
 
@@ -121,9 +121,9 @@ cn_init_print_devices() {
 
     cn_print_dev_count
 
-    #cn_log_legacy_dev
+    cn_log_legacy_dev
 
-    #cn_log_libcamera_dev
+    cn_log_libcamera_dev
 
     cn_log_uvc_dev
 
