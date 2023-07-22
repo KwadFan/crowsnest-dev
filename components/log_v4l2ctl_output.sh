@@ -34,7 +34,8 @@ cn_get_supported_ctrls() {
     device="${1}"
     v4l2ctl="$(command -v v4l2-ctl)"
     if [[ -n "${v4l2ctl}" ]] && [[ -n "${device}" ]]; then
-        "${v4l2ctl}" --list-ctrls-menu --device "${device}"
+        "${v4l2ctl}" --list-ctrls-menu --device "${device}" \
+        | sed '1,2d;s/Controls/Controls:/g'
         # put some whitespace here
         printf "\n"
     fi
