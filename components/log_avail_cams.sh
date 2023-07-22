@@ -83,6 +83,7 @@ cn_log_uvc_dev() {
         # add some whitespace
         cn_log_msg " "
 
+        cn_get_uvc_device_paths "${device}"
 
         cn_supported_formats_msg
         #cn_get_supported_formats "${device}" | cn_log_v4l2ctl_output
