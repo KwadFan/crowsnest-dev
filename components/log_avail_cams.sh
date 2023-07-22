@@ -59,7 +59,14 @@ cn_log_libcamera_dev() {
 }
 
 cn_log_uvc_dev() {
-    return
+    local device
+    for device in "${CN_UVC_BY_ID[@]}"; do
+        cn_supported_formats_msg
+        cn_get_supported_formats "${device}" | cn_log_v4l2ctl_output
+
+        cn_supported_ctrls_msg
+        cn_get_supported_ctrls "${device}" | cn_log_v4l2ctl_output
+    done
 }
 
 cn_init_print_devices() {
