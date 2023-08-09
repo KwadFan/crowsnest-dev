@@ -18,7 +18,7 @@ set -Ee
 
 cn_init_streams() {
 
-    cn_log_msg "Initialize streamer...."
+    cn_init_streams_msg_header
 
 
 }
