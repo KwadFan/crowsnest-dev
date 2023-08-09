@@ -17,10 +17,10 @@
 set -Ee
 
 cn_get_streamer() {
-    mode="$(printf "%s" "${!CN_CAM_${1}_MODE}")"
-    cn_log_msg "Cam ${1} uses mode ${mode}"
-
-
+    local cam mode
+    cam="${1}"
+    mode="CN_CAM_${cam}_MODE"
+    printf "%s" "${!mode}"
 }
 
 cn_init_streams() {
@@ -29,7 +29,7 @@ cn_init_streams() {
 
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         cn_log_msg "Config found for: ${cam}"
-        cn_get_streamer "${cam}"
+        cn_log_msg "Mode: $(cn_get_streamer "${cam}")"
     done
 
 }
