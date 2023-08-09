@@ -79,6 +79,11 @@ cn_streamer_not_found_msg() {
     cn_log_warn_msg "Backend '${1}' not found! Can't be configured as mode!"
 }
 
+cn_no_usable_backends_msg() {
+    cn_log_err_msg "No usable backends found!"
+    cn_stopped_msg
+}
+
 # discussable ...
 # cn_legacy_stack_msg() {
 #     cn_log_msg "WARN: Legacy camera stack enabled! \

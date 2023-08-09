@@ -55,9 +55,9 @@ cn_set_bin_path() {
 }
 
 cn_check_avail_backends() {
+    declare -gr CN_AVAIL_BACKENDS
     if [[ "${CN_AVAIL_BACKENDS}" -lt "1" ]]; then
-        printf "No usable backends found!"
-        exit 1
+        cn_no_usable_backends_msg
     fi
 }
 
