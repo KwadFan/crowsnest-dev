@@ -45,14 +45,17 @@ cn_set_bin_path() {
         fi
         expose_var="CN_${bin^^}_BIN_PATH=${bin_path}"
         declare -gr "${expose_var}"
+        CN_AVAIL_BACKENDS="$((CN_AVAIL_BACKENDS+1))"
     else
         cn_streamer_not_found_msg "${bin}"
-        CN_AVAIL_BACKENDS="$((CN_AVAIL_BACKENDS+1))"
+        if [[ "${CN_AVAIL_BACKENDS}" != 0 ]]; then
+            CN_AVAIL_BACKENDS="$((CN_AVAIL_BACKENDS-1))"
+        fi
     fi
 }
 
 cn_check_avail_backends() {
-    if [[ "${CN_AVAIL_BACKENDS}" -gt "1" ]]; then
+    if [[ "${CN_AVAIL_BACKENDS}" -lt "1" ]]; then
         printf "No usable backends found!"
         exit 1
     fi
