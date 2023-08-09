@@ -47,7 +47,7 @@ cn_set_bin_path() {
         declare -gr "${expose_var}"
     else
         cn_streamer_not_found_msg "${bin}"
-        CN_AVAIL_BACKENDS="((${CN_AVAIL_BACKENDS}+1))"
+        CN_AVAIL_BACKENDS="$((CN_AVAIL_BACKENDS+1))"
     fi
 }
 
