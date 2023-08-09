@@ -16,6 +16,12 @@
 # Exit upon Errors
 set -Ee
 
+cn_init_streams() {
+
+    log_msg "Initialize streamer...."
+
+
+}
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: init_stream.sh\n"

@@ -115,6 +115,8 @@ main() {
 
     cn_init_print_devices
 
+    cn_init_streams
+
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
