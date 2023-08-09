@@ -87,6 +87,7 @@ cn_init_check_backends() {
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "Backends:\n###########\n"
         declare -p | grep "CN_.*STREAMER_BIN_PATH"
+        declare -p | grep "CN_AVAIL_BACKENDS"
         printf "###########\n"
     fi
 }
