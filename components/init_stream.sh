@@ -17,7 +17,7 @@
 set -Ee
 
 cn_get_streamer() {
-    mode="${!CN_CAM_${1}_MODE}"
+    mode=${!CN_CAM_${1}_MODE}
     cn_log_msg "Cam ${1} uses mode ${mode}"
 
 
