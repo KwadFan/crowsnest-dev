@@ -49,7 +49,7 @@ cn_err_exit() {
     func_trace="${FUNC}"
     file_trace="$(basename "${FILE}")"
     line_trace="${LINE}"
-    if [ "${1}" != "0" ]; then
+    if [ "${1}" != "0" ] && [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
         cn_log_msg "ERROR: Error ${1} occured on line ${line_trace}"
         cn_log_msg "==> Error occured in file: ${file_trace} -> ${func_trace}"
         cn_log_sect_header "ERROR DUMP"
