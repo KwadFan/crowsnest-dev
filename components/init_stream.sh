@@ -16,12 +16,19 @@
 # Exit upon Errors
 set -Ee
 
+cn_get_streamer() {
+    cn_log_msg "Cam ${1} uses mode ${CN_CAM_"${1}"_MODE}"
+
+
+}
+
 cn_init_streams() {
 
     cn_init_streams_msg_header
 
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         cn_log_msg "Config found for: ${cam}"
+        cn_get_streamer "${cam}"
     done
 
 }
