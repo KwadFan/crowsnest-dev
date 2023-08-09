@@ -28,8 +28,12 @@ cn_init_streams() {
     cn_init_streams_msg_header
 
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
-        cn_log_msg "Config found for: ${cam}"
-        cn_log_msg "Mode: $(cn_get_streamer "${cam}")"
+        mode="$(cn_get_streamer "${cam}")"
+        if [[ -n "${mode}" ]]; then
+            cn_log_msg "Launch ${mode} for ${cam} ...."
+        else
+            cn_log_msg "Mode for '${cam}' not configured ... Skipped!"
+        fi
     done
 
 }
