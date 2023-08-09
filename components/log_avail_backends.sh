@@ -58,6 +58,7 @@ cn_check_avail_backends() {
     declare -gr CN_AVAIL_BACKENDS
     if [[ "${CN_AVAIL_BACKENDS}" -lt "1" ]]; then
         cn_no_usable_backends_msg
+        exit 1
     fi
 }
 
