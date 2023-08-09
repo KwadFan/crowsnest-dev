@@ -18,5 +18,5 @@ set -Ee
 
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
-    printf "Sourced component: arg_parser.sh\n"
+    printf "Sourced component: init_stream.sh\n"
 fi
