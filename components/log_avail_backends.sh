@@ -63,7 +63,7 @@ cn_check_avail_backends() {
 
         if [[ "${CN_DEV_MSG}" = "1" ]]; then
             printf "Backends:\n###########\n"
-            printf "Avail backends count: %s" "${#CN_AVAIL_BACKENDS[*]}"
+            printf "Avail backends count: %s\n" "${#CN_AVAIL_BACKENDS[*]}"
             printf "###########\n"
         fi
 
