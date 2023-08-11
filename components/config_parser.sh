@@ -96,10 +96,19 @@ cn_set_cam_config() {
     done
 }
 
+cn_set_no_proxy_default() {
+    if [[ -z "${CN_SELF_NO_PROXY}" ]]; then
+        CN_SELF_NO_PROXY="false"
+    fi
+    declare -gr CN_SELF_NO_PROXY
+}
+
 cn_init_config_parse() {
     cn_check_config_exist
 
     cn_set_config "crowsnest" "CN_SELF_"
+
+    cn_set_no_proxy_default
 
     cn_set_cam_sections
 
