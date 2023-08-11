@@ -16,6 +16,9 @@
 # Exit upon Errors
 set -Ee
 
+cn_set_cam_obj() {
+    cn_log_msg "create an obj of a camera config section"
+}
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: config_cam_obj.sh\n"
