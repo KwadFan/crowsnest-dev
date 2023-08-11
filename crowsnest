@@ -116,8 +116,6 @@ main() {
 
     cn_init_print_devices
 
-    cn_set_cam_obj
-
     cn_init_streams
 
 }
