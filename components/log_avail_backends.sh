@@ -56,9 +56,18 @@ cn_set_bin_path() {
 }
 
 cn_check_avail_backends() {
-    declare -gr CN_AVAIL_BACKENDS
+    declare -agr CN_AVAIL_BACKENDS
     if [[ "${#CN_AVAIL_BACKENDS[*]}" -lt "1" ]]; then
+
         cn_no_usable_backends_msg
+
+        if [[ "${CN_DEV_MSG}" = "1" ]]; then
+            printf "Backends:\n###########\n"
+            declare -p | grep "CN_.*STREAMER_BIN_PATH"
+            declare -p | grep "CN_AVAIL_BACKENDS"
+            printf "###########\n"
+        fi
+
         exit 1
     fi
 }
