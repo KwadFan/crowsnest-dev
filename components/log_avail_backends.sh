@@ -63,8 +63,7 @@ cn_check_avail_backends() {
 
         if [[ "${CN_DEV_MSG}" = "1" ]]; then
             printf "Backends:\n###########\n"
-            declare -p | grep "CN_.*STREAMER_BIN_PATH"
-            declare -p | grep "CN_AVAIL_BACKENDS"
+            printf "Avail backends count: %s" "${#CN_AVAIL_BACKENDS[*]}"
             printf "###########\n"
         fi
 
