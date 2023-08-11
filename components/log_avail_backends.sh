@@ -19,7 +19,7 @@ set -Ee
 CN_CUR_USABLE_BACKENDS=(ustreamer camera-streamer)
 declare -gar CN_CUR_USABLE_BACKENDS
 
-CN_AVAIL_BACKENDS=0
+CN_AVAIL_BACKENDS=()
 
 cn_get_bin_path() {
     local cn_bin sys_bin path
@@ -40,23 +40,24 @@ cn_set_bin_path() {
     bin="${1}"
     bin_path="$(cn_get_bin_path "${bin/\_/\-}")"
     if [[ -n "${bin_path}" ]]; then
+        CN_AVAIL_BACKENDS+=("${bin}")
         if [[ "${bin_path}" =~ "camera-streamer" ]]; then
             bin="${bin/\-/\_}"
         fi
         expose_var="CN_${bin^^}_BIN_PATH=${bin_path}"
         declare -gr "${expose_var}"
-        CN_AVAIL_BACKENDS="$((CN_AVAIL_BACKENDS+1))"
+        #CN_AVAIL_BACKENDS="$((CN_AVAIL_BACKENDS+1))"
     else
         cn_streamer_not_found_msg "${bin}"
-        if [[ "${CN_AVAIL_BACKENDS}" != 0 ]]; then
-            CN_AVAIL_BACKENDS="$((CN_AVAIL_BACKENDS-1))"
-        fi
+        # if [[ "${CN_AVAIL_BACKENDS}" != 0 ]]; then
+        #     CN_AVAIL_BACKENDS="$((CN_AVAIL_BACKENDS-1))"
+        # fi
     fi
 }
 
 cn_check_avail_backends() {
     declare -gr CN_AVAIL_BACKENDS
-    if [[ "${CN_AVAIL_BACKENDS}" -lt "1" ]]; then
+    if [[ "${#CN_AVAIL_BACKENDS[*]}" -lt "1" ]]; then
         cn_no_usable_backends_msg
         exit 1
     fi
