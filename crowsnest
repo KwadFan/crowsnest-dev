@@ -118,6 +118,10 @@ main() {
 
     cn_init_streams
 
+    while true; do
+        sleep 1
+    done
+
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
