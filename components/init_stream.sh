@@ -27,6 +27,7 @@ cn_init_streams() {
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "init_stream:\n###########\n"
         declare -p | grep "CN_AVAIL_BACKENDS"
+        printf "Configured cams: %s" "${CN_CONFIGURED_CAMS}"
         printf "###########\n"
     fi
 
