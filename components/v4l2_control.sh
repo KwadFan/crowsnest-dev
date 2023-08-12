@@ -14,13 +14,13 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -Eex
+set -Ee
 
 cn_init_v4l2_ctl() {
     local array_name cam
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         array_name="CN_${cam^^}_V4L2CTL_ARRAY"
-        declare -g "$(echo "${!array_name}" | tr -d "'")"
+        echo "${!array_name}"
     done
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
@@ -35,5 +35,3 @@ cn_init_v4l2_ctl() {
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: v4l2_control.sh\n"
 fi
-
-set +x
