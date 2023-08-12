@@ -31,7 +31,6 @@ cn_init_streams() {
         printf "###########\n"
     fi
 
-
     cn_init_streams_msg_header
 
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do

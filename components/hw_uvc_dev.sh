@@ -103,6 +103,10 @@ cn_uvc_model_twin_detection() {
     fi
 }
 
+cn_detect_hw_mjpg() {
+    v4l2-ctl -d "${1}" --list-formats-ext | grep -c "Motion-JPEG, compressed"
+}
+
 cn_init_hw_uvc() {
 
     cn_set_uvc_by_id_paths

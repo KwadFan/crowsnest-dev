@@ -40,9 +40,14 @@ cn_exec_ustreamer() {
         start_param+=( -d "${!device}" --device-timeout=2 )
     fi
 
+    ## Use hardware MJPG encoder if avail
+    if [[ "$(cn_detect_hw_mjpg)" != "0" ]]; then
+        start_param+=( -m MJPEG --encoder=HW )
+    fi
+
     start_param+=( -r "${!res}" -f "${!fps}" )
 
-    # webroot & allow crossdomain requests
+    ## webroot & allow crossdomain requests
     start_param+=( --allow-origin=\* --static "${CN_WORKDIR_PATH}/ustreamer-www" )
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
