@@ -16,10 +16,16 @@
 # Exit upon Errors
 set -Ee
 
+cn_set_array_name() {
+    local array_name
+    array_name="CN_CAM_${1}_V4L2CTL_ARRAY"
+    printf "%s" "${array_name}"
+}
+
 cn_init_v4l2_ctl() {
     local array_name cam
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
-        array_name="CN_CAM_${cam^^}_V4L2CTL_ARRAY"
+        array_name="$(cn_set_array_name "${cam}")"
         declare -g "${array_name}"
     done
 
