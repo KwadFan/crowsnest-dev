@@ -22,7 +22,7 @@ cn_exec_ustreamer() {
     cam="${1}"
     device=CN_${cam}_DEVICE
     fps=CN_${cam}_MAX_FPS
-    port=CN_${cam}_PORT
+    port="CN_${cam}_PORT"
     res=CN_${cam}_RESOLUTION
     start_param=()
 
