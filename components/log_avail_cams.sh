@@ -100,6 +100,8 @@ cn_log_uvc_dev() {
 
         cn_supported_ctrls_msg
         cn_get_supported_ctrls "${device}" | cn_log_v4l2ctl_output
+
+        cn_note_by-id_msg
     done
 }
 
