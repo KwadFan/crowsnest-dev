@@ -17,9 +17,10 @@
 set -Ee
 
 cn_exec_ustreamer() {
-    local cam device port res
+    local cam custom_flags device port res
     local -a start_param
     cam="CAM_${1}"
+    custom_flags="CN_${cam}_CUSTOM_FLAGS"
     device="CN_${cam}_DEVICE"
     fps="CN_${cam}_MAX_FPS"
     port="CN_${cam}_PORT"
@@ -50,6 +51,12 @@ cn_exec_ustreamer() {
 
     ## webroot & allow crossdomain requests
     start_param+=( --allow-origin=\* --static "${CN_WORKDIR_PATH}/ustreamer-www" )
+
+    if [[ -n "${!custom_flags}" ]]; then
+        for fl in "${!custom_flags}"; do
+            start_param+=( "${fl}" )
+        done
+    fi
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "ustreamer:\n###########\n"
