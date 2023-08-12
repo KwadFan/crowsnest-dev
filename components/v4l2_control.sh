@@ -16,6 +16,21 @@
 # Exit upon Errors
 set -Ee
 
+cn_init_v4l2_ctl() {
+    local array_name cam
+    for cam in "${CN_CONFIGURED_CAMS[@]}"; do
+        array_name="CN_${cam^^}_V4L2CTL_ARRAY"
+        declare -g "${!array_name}"
+    done
+
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        printf "v4l2_control:\n###########\n"
+        printf "Configured cams: %s\n" "${#CN_CONFIGURED_CAMS[*]}"
+        declare -p | grep "CN_*_V4L2CTL"
+        declare -p | grep "CN_*_V4L2CTL_ARRAY"
+        printf "###########\n"
+    fi
+}
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: v4l2_control.sh\n"
