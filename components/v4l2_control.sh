@@ -20,7 +20,7 @@ cn_init_v4l2_ctl() {
     local array_name cam
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         array_name="CN_${cam^^}_V4L2CTL_ARRAY"
-        declare -g "${!array_name}"
+        declare -g "$(echo "${array_name}" | tr -d "'")"
     done
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
