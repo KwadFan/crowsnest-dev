@@ -139,8 +139,8 @@ cn_dev_bypath_path_msg() {
 }
 
 cn_note_by-id_msg() {
-    cn_log_info_msg "NOTE: It is not recommended to use /dev/video* path! \
-    Use 'by-id instead!"
+    cn_log_info_msg "ATTENTION: It is not recommended to use /dev/video* path! \
+Use 'by-id instead!"
 }
 
 
