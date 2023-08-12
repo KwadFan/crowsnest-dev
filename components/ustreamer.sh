@@ -34,8 +34,8 @@ cn_exec_ustreamer() {
 
     ## Raspicam handling
     if [[ "${!device}" = "legacy" ]] \
-    || [[ "${!device}" = "${CCN_LEGACY_DEV_PATH}" ]]; then
-            start_param+=( -m MJPEG --device-timeout=5 --buffers=3 )
+    || [[ "${!device}" = "${CN_LEGACY_DEV_PATH}" ]]; then
+            start_param+=( -d "${CN_LEGACY_DEV_PATH}" -m MJPEG --device-timeout=5 --buffers=3 )
     else
         start_param+=( -d "${!device}" --device-timeout=2 )
     fi
