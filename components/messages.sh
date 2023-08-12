@@ -140,7 +140,7 @@ cn_dev_bypath_path_msg() {
 
 cn_note_by-id_msg() {
     cn_log_info_msg "ATTENTION: It is not recommended to use /dev/video[0-9] path! \
-Use 'by-id instead!"
+Use 'by-id' instead!"
     # put some whitespace here
     cn_log_msg " "
 }
