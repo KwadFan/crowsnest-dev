@@ -56,6 +56,12 @@ cn_exec_cstreamer() {
     start_param+=( --camera-height="$(get_height_val)" )
     start_param+=( --camera-fps="${!fps}" )
 
+    if [[ -n "${!custom_flags}" ]]; then
+        for fl in "${!custom_flags}"; do
+            start_param+=( "${fl}" )
+        done
+    fi
+
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "camera-streamer:\n###########\n"
         printf "start_param: %s\n" "${start_param[*]}"
