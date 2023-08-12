@@ -32,9 +32,13 @@ cn_exec_ustreamer() {
         start_param+=( --host 127.0.0.1 -p "${!port}" )
     fi
 
+    start_param+=( -d "${!device}" )
+
     start_param+=( -r "${!res}" -f "${!fps}" )
 
     printf "start_param: %s\n" "${start_param[*]}"
+
+    "${CN_USTREAMER_BIN_PATH}" "${start_param[*]}"
 }
 
 
