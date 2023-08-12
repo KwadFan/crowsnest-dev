@@ -127,7 +127,7 @@ cn_legacy_dev_msg() {
 }
 
 cn_dev_video_path_msg() {
-    cn_log_msg "Device path: ${1}"
+    cn_log_msg "Device path: ${1} (Not recommended to use! Use 'by-id' instead!)"
 }
 
 cn_dev_byid_path_msg() {
