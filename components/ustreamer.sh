@@ -26,7 +26,7 @@ cn_exec_ustreamer() {
     res=CN_${cam}_RESOLUTION
     start_param=()
 
-    if [[ "$CN_NO_PROXY" = "true" ]]; then
+    if [[ "${CN_SELF_NO_PROXY}" = "true" ]]; then
         start_param+=( --host 0.0.0.0 -p "${!port}" )
     else
         start_param+=( --host 127.0.0.1 -p "${!port}" )
