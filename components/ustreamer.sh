@@ -43,9 +43,10 @@ cn_exec_ustreamer() {
 }
 
 cn_ustreamer_loop() {
-    (echo "${2}" | xargs "${CN_USTREAMER_BIN_PATH}" 2>&1 \
-    | cn_log_output "ustreamer [cam ${1}]") \
-    || cn_ustreamer_failed_msg "${1}"
+    if ! echo "${2}" | xargs "${CN_USTREAMER_BIN_PATH}" 2>&1 \
+    | cn_log_output "ustreamer [cam ${1}]"; then
+        cn_ustreamer_failed_msg "${1}"
+    fi
 }
 
 # declare -r CN_CAM_1_MAX_FPS="15"
