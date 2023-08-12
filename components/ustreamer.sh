@@ -24,7 +24,7 @@ cn_exec_ustreamer() {
     fps="CN_${cam}_MAX_FPS"
     port="CN_${cam}_PORT"
     res="CN_${cam}_RESOLUTION"
-    start_param=()
+    start_param=( --tcp-nodelay --no-log-colors )
 
     if [[ "${CN_SELF_NO_PROXY}" = "true" ]]; then
         start_param+=( --host 0.0.0.0 -p "${!port}" )
