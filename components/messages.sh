@@ -162,8 +162,8 @@ cn_init_streams_msg_header() {
     cn_log_msg " "
 }
 
-cn_ustreamer_failed_msg() {
-    cn_log_msg "Start of ustreamer [cam ${1}] failed ..."
+cn_streamer_failed_msg() {
+    cn_log_err_msg "Start of ${1} [cam ${2}] failed ..."
 }
 
 # below marked as deprecated!
