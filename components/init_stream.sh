@@ -38,6 +38,7 @@ cn_init_streams() {
         mode="$(cn_get_streamer "${cam}")"
         if [[ -n "${mode}" ]]; then
             cn_log_msg "Launch ${mode} for ${cam} ...."
+            cn_exec_ustreamer "${cam}"
         else
             cn_log_msg "Mode for '${cam}' not configured ... Skipped!"
         fi
