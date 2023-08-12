@@ -19,7 +19,7 @@ set -Ee
 cn_exec_ustreamer() {
     local cam device port res
     local -a start_param
-    cam="${1}"
+    cam="CAM_${1}"
     device=CN_${cam}_DEVICE
     fps=CN_${cam}_MAX_FPS
     port="CN_${cam}_PORT"
