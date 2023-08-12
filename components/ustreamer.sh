@@ -38,13 +38,14 @@ cn_exec_ustreamer() {
 
     printf "start_param: %s\n" "${start_param[*]}"
 
-    cn_ustreamer_loop "${1}" "${start_param[*]}"
+    cn_ustreamer_loop "${1}" "${start_param[*]}" &
 
 }
 
 cn_ustreamer_loop() {
-    echo "${2}" | xargs "${CN_USTREAMER_BIN_PATH}" 2>&1 |
-    cn_log_output "ustreamer [cam ${1}]"
+    (echo "${2}" | xargs "${CN_USTREAMER_BIN_PATH}" 2>&1 |
+    cn_log_output "ustreamer [cam ${1}]") \
+    || cn_ustreamer_failed_msg "${1}"
 }
 
 # declare -r CN_CAM_1_MAX_FPS="15"
