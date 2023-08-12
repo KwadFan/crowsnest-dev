@@ -20,10 +20,10 @@ cn_exec_ustreamer() {
     local cam device port res
     local -a start_param
     cam="CAM_${1}"
-    device=CN_${cam}_DEVICE
-    fps=CN_${cam}_MAX_FPS
+    device="CN_${cam}_DEVICE"
+    fps="CN_${cam}_MAX_FPS"
     port="CN_${cam}_PORT"
-    res=CN_${cam}_RESOLUTION
+    res="CN_${cam}_RESOLUTION"
     start_param=()
 
     if [[ "${CN_SELF_NO_PROXY}" = "true" ]]; then
