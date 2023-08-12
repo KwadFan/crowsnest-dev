@@ -54,7 +54,7 @@ cn_exec_cstreamer() {
 
     start_param+=( --camera-width="$(get_width_val)" )
     start_param+=( --camera-height="$(get_height_val)" )
-    start_param+=( --camera-fps="${fps}" )
+    start_param+=( --camera-fps="${!fps}" )
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "camera-streamer:\n###########\n"
