@@ -17,9 +17,10 @@
 set -Ee
 
 cn_exec_cstreamer() {
-    local cam device port res
+    local cam custom_flags device port res
     local -a start_param
     cam="CAM_${1}"
+    custom_flags="CN_${cam}_CUSTOM_FLAGS"
     device="CN_${cam}_DEVICE"
     fps="CN_${cam}_MAX_FPS"
     port="CN_${cam}_PORT"
