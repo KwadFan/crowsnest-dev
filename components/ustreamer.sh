@@ -38,7 +38,7 @@ cn_exec_ustreamer() {
 
     printf "start_param: %s\n" "${start_param[*]}"
 
-    "${CN_USTREAMER_BIN_PATH}" "${start_param[*]}"
+    echo "${start_param[*]}" | xargs "${CN_USTREAMER_BIN_PATH}"
 }
 
 
