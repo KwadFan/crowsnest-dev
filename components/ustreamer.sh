@@ -45,6 +45,7 @@ cn_exec_ustreamer() {
 cn_ustreamer_loop() {
     echo "${2}" \
     | xargs "${CN_USTREAMER_BIN_PATH}" 2>&1 \
+    | sed '/^\=*/d' \
     | cn_log_output "ustreamer [cam ${1}]"
     # Should not be seen if running
     cn_streamer_failed_msg "ustreamer" "${1}"
