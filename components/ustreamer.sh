@@ -32,7 +32,7 @@ cn_exec_ustreamer() {
         start_param+=( --host 127.0.0.1 -p "${!port}" )
     fi
 
-    start_param+=( -r "${!res}" -f "${fps}" )
+    start_param+=( -r "${!res}" -f "${!fps}" )
 
     printf "start_param: %s\n" "${start_param[*]}"
 }
