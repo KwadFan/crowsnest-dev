@@ -74,9 +74,10 @@ cn_log_output() {
     local prefix
     prefix="DEBUG: ${1}"
     while read -r line; do
-        if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
-            ## Ustreamer workaround
-            cn_log_msg "${prefix}: ${line/=*/}"
+        ## Ustreamer workaround
+        line="${line/^=*/}"
+        if [[ -n "${line}" ]] && [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
+            cn_log_msg "${prefix}: ${line}"
         fi
     done
 }
