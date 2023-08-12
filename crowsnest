@@ -116,7 +116,7 @@ main() {
 
     cn_init_print_devices
 
-    cn_init_v4l2_control
+    cn_init_v4l2_ctl
 
     cn_init_streams
 
