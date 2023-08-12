@@ -42,6 +42,9 @@ cn_exec_ustreamer() {
 
     start_param+=( -r "${!res}" -f "${!fps}" )
 
+    # webroot & allow crossdomain requests
+    start_param+=( --allow-origin=\* --static "${BASE_CN_PATH}/ustreamer-www" )
+
     printf "start_param: %s\n" "${start_param[*]}"
 
     cn_ustreamer_loop "${1}" "${start_param[*]}" &
