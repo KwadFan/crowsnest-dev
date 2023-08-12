@@ -32,7 +32,13 @@ cn_exec_ustreamer() {
         start_param+=( --host 127.0.0.1 -p "${!port}" )
     fi
 
-    start_param+=( -d "${!device}" )
+    ## Raspicam handling
+    if [[ "${!device}" = "legacy" ]] \
+    || [[ "${!device}" = "${CCN_LEGACY_DEV_PATH}" ]]; then
+            start_param+=( -m MJPEG --device-timeout=5 --buffers=3 )
+    else
+        start_param+=( -d "${!device}" --device-timeout=2 )
+    fi
 
     start_param+=( -r "${!res}" -f "${!fps}" )
 
