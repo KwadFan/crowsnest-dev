@@ -49,7 +49,7 @@ cn_exec_ustreamer() {
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "ustreamer:\n###########\n"
-        printf "start_param: %s\n" "${start_param[@]}"
+        printf "start_param: %s\n" "${start_param[*]}"
         printf "###########\n"
     fi
 
