@@ -174,6 +174,10 @@ cn_streamer_failed_msg() {
     cn_log_err_msg "Start of ${1} [cam ${2}] failed ..."
 }
 
+cn_ustreamer_param_msg() {
+    cn_log_msg "DEBUG: ustreamer parameters of [cam ${1}]: ${2}"
+}
+
 # below marked as deprecated!
 # function deprecated_msg_1 {
 #     cn_log_msg "Parameter 'streamer' is deprecated!"
