@@ -33,7 +33,7 @@ cn_exec_ustreamer() {
     fi
 
 
-    printf "start_param: %s" "${start_param[*]}"
+    printf "start_param: %s" "${start_param[*]}\n"
 }
 
 
