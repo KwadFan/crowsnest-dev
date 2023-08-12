@@ -41,7 +41,7 @@ cn_exec_ustreamer() {
     fi
 
     ## Use hardware MJPG encoder if avail
-    if [[ "$(cn_detect_hw_mjpg)" != "0" ]]; then
+    if [[ "$(cn_detect_hw_mjpg "${!device}")" != "0" ]]; then
         start_param+=( -m MJPEG --encoder=HW )
     fi
 
