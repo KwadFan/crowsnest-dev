@@ -23,18 +23,19 @@ cn_set_array_name() {
 }
 
 cn_set_array() {
-    local array_name cam
+    local array_name cam values
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         array_name="$(cn_set_array_name "${cam}")"
+        IFS="," readarray -t values "$(cn_truncate_spaces "${cam}")"
 
-        cn_set_array_values "${array_name}"
-
-        declare -ga  "${array_name/\'/}"
+        declare -ga  "${array_name/\'/}=(${values[*]})"
     done
 }
 
-cn_set_array_values() {
-    printf "array: %s" "${1}"
+cn_truncate_spaces() {
+    local fields
+    fields="$(echo "CN_CAM_${1}_V4L2CTL" | tr -d ' ')"
+    printf "%s" "${fields}"
 }
 
 cn_init_v4l2_ctl() {
