@@ -32,7 +32,7 @@ cn_set_array() {
         done < <(cn_truncate_spaces "${cam}")
         unset "${IFS}"
         for x in "${values[@]}"; do
-            echo "${!array_name}"="${x}"
+            readarray -t "${!array_name}" <<< "${x}"
         done
 
         declare -ga  "${array_name/\'/}=${values[*]}"
