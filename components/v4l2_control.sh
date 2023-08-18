@@ -28,7 +28,7 @@ cn_init_v4l2_ctl() {
         array_name="$(cn_set_array_name "${cam}")"
         printf "v4l2ctl array: %s\n" "${array_name}"
 
-        declare -a "$(echo "${!array_name}" | tr -d "'")"
+        declare -a  "${!array_name}"
     done
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
