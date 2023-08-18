@@ -17,7 +17,7 @@
 set -Ee
 
 # Deep Debug
-set -x
+#set -x
 
 CN_WORKDIR_PATH="$(dirname "$(readlink -f "${0}")")"
 declare -g -r CN_WORKDIR_PATH
