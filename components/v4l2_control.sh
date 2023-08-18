@@ -35,8 +35,8 @@ cn_init_v4l2_ctl() {
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "v4l2_control:\n###########\n"
         printf "Configured cams: %s\n" "${CN_CONFIGURED_CAMS[@]}"
-        #declare -p | grep "CN_CAM_*_V4L2CTL"
-        #declare -p | grep "CN_CAM_*_V4L2CTL_ARRAY"
+        declare -p | grep "CN_CAM_*_V4L2CTL"
+        declare -p | grep "CN_CAM_*_V4L2CTL_ARRAY"
         printf "###########\n"
     fi
 }
