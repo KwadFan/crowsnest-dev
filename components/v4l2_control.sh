@@ -26,10 +26,15 @@ cn_set_array() {
     local array_name cam
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         array_name="$(cn_set_array_name "${cam}")"
-        printf "v4l2ctl array: %s\n" "${array_name}"
+
+        cn_set_array_values "${array_name}"
 
         declare -ga  "${array_name/\'/}"
     done
+}
+
+cn_set_array_values() {
+    printf "array: %s" "${1}"
 }
 
 cn_init_v4l2_ctl() {
