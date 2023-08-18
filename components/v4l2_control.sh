@@ -28,7 +28,7 @@ cn_init_v4l2_ctl() {
         array_name="$(cn_set_array_name "${cam}")"
         printf "v4l2ctl array: %s\n" "${array_name}"
 
-        declare -a  "${!array_name}"
+        declare -a  "${array_name/\'/}"
     done
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
@@ -43,3 +43,17 @@ cn_init_v4l2_ctl() {
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: v4l2_control.sh\n"
 fi
+
+
+
+# for var in $(cn_get_config "${section}" "${prefix}"); do
+#         var_name="${var}"
+#         var="${var/${prefix}/}"
+#         var="${var,,}"
+#         config+=("${var_name}=$(cn_get_param "${section}" "${var}")")
+#     done
+
+#     for expose_var in "${config[@]}"; do
+#         expose_var="$(echo "${expose_var}" | tr -d "'")"
+#         declare -g -r "${expose_var}"
+#     done
