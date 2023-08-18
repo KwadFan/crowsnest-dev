@@ -32,7 +32,7 @@ cn_set_array() {
         done < <(cn_truncate_spaces "${cam}")
         unset "${IFS}"
 
-        declare -ga  "${array_name/\'/}=(${values[*]})"
+        declare -ga  "${array_name/\'/}=${values[*]}"
     done
 }
 
