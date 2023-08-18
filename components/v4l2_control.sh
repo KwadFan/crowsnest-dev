@@ -33,8 +33,9 @@ cn_set_array() {
 }
 
 cn_truncate_spaces() {
-    local fields
-    fields="$(echo "${!CN_CAM_${1}_V4L2CTL}" | tr -d ' ')"
+    local fields var
+    var="CN_CAM_${1}_V4L2CTL"
+    fields="$(echo "${!var}" | tr -d ' ')"
     printf "%s" "${fields}"
 }
 
