@@ -26,7 +26,7 @@ cn_set_array() {
     local array_name cam values
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         array_name="$(cn_set_array_name "${cam}")"
-        IFS="," readarray -t values "$(cn_truncate_spaces "${cam}")"
+        IFS="," readarray -t values <<< "$(cn_truncate_spaces "${cam}")"
 
         declare -ga  "${array_name/\'/}=(${values[*]})"
     done
