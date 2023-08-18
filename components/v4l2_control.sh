@@ -29,7 +29,7 @@ cn_set_array() {
         while read value; do
             IFS="," values+=("${value}")
 
-        done < "$(cn_truncate_spaces "${cam}")"
+        done < <(cn_truncate_spaces "${cam}")
         unset "${IFS}"
 
         declare -ga  "${array_name/\'/}=(${values[*]})"
