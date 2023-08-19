@@ -35,6 +35,7 @@ cn_init_streams() {
 
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         mode="$(cn_get_streamer "${cam}")"
+        mode="${mode,,}"
         if [[ -n "${mode}" ]]; then
             cn_log_msg "Launch ${mode} for ${cam} ...."
             case "${mode}" in
