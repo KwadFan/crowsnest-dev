@@ -60,7 +60,7 @@ cn_get_v4l2ctl_value() {
     value="${2,,}"
     valueless="$(echo "${value}" | cut -f1 -d"=")"
     is_value="$("${CN_V4L2CTL_BIN_PATH}" -d "${device}" --get-ctrl "${valueless}")"
-    is_value="${is_value/\:[[:space]]/\=}"
+    is_value="${is_value/\: /=}"
     printf "%s\n" "${is_value}"
 }
 
