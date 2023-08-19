@@ -65,7 +65,11 @@ cn_get_v4l2ctl_value() {
 }
 
 cn_set_v4l2ctl_value() {
-    true
+    local device value
+    device="${1,,}"
+    value="${2,,}"
+    is_value="$(cn_get_v4l2ctl_value "${device}" "${value}")"
+    printf "%s\n" "${is_value}"
 }
 
 cn_init_v4l2ctl() {
@@ -75,7 +79,7 @@ cn_init_v4l2ctl() {
     cn_set_v4l2ctl_array
 
     #test
-    cn_get_v4l2ctl_value "/dev/video0" "brightness"
+    cn_get_v4l2ctl_value "/dev/video0" "fooo"
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "v4l2_control:\n###########\n"
