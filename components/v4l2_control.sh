@@ -45,7 +45,7 @@ cn_set_array() {
         #     target+=("${x}")
         # done
 
-        declare -ga  "${array_name}"
+        declare -g "${array_name}"
     done
 }
 
