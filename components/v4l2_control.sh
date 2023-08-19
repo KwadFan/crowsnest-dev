@@ -29,6 +29,13 @@ cn_truncate_spaces() {
     printf "%s" "${fields}"
 }
 
+cn_get_v4l2ctl_values() {
+    local val var
+    var="CN_CAM_${1}_V4L2CTL"
+    val="${!var/ /}"
+    printf "%s" "${val}"
+}
+
 cn_set_array() {
     local array_name cam #value values target
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
@@ -52,6 +59,8 @@ cn_set_array() {
 cn_init_v4l2_ctl() {
 
     cn_set_array
+
+    cn_get_v4l2ctl_values "1"
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "v4l2_control:\n###########\n"
