@@ -89,21 +89,23 @@ cn_get_uvc_device_paths() {
 
 cn_log_uvc_dev() {
     local device
-    for device in "${CN_UVC_BY_ID[@]}"; do
+    if [[ "${CN_UVC_BY_ID[0]}" != "null" ]]; then
+        for device in "${CN_UVC_BY_ID[@]}"; do
 
-        cn_uvc_dev_msg "$(cn_get_uvc_header_name "${device}")"
+            cn_uvc_dev_msg "$(cn_get_uvc_header_name "${device}")"
 
-        cn_get_uvc_device_paths "${device}"
+            cn_get_uvc_device_paths "${device}"
 
-        cn_note_by-id_msg
+            cn_note_by-id_msg
 
-        cn_supported_formats_msg
-        cn_get_supported_formats "${device}" | cn_log_v4l2ctl_output
+            cn_supported_formats_msg
+            cn_get_supported_formats "${device}" | cn_log_v4l2ctl_output
 
-        cn_supported_ctrls_msg
-        cn_get_supported_ctrls "${device}" | cn_log_v4l2ctl_output
+            cn_supported_ctrls_msg
+            cn_get_supported_ctrls "${device}" | cn_log_v4l2ctl_output
 
-    done
+        done
+    fi
 }
 
 cn_init_print_devices() {
