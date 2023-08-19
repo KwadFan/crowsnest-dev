@@ -45,8 +45,13 @@ cn_set_v4l2ctl_array() {
     done
 }
 
-cn_get_v4l2ctl_bin() {
-    command -v v4l2-ctl
+cn_set_v4l2ctl_bin_path() {
+    local bin_path
+    bin_path="$(command -v v4l2-ctl)"
+    [[ -n "${bin_path}" ]] || bin_path="null"
+    CN_V4L2CTL_BIN_PATH="${bin_path}"
+    # shellcheck disable=SC2034
+    declare -gr CN_V4L2CTL_BIN_PATH
 }
 
 cn_get_v4l2ctl_value() {
@@ -54,7 +59,7 @@ cn_get_v4l2ctl_value() {
     device="${1,,}"
     value="${2,,}"
     valueless="$(echo "${value}" | cut -f1 -d"=")"
-    is_value="$(cn_get_v4l2ctl_bin -d "${device}" --get-ctrl "${valueless}")"
+    is_value="$("${CN_V4L2CTL_BIN_PATH}" -d "${device}" --get-ctrl "${valueless}")"
     is_value="${is_value/\:[[:space]]/\=}"
     printf "%s\n" "${is_value}"
 }
@@ -64,6 +69,8 @@ cn_set_v4l2ctl_value() {
 }
 
 cn_init_v4l2ctl() {
+
+    cn_set_v4l2ctl_bin_path
 
     cn_set_v4l2ctl_array
 
