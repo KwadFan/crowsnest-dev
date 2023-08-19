@@ -24,12 +24,10 @@ cn_get_array_name() {
 
 
 cn_get_v4l2ctl_values() {
-    local var
-    local -a values
+    local var values
     var="CN_CAM_${1}_V4L2CTL"
-    for x in $(echo "${!var}" | tr -d ' '); do
-        values+="${values} ${x}"
-    done
+    values="$(echo "${!var}" | tr -d ' ')"
+    values="${values/\,/ }"
     printf "%s\n" "${values}"
     unset "${IFS}"
 }
@@ -50,8 +48,6 @@ cn_set_array() {
 cn_init_v4l2_ctl() {
 
     cn_set_array
-
-    cn_get_v4l2ctl_values "1"
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "v4l2_control:\n###########\n"
