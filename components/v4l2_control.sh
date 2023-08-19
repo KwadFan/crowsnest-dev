@@ -16,7 +16,7 @@
 # Exit upon Errors
 set -Ee
 
-cn_get_array_name() {
+cn_get_v4l2ctl_array_name() {
     local array_name
     array_name="CN_CAM_${1}_V4L2CTL_ARRAY"
     printf "%s" "${array_name}"
@@ -31,10 +31,10 @@ cn_get_v4l2ctl_values() {
     printf "%s\n" "${values}"
 }
 
-cn_set_array() {
+cn_set_v4l2ctl_array() {
     local array_name cam
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
-        array_name="$(cn_get_array_name "${cam}")"
+        array_name="$(cn_get_v4l2ctl_array_name "${cam}")"
         array_name="${array_name/\'/}"
         declare -ag "${array_name}"
         declare -n target_array="${array_name}"
@@ -47,13 +47,13 @@ cn_set_array() {
 
 cn_init_v4l2ctl() {
 
-    cn_set_array
+    cn_set_v4l2ctl_array
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "v4l2_control:\n###########\n"
         printf "Configured cams: %s\n" "${CN_CONFIGURED_CAMS[@]}"
         declare -p | grep "CN_CAM_.*_V4L2CTL"
-        declare -p | grep "CN_CAM_.*_V4L2CTL_ARRAY"
+        # declare -p | grep "CN_CAM_.*_V4L2CTL_ARRAY"
         printf "###########\n"
     fi
 }
