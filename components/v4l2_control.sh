@@ -37,11 +37,12 @@ cn_set_array() {
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         array_name="$(cn_get_array_name "${cam}")"
         array_name="${array_name/\'/}"
-        declare -agr "${array_name}"
+        declare -ag "${array_name}"
         declare -n target_array="${array_name}"
         for x in $(cn_get_v4l2ctl_values "${cam}") ; do
             target_array+=("${x}")
         done
+        readonly -a "${array_name}"
     done
 }
 
