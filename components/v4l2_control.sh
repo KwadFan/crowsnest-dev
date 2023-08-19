@@ -86,11 +86,15 @@ cn_set_v4l2ctl_value() {
 }
 
 cn_v4l2ctl_external_iterator() {
-    local array_name cam
+    local array_name cam device
     cam="${1}"
+    device="CN_CAM_${1}_DEVICE"
     array_name="CN_CAM_${1}_V4L2CTL_ARRAY[@]"
     for x in ${!array_name}; do
-        cn_log_msg "DEBUG: ${x}"
+        has_ctrl="$(cn_v4l2ctl_dev_has_ctrl "${!device}" "${x}")"
+        if [[ "${has_ctrl}" != "0" ]]; then
+            cn_log_msg "DEBUG: ${x}"
+        fi
     done
 }
 
