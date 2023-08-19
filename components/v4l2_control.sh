@@ -46,7 +46,7 @@ cn_set_array() {
     done
 }
 
-cn_init_v4l2_ctl() {
+cn_init_v4l2ctl() {
 
     cn_set_array
 
