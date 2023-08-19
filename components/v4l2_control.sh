@@ -42,6 +42,7 @@ cn_set_array() {
         for x in $(cn_get_v4l2ctl_values "${cam}") ; do
             target_array+=("${x}")
         done
+        declare -ar "${array_name}"
     done
 }
 
