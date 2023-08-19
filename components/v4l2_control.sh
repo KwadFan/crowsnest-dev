@@ -27,10 +27,11 @@ cn_get_v4l2ctl_values() {
     local var
     local -a values
     var="CN_CAM_${1}_V4L2CTL"
-    while IFS=',' read value; do
+    IFS=',' while read value; do
         values+=("${value}")
     done < <(echo "${!var}" | tr -d ' ')
     printf "%s" "${values[*]}"
+    unset "${IFS}"
 }
 
 cn_set_array() {
