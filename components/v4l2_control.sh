@@ -59,9 +59,16 @@ cn_get_v4l2ctl_value() {
     device="${1,,}"
     value="${2,,}"
     valueless="$(echo "${value}" | cut -f1 -d"=")"
-    is_value="$("${CN_V4L2CTL_BIN_PATH}" -d "${device}" --get-ctrl "${valueless}")"
+    is_value="$(
+        "${CN_V4L2CTL_BIN_PATH}" -d "${device}" --get-ctrl "${valueless}" \
+        2> /dev/null
+        )"
     is_value="${is_value/\: /=}"
-    printf "%s\n" "${is_value}"
+    if [[ -n "${is_value}" ]]; then
+        printf "%s\n" "${is_value}"
+    else
+        printf "null"
+    fi
 }
 
 cn_set_v4l2ctl_value() {
