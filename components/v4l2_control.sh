@@ -16,16 +16,24 @@
 # Exit upon Errors
 set -Ee
 
-cn_set_array_name() {
+cn_get_array_name() {
     local array_name
     array_name="CN_CAM_${1}_V4L2CTL_ARRAY"
     printf "%s" "${array_name}"
 }
 
+cn_truncate_spaces() {
+    local fields var
+    var="CN_CAM_${1}_V4L2CTL"
+    fields="$(echo "${!var}" | tr -d ' ')"
+    printf "%s" "${fields}"
+}
+
 cn_set_array() {
     local array_name cam #value values target
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
-        array_name="$(cn_set_array_name "${cam}")"
+        array_name="$(cn_get_array_name "${cam}")"
+        array_name="${array_name/\'/}"
         # while read value; do
         #     IFS="," values+=("${value}")
 
@@ -37,16 +45,8 @@ cn_set_array() {
         #     target+=("${x}")
         # done
 
-        declare -ga  "${array_name/\'/}"
+        declare -ga  "${array_name}"
     done
-}
-
-
-cn_truncate_spaces() {
-    local fields var
-    var="CN_CAM_${1}_V4L2CTL"
-    fields="$(echo "${!var}" | tr -d ' ')"
-    printf "%s" "${fields}"
 }
 
 cn_init_v4l2_ctl() {
