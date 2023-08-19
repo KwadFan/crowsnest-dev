@@ -52,7 +52,7 @@ cn_set_array() {
         #     target+=("${x}")
         # done
 
-        declare -g "${array_name}"
+        declare -g "${array_name}=( foo )"
     done
 }
 
