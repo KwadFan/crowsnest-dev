@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#### v4l2_control.sh - determine crowsnest local version
+#### v4l2_control.sh - get/set v4l2-ctl options
 
 #### crowsnest - A webcam Service for multiple Cams and Stream Services.
 ####
@@ -54,20 +54,26 @@ cn_set_v4l2ctl_bin_path() {
     declare -gr CN_V4L2CTL_BIN_PATH
 }
 
+
+cn_v4l2ctl_dev_has_ctrl() {
+    local ctrl device valueless
+    device="${1,,}"
+    ctrl="${2,,}"
+    valueless="$(echo "${ctrl}" | cut -f1 -d"=")"
+    has_ctrl="$("${CN_V4L2CTL_BIN_PATH}" -d "${device}" -L 2> /dev/null)"
+    has_ctrl="$(echo "${has_ctrl}" | grep -c "${valueless}")"
+    printf "%s" "${has_ctrl}"
+}
+
 cn_get_v4l2ctl_value() {
     local device value valueless
     device="${1,,}"
     value="${2,,}"
-    valueless="$(echo "${value}" | cut -f1 -d"=")"
-    is_value="$(
-        "${CN_V4L2CTL_BIN_PATH}" -d "${device}" --get-ctrl "${valueless}" \
-        2> /dev/null
-        )"
-    is_value="${is_value/\: /=}"
-    if [[ -n "${is_value}" ]]; then
+    if [[ "$(cn_v4l2ctl_dev_has_ctrl "${device}" "${value}")" != "0" ]]; then
+        valueless="$(echo "${value}" | cut -f1 -d"=")"
+        is_value="$("${CN_V4L2CTL_BIN_PATH}" -d "${device}" --get-ctrl "${valueless}")"
+        is_value="${is_value/\: /=}"
         printf "%s\n" "${is_value}"
-    else
-        printf "null"
     fi
 }
 
