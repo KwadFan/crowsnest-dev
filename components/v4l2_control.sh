@@ -27,9 +27,9 @@ cn_get_v4l2ctl_values() {
     local var
     local -a values
     var="CN_CAM_${1}_V4L2CTL"
-    while IFS=',' read value; do
-        values+="${value}"
-    done < <(echo "${!var}" | tr -d ' ')
+    for x in $(echo "${!var}" | tr -d ' '); do
+        values+="${values} ${x}"
+    done
     printf "%s\n" "${values}"
     unset "${IFS}"
 }
