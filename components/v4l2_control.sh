@@ -88,7 +88,7 @@ cn_set_v4l2ctl_value() {
 cn_v4l2ctl_external_iterator() {
     local array_name cam
     cam="${1}"
-    array_name="CN_CAM_${1}_V4L2CTL_ARRAY"
+    array_name="CN_CAM_${1}_V4L2CTL_ARRAY[@]"
     for x in ${!array_name}; do
         cn_log_msg "DEBUG: ${x}"
     done
