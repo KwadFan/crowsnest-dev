@@ -44,7 +44,7 @@ cn_set_array() {
         declare -ag "${array_name}"
         declare -n target_array="${array_name}"
         for x in foo bar foobar; do
-            target_array+="${x}"
+            target_array+=("${x}")
         done
     done
 }
