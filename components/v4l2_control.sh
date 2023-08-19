@@ -37,22 +37,15 @@ cn_get_v4l2ctl_values() {
 }
 
 cn_set_array() {
-    local array_name cam #value values target
+    local array_name cam
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         array_name="$(cn_get_array_name "${cam}")"
         array_name="${array_name/\'/}"
-        # while read value; do
-        #     IFS="," values+=("${value}")
-
-        # done < <(cn_truncate_spaces "${cam}")
-        # unset "${IFS}"
-
-        # declare -n target="${array_name/\'/}"
-        # for x in "${values[@]}"; do
-        #     target+=("${x}")
-        # done
-
-        declare -g "${array_name}=( foo )"
+        declare -ag "${array_name}"
+        declare -n target_array="${array_name}"
+        for x in foo bar foobar; do
+            target_array+="${x}"
+        done
     done
 }
 
@@ -74,17 +67,3 @@ cn_init_v4l2_ctl() {
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: v4l2_control.sh\n"
 fi
-
-
-
-# for var in $(cn_get_config "${section}" "${prefix}"); do
-#         var_name="${var}"
-#         var="${var/${prefix}/}"
-#         var="${var,,}"
-#         config+=("${var_name}=$(cn_get_param "${section}" "${var}")")
-#     done
-
-#     for expose_var in "${config[@]}"; do
-#         expose_var="$(echo "${expose_var}" | tr -d "'")"
-#         declare -g -r "${expose_var}"
-#     done
