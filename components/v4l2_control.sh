@@ -22,18 +22,15 @@ cn_get_array_name() {
     printf "%s" "${array_name}"
 }
 
-cn_truncate_spaces() {
-    local fields var
-    var="CN_CAM_${1}_V4L2CTL"
-    fields="$(echo "${!var}" | tr -d ' ')"
-    printf "%s" "${fields}"
-}
 
 cn_get_v4l2ctl_values() {
-    local val var
+    local var
+    local -a values
     var="CN_CAM_${1}_V4L2CTL"
-    val="${!var/ /}"
-    printf "%s" "${val}"
+    while IFS=',' read value; do
+        values+=("${value}")
+    done < <(echo "${!var}" | tr -d ' ')
+    printf "%s" "${values[*]}"
 }
 
 cn_set_array() {
@@ -43,7 +40,7 @@ cn_set_array() {
         array_name="${array_name/\'/}"
         declare -ag "${array_name}"
         declare -n target_array="${array_name}"
-        for x in foo bar foobar; do
+        for x in $(cn_get_v4l2ctl_values "${cam}") ; do
             target_array+=("${x}")
         done
     done
