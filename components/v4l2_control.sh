@@ -45,9 +45,26 @@ cn_set_v4l2ctl_array() {
     done
 }
 
+cn_get_v4l2ctl_value() {
+    local device value valueless
+    device="${1,,}"
+    value="${2,,}"
+    valueless="$(echo "${value}" | cut -f1 -d"=")"
+    is_value="$(v4l2ctl -d "${device}" --get-ctrl "${valueless}")"
+    is_value="${is_value/\:[[:space]]/\=}"
+    printf "%s\n" "${is_value}"
+}
+
+cn_set_v4l2ctl_value() {
+    true
+}
+
 cn_init_v4l2ctl() {
 
     cn_set_v4l2ctl_array
+
+    #test
+    cn_get_v4l2ctl_value "/dev/video0" "brightness"
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "v4l2_control:\n###########\n"
