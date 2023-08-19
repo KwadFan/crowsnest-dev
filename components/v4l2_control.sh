@@ -45,12 +45,16 @@ cn_set_v4l2ctl_array() {
     done
 }
 
+cn_get_v4l2ctl_bin() {
+    command -v v4l2-ctl
+}
+
 cn_get_v4l2ctl_value() {
     local device value valueless
     device="${1,,}"
     value="${2,,}"
     valueless="$(echo "${value}" | cut -f1 -d"=")"
-    is_value="$(v4l2ctl -d "${device}" --get-ctrl "${valueless}")"
+    is_value="$(cn_get_v4l2ctl_bin -d "${device}" --get-ctrl "${valueless}")"
     is_value="${is_value/\:[[:space]]/\=}"
     printf "%s\n" "${is_value}"
 }
