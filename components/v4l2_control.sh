@@ -29,7 +29,6 @@ cn_get_v4l2ctl_values() {
     values="$(echo "${!var}" | tr -d ' ')"
     values="${values/\,/ }"
     printf "%s\n" "${values}"
-    unset "${IFS}"
 }
 
 cn_set_array() {
