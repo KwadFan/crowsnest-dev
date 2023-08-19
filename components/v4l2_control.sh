@@ -85,14 +85,23 @@ cn_set_v4l2ctl_value() {
     printf "%s\n" "${is_value}"
 }
 
+cn_v4l2ctl_external_iterator() {
+    local array_name cam
+    cam="${1}"
+    array_name="CN_CAM_${1}_V4L2CTL_ARRAY"
+    for x in "${!array_name[@]}"; do
+        cn_log_msg "DEBUG: ${x}"
+    done
+}
+
 cn_init_v4l2ctl() {
 
     cn_set_v4l2ctl_bin_path
 
     cn_set_v4l2ctl_array
 
-    #test
-    cn_get_v4l2ctl_value "/dev/video0" "fooo"
+    cn_v4l2ctl_external_iterator "1"
+
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "v4l2_control:\n###########\n"
