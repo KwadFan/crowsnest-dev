@@ -54,7 +54,6 @@ cn_v4l2ctl_dev_has_ctrl() {
     device="${1,,}"
     ctrl="${2,,}"
     valueless="$(echo "${ctrl}" | cut -f1 -d"=")"
-    printf "########## %s" "${valueless}"
     has_ctrl="$("${CN_V4L2CTL_BIN_PATH}" -d "${device}" -L 2> /dev/null)"
     #has_ctrl="$(echo "${has_ctrl}" | grep -c "${valueless}")"
     #printf "%s" "${has_ctrl}"
@@ -128,7 +127,7 @@ cn_v4l2ctl_main() {
             cn_v4l2ctl_cs_skip_msg
         else
             for x in "${!array_name}"; do
-                cn_set_v4l2ctl_value "${device}" "${x}"
+                cn_set_v4l2ctl_value "${!device}" "${x}"
             done
         fi
 
