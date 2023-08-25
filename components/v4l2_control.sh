@@ -37,7 +37,7 @@ cn_set_v4l2ctl_array() {
         array_name="${array_name/\'/}"
         declare -ag "${array_name}"
         declare -n target_array="${array_name}"
-        while IFS="," read -r x; do
+        while IFS=',' read -r x; do
             target_array+=("${x}")
         done < <(cn_get_v4l2ctl_values "${cam}")
         readonly -a "${array_name}"
