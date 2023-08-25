@@ -83,7 +83,7 @@ cn_set_v4l2ctl_value() {
         valueless="$(cut -f1 -d'=' <<< "${value}")"
         cn_v4l2ctl_ctrl_not_supported_msg "${valueless}"
     else
-        while [[ "${retries}" -lt "3" ]]; do
+        while [[ "${retries}" -eq "3" ]]; do
             if [[ "${retries}" -gt "0" ]]; then
                 cn_log_msg "Failed to set '${value}', retrying ..."
             fi
