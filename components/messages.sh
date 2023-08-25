@@ -185,6 +185,10 @@ cn_streamer_param_msg() {
     cn_log_msg "DEBUG: ${1} parameters of [cam ${2}]: ${3}"
 }
 
+cn_cam_sect_header_msg() {
+    cn_log_sect_header "V4L2 Control: [cam ${1}]"
+}
+
 # below marked as deprecated!
 # function deprecated_msg_1 {
 #     cn_log_msg "Parameter 'streamer' is deprecated!"

@@ -98,6 +98,14 @@ cn_v4l2ctl_external_iterator() {
     done
 }
 
+cn_v4l2ctl_main() {
+    local array_name cam
+    for cam in "${CN_CONFIGURED_CAMS[@]}"; do
+        array_name="CN_CAM_${cam}_V4L2CTL_ARRAY[@]"
+        cn_cam_sect_header_msg "${cam}"
+    done
+}
+
 cn_init_v4l2ctl() {
 
     cn_set_v4l2ctl_bin_path
@@ -106,6 +114,7 @@ cn_init_v4l2ctl() {
 
     cn_log_sect_header "V4L2 Control"
 
+    cn_v4l2ctl_main
     #cn_v4l2ctl_external_iterator "1"
 
 

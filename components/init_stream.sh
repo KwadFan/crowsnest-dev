@@ -24,6 +24,7 @@ cn_get_streamer() {
 }
 
 cn_init_streams() {
+    local cam mode
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "init_stream:\n###########\n"
         declare -p | grep "CN_AVAIL_BACKENDS"
