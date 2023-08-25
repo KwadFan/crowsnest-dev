@@ -82,7 +82,7 @@ cn_set_v4l2ctl_value() {
     value="${2,,}"
     is_value="$(cn_get_v4l2ctl_value "${device}" "${value}")"
     if [[ "$(cn_v4l2ctl_dev_has_ctrl "${device}" "${value}")" = "0" ]]; then
-        cn_v4l2ctl_ctrl_not_supported_msg "${value/=.*/}"
+        cn_v4l2ctl_ctrl_not_supported_msg "${value}"
     else
         cn_log_msg "bar"
     fi
