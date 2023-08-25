@@ -53,8 +53,8 @@ cn_exec_ustreamer() {
     start_param+=( --allow-origin=\* --static "${CN_WORKDIR_PATH}/ustreamer-www" )
 
     if [[ -n "${!custom_flags}" ]]; then
-        for fl in "${!custom_flags}"; do
-            start_param+=( "${fl}" )
+        for flag in "${!custom_flags}"; do
+            start_param+=( "${flag}" )
         done
     fi
 

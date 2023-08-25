@@ -164,6 +164,7 @@ cn_supported_ctrls_msg() {
 }
 
 cn_init_streams_msg_header() {
+    cn_log_sect_header "Stream initialisation"
     cn_log_msg "Try to start configured cams / services..."
     # put some whitespace here
     cn_log_msg " "
