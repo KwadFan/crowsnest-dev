@@ -23,23 +23,27 @@ cn_get_v4l2ctl_array_name() {
 }
 
 
-cn_get_v4l2ctl_values() {
-    local var values
-    var="CN_CAM_${1}_V4L2CTL"
-    values="$(echo "${!var}" | tr -d ' ')"
-    printf "%s\n" "${values}"
-}
+# cn_get_v4l2ctl_values() {
+#     local var values
+#     var="CN_CAM_${1}_V4L2CTL"
+#     values="$(echo "${!var}" | tr -d ' ')"
+#     printf "%s\n" "${values}"
+# }
 
 cn_set_v4l2ctl_array() {
-    local array_name cam
+    local array_name cam v4l2ctl
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         array_name="$(cn_get_v4l2ctl_array_name "${cam}")"
         array_name="${array_name/\'/}"
+        v4l2ctl="CN_CAM_${cam}_V4L2CTL"
         declare -ag "${array_name}"
         declare -n target_array="${array_name}"
-        for x in $(cn_get_v4l2ctl_values "${cam}"); do
+        # for x in $(cn_get_v4l2ctl_values "${cam}"); do
+        #     target_array+=("${x}")
+        # done
+        while IFS=',' read -r x; do
             target_array+=("${x}")
-        done
+        done < <(echo "${!v4l2ctl}")
         readonly -a "${array_name}"
     done
 }
