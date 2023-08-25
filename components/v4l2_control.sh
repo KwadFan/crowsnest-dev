@@ -43,7 +43,7 @@ cn_set_v4l2ctl_array() {
         # done
         while IFS=',' read -r x; do
             target_array+=("${x}")
-        done < <(echo "${!v4l2ctl}")
+        done < <(echo "${!v4l2ctl// /}")
         readonly -a "${array_name}"
     done
 }
