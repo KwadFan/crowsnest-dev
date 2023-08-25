@@ -37,7 +37,7 @@ cn_init_streams() {
         mode="$(cn_get_streamer "${cam}")"
         mode="${mode,,}"
         if [[ -n "${mode}" ]]; then
-            cn_log_msg "Launch ${mode} for ${cam} ...."
+            cn_streamer_init_msg "${mode}" "${cam}"
             case "${mode}" in
                 ustreamer|mjpg)
                     cn_exec_ustreamer "${cam}"
