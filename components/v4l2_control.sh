@@ -121,7 +121,8 @@ cn_v4l2ctl_main() {
 
         if [[ "$(cn_v4l2ctl_get_mode "${cam}")" = "1" ]]; then
             cn_v4l2ctl_cs_skip_msg
-            break
+        else
+            true
         fi
 
     done
