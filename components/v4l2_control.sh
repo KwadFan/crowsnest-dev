@@ -55,13 +55,18 @@ cn_set_v4l2ctl_bin_path() {
 
 
 cn_v4l2ctl_dev_has_ctrl() {
-    local ctrl device valueless
+    local ctrl device has_ctrl valueless
     device="${1,,}"
     ctrl="${2,,}"
     valueless="$(echo "${ctrl}" | cut -f1 -d"=")"
     has_ctrl="$("${CN_V4L2CTL_BIN_PATH}" -d "${device}" -L 2> /dev/null)"
-    has_ctrl="$(echo "${has_ctrl}" | grep -c "${valueless}")"
-    printf "%s" "${has_ctrl}"
+    #has_ctrl="$(echo "${has_ctrl}" | grep -c "${valueless}")"
+    #printf "%s" "${has_ctrl}"
+    if [[ "${has_ctrl}" =~ "${valueless}" ]]; then
+        printf "1"
+    else
+        printf "0"
+    fi
 }
 
 cn_get_v4l2ctl_value() {
