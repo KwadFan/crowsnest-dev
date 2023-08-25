@@ -172,7 +172,9 @@ cn_init_streams_msg_header() {
 }
 
 cn_streamer_init_msg() {
-    cn_log_info_msg "Trying to launch ${1} for [cam ${2}]"
+    cn_log_info_msg "Trying to launch ${1} for [cam ${2}] ..."
+    # put some whitespace here
+    cn_log_msg " "
 }
 
 cn_streamer_failed_msg() {
