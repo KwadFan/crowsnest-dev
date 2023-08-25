@@ -145,7 +145,6 @@ Use 'by-id' instead!"
     cn_log_msg " "
 }
 
-
 cn_libcamera_dev_msg() {
     cn_log_sect_header "Libcamera Raspicam found!"
     # put some whitespace here

@@ -104,7 +104,9 @@ cn_init_v4l2ctl() {
 
     cn_set_v4l2ctl_array
 
-    cn_v4l2ctl_external_iterator "1"
+    cn_log_sect_header "v4l2ctl"
+
+    #cn_v4l2ctl_external_iterator "1"
 
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
