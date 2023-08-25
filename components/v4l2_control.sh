@@ -86,7 +86,7 @@ cn_set_v4l2ctl_value() {
         while [[ "${retries}" -lt "3" ]]; do
             if [[ "${is_value}" != "${value}" ]]; then
                 "${CN_V4L2CTL_BIN_PATH}" -d "${device}" --set-ctrl "${value}"
-                ((retries+1))
+                retries="$((retries+1))"
             else
                 break
             fi
