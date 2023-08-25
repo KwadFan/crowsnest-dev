@@ -88,6 +88,7 @@ cn_set_v4l2ctl_value() {
             if [[ "${is_value}" != "${value}" ]]; then
                 retries="$((retries+1))"
             else
+                cn_log_msg "Successful set ${is_value}"
                 break
             fi
             if [[ "${retries}" -gt "0" ]]; then
