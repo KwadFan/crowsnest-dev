@@ -48,15 +48,12 @@ cn_set_v4l2ctl_bin_path() {
     declare -gr CN_V4L2CTL_BIN_PATH
 }
 
-
 cn_v4l2ctl_dev_has_ctrl() {
     local ctrl device has_ctrl valueless
     device="${1,,}"
     ctrl="${2,,}"
-    valueless="$(echo "${ctrl}" | cut -f1 -d"=")"
+    valueless="$(cut -f1 -d"=" <<< "${ctrl}")"
     has_ctrl="$("${CN_V4L2CTL_BIN_PATH}" -d "${device}" -L 2> /dev/null)"
-    #has_ctrl="$(echo "${has_ctrl}" | grep -c "${valueless}")"
-    #printf "%s" "${has_ctrl}"
     if [[ "${has_ctrl}" =~ ${valueless} ]]; then
         printf "1"
     else
@@ -65,11 +62,11 @@ cn_v4l2ctl_dev_has_ctrl() {
 }
 
 cn_get_v4l2ctl_value() {
-    local device value valueless
+    local device is_value value valueless
     device="${1,,}"
     value="${2,,}"
     if [[ "$(cn_v4l2ctl_dev_has_ctrl "${device}" "${value}")" != "0" ]]; then
-        valueless="$(echo "${value}" | cut -f1 -d"=")"
+        valueless="$(cut -f1 -d"=" <<< "${value}")"
         is_value="$("${CN_V4L2CTL_BIN_PATH}" -d "${device}" --get-ctrl "${valueless}")"
         is_value="${is_value/\: /=}"
         printf "%s\n" "${is_value}"
@@ -77,15 +74,23 @@ cn_get_v4l2ctl_value() {
 }
 
 cn_set_v4l2ctl_value() {
-    local device value
+    local device value valueless retries
     device="${1,,}"
     value="${2,,}"
     is_value="$(cn_get_v4l2ctl_value "${device}" "${value}")"
+    retries=0
     if [[ "$(cn_v4l2ctl_dev_has_ctrl "${device}" "${value}")" = "0" ]]; then
-        value="$(cut -f1 -d'=' <<< "${value}")"
-        cn_v4l2ctl_ctrl_not_supported_msg "${value}"
+        valueless="$(cut -f1 -d'=' <<< "${value}")"
+        cn_v4l2ctl_ctrl_not_supported_msg "${valueless}"
     else
-        cn_log_msg "bar"
+        while [[ "${retries}" != "3" ]]; do
+            if [[ "${is_value}" != "${value}" ]]; then
+                "${CN_V4L2CTL_BIN_PATH}" -d "${device}" --set-ctrl "${value}" &> /dev/null
+                ((retries++))
+            else
+                break
+            fi
+        done
     fi
 }
 
