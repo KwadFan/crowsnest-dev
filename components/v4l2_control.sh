@@ -83,7 +83,7 @@ cn_set_v4l2ctl_value() {
         valueless="$(cut -f1 -d'=' <<< "${value}")"
         cn_v4l2ctl_ctrl_not_supported_msg "${valueless}"
     else
-        while [[ "${retries}" != "3" ]]; do
+        while [[ "${retries}" -lt "3" ]]; do
             if [[ "${is_value}" != "${value}" ]]; then
                 "${CN_V4L2CTL_BIN_PATH}" -d "${device}" --set-ctrl "${value}" &> /dev/null
                 ((retries++))
