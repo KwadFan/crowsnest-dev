@@ -104,7 +104,7 @@ cn_init_v4l2ctl() {
 
     cn_set_v4l2ctl_array
 
-    cn_log_sect_header "v4l2ctl"
+    cn_log_sect_header "V4L2 Control"
 
     #cn_v4l2ctl_external_iterator "1"
 
