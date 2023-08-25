@@ -37,10 +37,9 @@ cn_set_v4l2ctl_array() {
         array_name="${array_name/\'/}"
         declare -ag "${array_name}"
         declare -n target_array="${array_name}"
-        IFS=',' for x in "$(cn_get_v4l2ctl_values "${cam}")"; do
+        for x in $(cn_get_v4l2ctl_values "${cam}"); do
             target_array+=("${x}")
         done
-        unset $IFS
         readonly -a "${array_name}"
     done
 }
