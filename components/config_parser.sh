@@ -67,7 +67,7 @@ cn_set_config() {
         var_name="${var}"
         var="${var/${prefix}/}"
         var="${var,,}"
-        config+=("${var_name}=$(cn_get_param "${section}" "${var}")")
+        config+=("${var_name}=$(cn_get_param "${section}" "${var}" | tr -d' ')")
     done
 
     for expose_var in "${config[@]}"; do
