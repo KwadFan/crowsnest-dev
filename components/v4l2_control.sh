@@ -54,6 +54,7 @@ cn_v4l2ctl_dev_has_ctrl() {
     device="${1,,}"
     ctrl="${2,,}"
     valueless="$(echo "${ctrl}" | cut -f1 -d"=")"
+    printf "########## %s" "${valueless}"
     has_ctrl="$("${CN_V4L2CTL_BIN_PATH}" -d "${device}" -L 2> /dev/null)"
     #has_ctrl="$(echo "${has_ctrl}" | grep -c "${valueless}")"
     #printf "%s" "${has_ctrl}"
