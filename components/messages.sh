@@ -185,8 +185,12 @@ cn_streamer_param_msg() {
     cn_log_msg "DEBUG: ${1} parameters of [cam ${2}]: ${3}"
 }
 
-cn_cam_sect_header_msg() {
+cn_v4l2ctl_cam_sect_header_msg() {
     cn_log_sect_header "V4L2 Control: [cam ${1}]"
+}
+
+cn_v4l2ctl_cam_config_msg() {
+    cn_log_msg "Configuration: ${1}"
 }
 
 # below marked as deprecated!

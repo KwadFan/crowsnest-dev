@@ -99,10 +99,14 @@ cn_v4l2ctl_external_iterator() {
 }
 
 cn_v4l2ctl_main() {
-    local array_name cam
+    local array_name cam config
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         array_name="CN_CAM_${cam}_V4L2CTL_ARRAY[@]"
-        cn_cam_sect_header_msg "${cam}"
+        config="CN_CAM_${cam}_V4L2CTL"
+        cn_v4l2ctl_cam_sect_header_msg "${cam}"
+
+        cn_v4l2ctl_cam_config_msg "${!config}"
+
     done
 }
 
