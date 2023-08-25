@@ -197,6 +197,14 @@ cn_v4l2ctl_cam_config_msg() {
     cn_log_msg " "
 }
 
+cn_v4l2ctl_cs_skip_msg() {
+    cn_log_info_msg "You configured 'mode: camera-streamer!"
+    cn_log_info_msg "In this case, v4l2ctl will be done by camera-streamer"
+    cn_log_info_msg "Configuration due 'v4l2-ctl' skipped ..."
+    # put some whitespace here
+    cn_log_msg " "
+}
+
 # below marked as deprecated!
 # function deprecated_msg_1 {
 #     cn_log_msg "Parameter 'streamer' is deprecated!"

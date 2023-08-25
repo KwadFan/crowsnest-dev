@@ -85,6 +85,17 @@ cn_set_v4l2ctl_value() {
     printf "%s\n" "${is_value}"
 }
 
+cn_v4l2ctl_get_mode() {
+    local cam mode
+    cam="${1}"
+    mode="CN_CAM_${cam}_MODE"
+    if [[ "camera-streamer" = "${!mode}" ]]; then
+        printf "1"
+    else
+        printf "0"
+    fi
+}
+
 cn_v4l2ctl_external_iterator() {
     local array_name cam device
     cam="${1}"
@@ -107,6 +118,11 @@ cn_v4l2ctl_main() {
         cn_v4l2ctl_cam_sect_header_msg "${cam}"
 
         cn_v4l2ctl_cam_config_msg "${config}"
+
+        if [[ "$(cn_v4l2ctl_get_mode "${cam}")" = "1" ]]; then
+            cn_v4l2ctl_cs_skip_msg
+            break
+        fi
 
     done
 }
