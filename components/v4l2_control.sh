@@ -86,7 +86,7 @@ cn_set_v4l2ctl_value() {
         value="$(echo "${value}" | cut -f1 -d'=')"
         cn_v4l2ctl_ctrl_not_supported_msg "${value}"
     else
-        cn_log_msg "foo"
+        cn_log_msg "bar"
     fi
 }
 
