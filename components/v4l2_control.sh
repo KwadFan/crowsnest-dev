@@ -28,7 +28,7 @@ cn_get_v4l2ctl_values() {
     var="CN_CAM_${1}_V4L2CTL"
     values="$(echo "${!var}" | tr -d ' ')"
     values="${values/\,/ }"
-    printf "%s\n" "${values}"
+    printf "%s" "${values}"
 }
 
 cn_set_v4l2ctl_array() {
