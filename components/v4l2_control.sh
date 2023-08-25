@@ -41,9 +41,10 @@ cn_set_v4l2ctl_array() {
         # for x in $(cn_get_v4l2ctl_values "${cam}"); do
         #     target_array+=("${x}")
         # done
-        while IFS=',' read -r x; do
+        IFS="," while read -r x; do
             target_array+=("${x}")
         done < <(echo "${!v4l2ctl// /}")
+        unset "${IFS}"
         readonly -a "${array_name}"
     done
 }
