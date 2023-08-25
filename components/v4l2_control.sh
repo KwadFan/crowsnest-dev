@@ -87,7 +87,8 @@ cn_set_v4l2ctl_value() {
             if [[ "${retries}" -gt "0" ]]; then
                 cn_log_msg "Failed to set '${value}', retrying ... (Retries: ${retries})"
             fi
-            if ! "${CN_V4L2CTL_BIN_PATH}" -d "${device}" --set-ctrl "${value}"; then
+            "${CN_V4L2CTL_BIN_PATH}" -d "${device}" --set-ctrl "${value}"
+            if [[ "${is_value}" != "${value}" ]]; then
                 retries="$((retries+1))"
             else
                 break
