@@ -82,7 +82,12 @@ cn_set_v4l2ctl_value() {
     device="${1,,}"
     value="${2,,}"
     is_value="$(cn_get_v4l2ctl_value "${device}" "${value}")"
-    printf "%s\n" "${is_value}"
+    if [[ "$(cn_v4l2ctl_dev_has_ctrl "${device}")" = "0" ]]; then
+        value="$(echo "${value}" | cut -f1 -d'=')"
+        cn_v4l2ctl_ctrl_not_supported_msg "${value}"
+    else
+        cn_log_msg "foo"
+    fi
 }
 
 cn_v4l2ctl_get_mode() {
@@ -110,9 +115,10 @@ cn_v4l2ctl_external_iterator() {
 }
 
 cn_v4l2ctl_main() {
-    local array_name cam config
+    local array_name cam config device
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         array_name="CN_CAM_${cam}_V4L2CTL_ARRAY[@]"
+        device="CN_CAM_${cam}_DEVICE"
         config="CN_CAM_${cam}_V4L2CTL"
         config="$(echo "${!config}" | tr -d ' ')"
         cn_v4l2ctl_cam_sect_header_msg "${cam}"
@@ -123,7 +129,7 @@ cn_v4l2ctl_main() {
             cn_v4l2ctl_cs_skip_msg
         else
             for x in "${!array_name}"; do
-                cn_log_msg "${x}"
+                cn_set_v4l2ctl_value "${device}" "${x}"
             done
         fi
 
