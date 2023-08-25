@@ -27,7 +27,7 @@ cn_get_v4l2ctl_values() {
     local var values
     var="CN_CAM_${1}_V4L2CTL"
     values="$(echo "${!var}" | tr -d ' ')"
-    printf "%s" "${values}"
+    printf "%s\n" "${values}"
 }
 
 cn_set_v4l2ctl_array() {
@@ -62,7 +62,7 @@ cn_v4l2ctl_dev_has_ctrl() {
     has_ctrl="$("${CN_V4L2CTL_BIN_PATH}" -d "${device}" -L 2> /dev/null)"
     #has_ctrl="$(echo "${has_ctrl}" | grep -c "${valueless}")"
     #printf "%s" "${has_ctrl}"
-    if [[ "${has_ctrl}" =~ "${valueless}" ]]; then
+    if [[ "${has_ctrl}" =~ ${valueless} ]]; then
         printf "1"
     else
         printf "0"
