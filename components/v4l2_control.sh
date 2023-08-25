@@ -78,7 +78,7 @@ cn_set_v4l2ctl_value() {
     device="${1,,}"
     value="${2,,}"
     is_value="$(cn_get_v4l2ctl_value "${device}" "${value}")"
-    retries=1
+    retries=0
     if [[ "$(cn_v4l2ctl_dev_has_ctrl "${device}" "${value}")" = "0" ]]; then
         valueless="$(cut -f1 -d'=' <<< "${value}")"
         cn_v4l2ctl_ctrl_not_supported_msg "${valueless}"
