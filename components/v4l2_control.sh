@@ -89,9 +89,11 @@ cn_set_v4l2ctl_value() {
             fi
             if ! "${CN_V4L2CTL_BIN_PATH}" -d "${device}" --set-ctrl "${value}"; then
                 retries="$((retries+1))"
+            else
+                break
             fi
-            sleep 0.1
         done
+        sleep 0.1
     fi
 }
 
