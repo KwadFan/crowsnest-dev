@@ -103,9 +103,10 @@ cn_v4l2ctl_main() {
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         array_name="CN_CAM_${cam}_V4L2CTL_ARRAY[@]"
         config="CN_CAM_${cam}_V4L2CTL"
+        config="$(echo "${!config}" | tr -d ' ')"
         cn_v4l2ctl_cam_sect_header_msg "${cam}"
 
-        cn_v4l2ctl_cam_config_msg "${!config}"
+        cn_v4l2ctl_cam_config_msg "${config}"
 
     done
 }
