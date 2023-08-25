@@ -122,7 +122,9 @@ cn_v4l2ctl_main() {
         if [[ "$(cn_v4l2ctl_get_mode "${cam}")" = "1" ]]; then
             cn_v4l2ctl_cs_skip_msg
         else
-            true
+            for x in "${!array_name}"; do
+                cn_log_msg "${x}"
+            done
         fi
 
     done
