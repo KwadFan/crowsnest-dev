@@ -206,26 +206,33 @@ cn_v4l2ctl_cs_skip_msg() {
 }
 
 cn_v4l2ctl_set_header_msg() {
-    local value valueless
+    local ctrl value
+    ctrl="$(cut -f1 -d'=' <<< "${1}")"
     value="$(cut -f2 -d'=' <<< "${1}")"
-    valueless="$(cut -f1 -d'=' <<< "${1}")"
-    cn_log_msg "Trying to set '${valueless}' to '${value}' ..."
+    cn_log_msg "Trying to set '${ctrl}' to '${value}' ..."
 }
 
 cn_v4l2ctl_set_success_msg() {
-    local value valueless
+    local ctrl value
+    ctrl="$(cut -f1 -d'=' <<< "${1}")"
     value="$(cut -f2 -d'=' <<< "${1}")"
-    valueless="$(cut -f1 -d'=' <<< "${1}")"
-    cn_log_msg "Success setting '${valueless}' to '${value}'."
+    cn_log_msg "Success setting '${ctrl}' to '${value}'."
     # put some whitespace here
     cn_log_msg " "
 }
 
 cn_v4l2ctl_set_failed_msg() {
-    local value valueless
+    local ctrl value
+    ctrl="$(cut -f1 -d'=' <<< "${1}")"
     value="$(cut -f2 -d'=' <<< "${1}")"
-    valueless="$(cut -f1 -d'=' <<< "${1}")"
-    cn_log_err_msg "Failed to set '${valueless}' to '${value}' (tried ${2} times)."
+    cn_log_err_msg "Failed to set '${ctrl}' to '${value}' (tried ${2} times)."
+}
+
+cn_v4l2ctl_set_giveup_msg() {
+    local ctrl value
+    ctrl="$(cut -f1 -d'=' <<< "${1}")"
+    value="$(cut -f2 -d'=' <<< "${1}")"
+    cn_log_err_msg "Given up to set '${ctrl}' to '${value}'."
 }
 
 cn_v4l2ctl_ctrl_not_supported_msg() {

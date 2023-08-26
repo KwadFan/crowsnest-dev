@@ -74,14 +74,14 @@ cn_get_v4l2ctl_value() {
 }
 
 cn_set_v4l2ctl_value() {
-    local device value valueless retries
+    local ctrl device value retries
     device="${1,,}"
     value="${2,,}"
     is_value="$(cn_get_v4l2ctl_value "${device}" "${value}")"
     retries=0
     if [[ "$(cn_v4l2ctl_dev_has_ctrl "${device}" "${value}")" = "0" ]]; then
-        valueless="$(cut -f1 -d'=' <<< "${value}")"
-        cn_v4l2ctl_ctrl_not_supported_msg "${valueless}"
+        ctrl="$(cut -f1 -d'=' <<< "${value}")"
+        cn_v4l2ctl_ctrl_not_supported_msg "${ctrl}"
     else
         cn_v4l2ctl_set_header_msg "${value}"
         while [[ ! "${retries}" -eq "3" ]]; do
@@ -96,7 +96,7 @@ cn_set_v4l2ctl_value() {
                 cn_v4l2ctl_set_failed_msg "${value}" "${retries}"
             fi
             if [[ "${retries}" -eq "3" ]]; then
-                cn_log_err_msg "FAILED!"
+                cn_v4l2ctl_set_giveup_msg "${value}"
             fi
         done
         sleep 0.1
