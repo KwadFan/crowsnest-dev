@@ -233,10 +233,14 @@ cn_v4l2ctl_set_giveup_msg() {
     ctrl="$(cut -f1 -d'=' <<< "${1}")"
     value="$(cut -f2 -d'=' <<< "${1}")"
     cn_log_err_msg "Given up to set '${ctrl}' to '${value}'."
+    # put some whitespace here
+    cn_log_msg " "
 }
 
 cn_v4l2ctl_ctrl_not_supported_msg() {
     cn_log_err_msg "V4L2 Control '${1}' is not supported! Setup skipped ..."
+    # put some whitespace here
+    cn_log_msg " "
 }
 
 # below marked as deprecated!
