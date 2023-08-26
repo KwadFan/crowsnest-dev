@@ -95,6 +95,9 @@ cn_set_v4l2ctl_value() {
             if [[ "${retries}" -gt "0" ]]; then
                 cn_v4l2ctl_set_failed_msg "${value}" "${retries}"
             fi
+            if [[ "${retries}" -eq "3" ]]; then
+                cn_log_err_msg "FAILED!"
+            fi
         done
         sleep 0.1
     fi
