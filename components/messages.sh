@@ -237,6 +237,13 @@ cn_v4l2ctl_set_giveup_msg() {
     cn_log_msg " "
 }
 
+cn_v4l2ctl_allowed_range_msg() {
+    cn_log_msg "Value might be out of allowed range."
+    cn_log_msg "Please see 'Supported Controls:' block of this log for details!"
+    # put some whitespace here
+    cn_log_msg " "
+}
+
 cn_v4l2ctl_ctrl_not_supported_msg() {
     cn_log_err_msg "V4L2 Control '${1}' is not supported! Setup skipped ..."
     # put some whitespace here
