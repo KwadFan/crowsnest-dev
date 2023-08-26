@@ -225,7 +225,7 @@ cn_v4l2ctl_set_failed_msg() {
     local ctrl value
     ctrl="$(cut -f1 -d'=' <<< "${1}")"
     value="$(cut -f2 -d'=' <<< "${1}")"
-    cn_log_err_msg "Failed to set '${ctrl}' to '${value}' (tried ${2} times)."
+    cn_log_info_msg "Failed to set '${ctrl}' to '${value}' (tried ${2} times)."
 }
 
 cn_v4l2ctl_set_giveup_msg() {
