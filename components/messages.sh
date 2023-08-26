@@ -205,6 +205,13 @@ cn_v4l2ctl_cs_skip_msg() {
     cn_log_msg " "
 }
 
+cn_v4l2ctl_set_header_msg() {
+    local value valueless
+    value="$(cut -f2 -d'=' <<< "${1}")"
+    valueless="$(cut -f1 -d'=' <<< "${1}")"
+    cn_log_msg "Trying to set '${valueless}' to '${value}' ..."
+}
+
 cn_v4l2ctl_ctrl_not_supported_msg() {
     cn_log_err_msg "V4L2 Control '${1}' is not supported! Setup skipped ..."
 }
