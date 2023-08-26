@@ -93,7 +93,7 @@ cn_set_v4l2ctl_value() {
                 break
             fi
             if [[ "${retries}" -gt "0" ]]; then
-                cn_log_msg "Failed to set '${value}', retrying ... (Retries: ${retries})"
+                cn_v4l2ctl_set_failed_msg "${value}" "${retries}"
             fi
         done
         sleep 0.1

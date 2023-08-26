@@ -216,7 +216,16 @@ cn_v4l2ctl_set_success_msg() {
     local value valueless
     value="$(cut -f2 -d'=' <<< "${1}")"
     valueless="$(cut -f1 -d'=' <<< "${1}")"
-    cn_log_msg "Success setting '${valueless}' to '${value}'"
+    cn_log_msg "Success setting '${valueless}' to '${value}' (tried ${2} times)"
+    # put some whitespace here
+    cn_log_msg " "
+}
+
+cn_v4l2ctl_set_failed_msg() {
+    local value valueless
+    value="$(cut -f2 -d'=' <<< "${1}")"
+    valueless="$(cut -f1 -d'=' <<< "${1}")"
+    cn_log_err_msg "Failed to set '${valueless}' to '${value}'"
     # put some whitespace here
     cn_log_msg " "
 }
