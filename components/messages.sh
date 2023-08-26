@@ -239,8 +239,8 @@ cn_v4l2ctl_set_giveup_msg() {
 }
 
 cn_v4l2ctl_allowed_range_msg() {
-    cn_log_msg "Value might be out of allowed range."
-    cn_log_msg "Please see 'Supported Controls:' block of this log for details!"
+    cn_log_info_msg "Value might be out of allowed range."
+    cn_log_info_msg "Please see 'Supported Controls:' block of this log for details!"
     # put some whitespace here
     cn_log_msg " "
 }
