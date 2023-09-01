@@ -65,6 +65,9 @@ cn_init_streams() {
     done
     if [[ "${#CONFIGURED_CAMS[@]}" = "${instance_count}" ]]; then
         cn_log_info_msg "Configured streams initiated ..."
+        # put some whitespace here
+        cn_log_msg " "
+        # give some head room for watchdog
         sleep 0.5
     fi
 
