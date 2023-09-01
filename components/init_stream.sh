@@ -64,7 +64,7 @@ cn_init_streams() {
         fi
     done
     if [[ "${#CONFIGURED_CAMS[@]}" = "${instance_count}" ]]; then
-        cn_log_msg "... done!"
+        cn_log_info_msg "Configured streams initiated ..."
     fi
 
 }
