@@ -24,14 +24,8 @@ cn_get_streamer() {
 }
 
 cn_get_streamer_running() {
-    while true; do
-        if [[ "$(pgrep -fc "^/*${1}*")" != "1" ]]; then
-            sleep 0.5
-        else
-            printf "1"
-            break
-        fi
-    done
+    sleep 1
+    pgrep -fc "^/*${1}*"
 }
 
 cn_init_streams() {
