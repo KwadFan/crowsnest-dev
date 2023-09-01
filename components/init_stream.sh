@@ -28,7 +28,8 @@ cn_get_streamer_running() {
 }
 
 cn_init_streams() {
-    local cam mode
+    local cam mode instance_count
+    instance_count="0"
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "init_stream:\n###########\n"
         declare -p | grep "CN_AVAIL_BACKENDS"
@@ -46,21 +47,24 @@ cn_init_streams() {
             case "${mode}" in
                 ustreamer|mjpg)
                     cn_exec_ustreamer "${cam}"
-                    until [[ "$(cn_get_streamer_running "ustreamer")" = "1" ]]; do
-                        sleep 0.5
-                    done
+                    if [[ "$(cn_get_streamer_running "${mode}")" = "1" ]]; then
+                        instance_count="$((instance_count+1))"
+                    fi
                 ;;
                 camera-streamer)
                     cn_exec_cstreamer "${cam}"
-                    until [[ "$(cn_get_streamer_running "camera-streamer")" = "1" ]]; do
-                        sleep 0.5
-                    done
+                    if [[ "$(cn_get_streamer_running "${mode}")" = "1" ]]; then
+                        instance_count="$((instance_count+1))"
+                    fi
                 ;;
             esac
         else
             cn_log_msg "Mode for '${cam}' not configured ... Skipped!"
         fi
     done
+    if [[ "${#CONFIGURED_CAMS[@]}" = "${instance_count}" ]]; then
+        cn_log_msg "... done!"
+    fi
 
 }
 
