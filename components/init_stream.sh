@@ -24,8 +24,11 @@ cn_get_streamer() {
 }
 
 cn_get_streamer_running() {
-    sleep 0.5
-    pgrep -fc "^/*${1}*"
+    local is_running
+    is_running="$(pgrep -fc "^/*${1}*")"
+    until [[ "${is_running}" = "1" ]]; do
+        sleep 0.5
+    done
 }
 
 cn_init_streams() {
