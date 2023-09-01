@@ -178,7 +178,7 @@ cn_streamer_init_msg() {
 }
 
 cn_streamer_failed_msg() {
-    cn_log_err_msg "Start of ${1} [cam ${2}] failed ..."
+    cn_log_err_msg "Start of ${1} [cam ${2}] failed or application crashed ..."
 }
 
 cn_streamer_param_msg() {
