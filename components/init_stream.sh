@@ -24,6 +24,7 @@ cn_get_streamer() {
 }
 
 cn_get_streamer_running() {
+    sleep 0.5
     pgrep -fc "^/*${1}*"
 }
 
