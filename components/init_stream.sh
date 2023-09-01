@@ -23,6 +23,10 @@ cn_get_streamer() {
     printf "%s" "${!mode}"
 }
 
+cn_get_streamer_running() {
+    pgrep -fc "^/*${1}*"
+}
+
 cn_init_streams() {
     local cam mode
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
@@ -42,9 +46,15 @@ cn_init_streams() {
             case "${mode}" in
                 ustreamer|mjpg)
                     cn_exec_ustreamer "${cam}"
+                    until [[ "$(cn_get_streamer_running "ustreamer")" = "1" ]]; do
+                        sleep 0.5
+                    done
                 ;;
                 camera-streamer)
                     cn_exec_cstreamer "${cam}"
+                    until [[ "$(cn_get_streamer_running "camera-streamer")" = "1" ]]; do
+                        sleep 0.5
+                    done
                 ;;
             esac
         else
@@ -57,41 +67,3 @@ cn_init_streams() {
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: init_stream.sh\n"
 fi
-
-
-# function construct_streamer {
-#     local cams sleep_pid
-#     # See configparser.sh L#53
-#     log_msg "Try to start configured Cams / Services..."
-#     for cams in $(configured_cams); do
-#         mode="$(get_param "cam ${cams}" mode)"
-#         check_section "${cams}"
-#         case ${mode} in
-#             [mM]ulti | camera-streamer)
-#                 if [[ "$(is_raspberry_pi)" = "1" ]] && [[ "$(is_ubuntu_arm)" = "0" ]]; then
-#                     MULTI_INSTANCES+=( "${cams}" )
-#                 else
-#                     log_msg "WARN: Mode 'multi' is not supported on your device!"
-#                     log_msg "WARN: Falling back to Mode 'mjpg'"
-#                     MJPG_INSTANCES+=( "${cams}" )
-#                 fi
-#             ;;
-#             mjpg | mjpeg | ustreamer)
-#                 MJPG_INSTANCES+=( "${cams}" )
-#             ;;
-#             ?|*)
-#                 unknown_mode_msg
-#                 MJPG_INSTANCES+=( "${cams}" )
-
-#             ;;
-#         esac
-#     done
-#     if [ "${#MULTI_INSTANCES[@]}" != "0" ]; then
-#         run_multi "${MULTI_INSTANCES[*]}"
-#     fi
-#     if [ "${#MJPG_INSTANCES[@]}" != "0" ]; then
-#         run_mjpg "${MJPG_INSTANCES[*]}"
-#     fi
-#     sleep 2 & sleep_pid="$!" ; wait "${sleep_pid}"
-#     log_msg " ... Done!"
-# }
