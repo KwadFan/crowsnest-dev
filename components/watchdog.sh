@@ -67,7 +67,7 @@ cn_watchdog_runtime() {
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         if [[ "${CN_DEV_MSG}" = "1" ]]; then
             printf "watchdog runtime:\n###########\n"
-            printf "Checking device: %s" "${x}"
+            printf "Checking device: %s\n" "${x}"
             printf "###########\n"
         fi
         real_path="$(cn_watchdog_get_real_path "${x}")"
