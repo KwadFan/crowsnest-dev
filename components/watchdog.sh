@@ -66,7 +66,7 @@ cn_watchdog_runtime() {
             cn_log_info_msg "Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
             cn_log_msg " "
         elif [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ -e "${x}" ]] && \
-            [[ "${lost_dev_count}" -gt "0" ]]; then
+            [[ "${lost_dev_count}" -ge "0" ]]; then
             lost_dev_count="$((lost_dev_count-1))"
             cn_log_msg " "
             cn_log_msg "${prefix} Device '${x}' returned ..."
