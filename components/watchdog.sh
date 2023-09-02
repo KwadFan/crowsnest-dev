@@ -59,21 +59,21 @@ cn_watchdog_runtime() {
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         # filter to by_id only!
         if [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ ! -e "${x}" ]] && \
-            [[ "${CN_CN_WATCHDOG_LOST_DEV_COUNT}" -eq "0" ]]; then
-            CN_WATCHDOG_LOST_DEV_COUNT="$((CN_CN_WATCHDOG_LOST_DEV_COUNT+1))"
+            [[ "${CN_WATCHDOG_LOST_DEV_COUNT}" -eq "0" ]]; then
+            CN_WATCHDOG_LOST_DEV_COUNT="$((CN_WATCHDOG_LOST_DEV_COUNT+1))"
             cn_log_msg " "
             cn_log_msg "${prefix} Lost device '${x}' !!!!"
             cn_log_info_msg "Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
             cn_log_msg " "
         elif [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ -e "${x}" ]] && \
-            [[ "${CN_CN_WATCHDOG_LOST_DEV_COUNT}" -gt "0" ]]; then
-            CN_WATCHDOG_LOST_DEV_COUNT="$((CN_CN_WATCHDOG_LOST_DEV_COUNT-1))"
+            [[ "${CN_WATCHDOG_LOST_DEV_COUNT}" -ge "1" ]]; then
+            CN_WATCHDOG_LOST_DEV_COUNT="$((CN_WATCHDOG_LOST_DEV_COUNT-1))"
             cn_log_msg " "
             cn_log_msg "${prefix} Device '${x}' returned ..."
             cn_log_info_msg "Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
             cn_log_msg " "
         fi
-        if [[ "${CN_CN_WATCHDOG_LOST_DEV_COUNT}" -gt "0" ]]; then
+        if [[ "${CN_WATCHDOG_LOST_DEV_COUNT}" -gt "0" ]]; then
             cn_log_msg " "
             cn_log_msg "${prefix} Still missing ${CN_WATCHDOG_LOST_DEV_COUNT} device(s) ..."
         fi
