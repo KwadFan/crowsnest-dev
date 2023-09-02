@@ -73,11 +73,11 @@ cn_watchdog_runtime() {
             cn_log_info_msg "Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
             cn_log_msg " "
         fi
-        if [[ "${CN_WATCHDOG_LOST_DEV_COUNT}" -gt "0" ]]; then
-            cn_log_msg " "
-            cn_log_msg "${prefix} Still missing ${CN_WATCHDOG_LOST_DEV_COUNT} device(s) ..."
-        fi
     done
+    if [[ "${CN_WATCHDOG_LOST_DEV_COUNT}" -gt "0" ]]; then
+        cn_log_msg " "
+        cn_log_msg "${prefix} Still missing ${CN_WATCHDOG_LOST_DEV_COUNT} device(s) ..."
+    fi
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "watchdog:\n###########\n"
         declare -p | grep "CN_WATCHDOG"
