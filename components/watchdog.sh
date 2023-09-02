@@ -56,9 +56,7 @@ cn_watchdog_debug_print_devices() {
 }
 
 cn_watchdog_get_real_path() {
-    if [[ "${x}" =~ "/dev/v4l/by-id" ]]; then
-        readlink "${1}" | sed 's/^\.\.\/\.\./\/dev/'
-    fi
+    printf "%s" "${1}" | xargs readlink | sed 's/^\.\.\/\.\./\/dev/'
 }
 
 cn_watchdog_runtime() {
