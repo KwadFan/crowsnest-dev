@@ -65,6 +65,11 @@ cn_watchdog_runtime() {
     sleep "${CN_WATCHDOG_SLEEP_TIME}"
 
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
+        if [[ "${CN_DEV_MSG}" = "1" ]]; then
+            printf "watchdog runtime:\n###########\n"
+            printf "Checking device: %s" "${x}"
+            printf "###########\n"
+        fi
         real_path="$(cn_watchdog_get_real_path "${x}")"
         if [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ ! -e "${x}" ]]; then
             cn_log_warn_msg "Lost device(s) '${x}' ( ${real_path} ) !!!!"
