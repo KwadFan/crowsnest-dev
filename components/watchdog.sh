@@ -56,12 +56,14 @@ cn_watchdog_debug_print_devices() {
 }
 
 cn_watchdog_get_real_path() {
-    #readlink "${1}" | sed 's/^\.\.\/\.\./\/dev/'
-    printf "foo"
+    readlink "${1}" | sed 's/^\.\.\/\.\./\/dev/'
+    #printf "foo"
 }
 
 cn_watchdog_runtime() {
+    local real_path
     sleep "${CN_WATCHDOG_SLEEP_TIME}"
+
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         real_path="$(cn_watchdog_get_real_path "${x}")"
         if [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ ! -e "${x}" ]]; then
