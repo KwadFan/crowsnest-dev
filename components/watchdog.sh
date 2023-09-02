@@ -56,7 +56,7 @@ cn_watchdog_debug_print_devices() {
 }
 
 cn_watchdog_get_real_path() {
-    readlink "${1}" | sed 's/^\.\.\/\.\./\/dev/'
+    readlink "${1}" #| sed 's/^\.\.\/\.\./\/dev/'
 }
 
 cn_watchdog_runtime() {
