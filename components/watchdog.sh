@@ -59,7 +59,7 @@ cn_watchdog_runtime() {
         # filter to by_id only!
         if [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ ! -e "${x}" ]]; then
             cn_log_msg " "
-            cn_log_warn_msg "${prefix} Lost device(s) '${x}' !!!!"
+            cn_log_msg "${prefix} Lost device(s) '${x}' !!!!"
             cn_log_msg " "
         fi
     done
