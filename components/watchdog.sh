@@ -44,7 +44,7 @@ cn_set_watchdog_device_array() {
 }
 
 cn_watchdog_debug_print_devices() {
-    cn_log_debug_msg "$(cn_log_sect_header "Watchdog: devices list")"
+    cn_log_debug_msg  "-------- Watchdog: devices list --------"
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         # for simplicity hardcode a 'tab'
         cn_log_debug_msg "    ${x}"
