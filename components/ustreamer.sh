@@ -64,9 +64,8 @@ cn_exec_ustreamer() {
         printf "###########\n"
     fi
 
-    if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
-        cn_streamer_param_msg "ustreamer" "${1}" "${start_param[*]}"
-    fi
+
+    cn_log_debug_msg "$(cn_streamer_param_msg "ustreamer" "${1}" "${start_param[*]}")"
 
     cn_ustreamer_loop "${1}" "${start_param[*]}" &
 

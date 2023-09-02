@@ -182,7 +182,7 @@ cn_streamer_failed_msg() {
 }
 
 cn_streamer_param_msg() {
-    cn_log_msg "DEBUG: ${1} parameters of [cam ${2}]: ${3}"
+    cn_log_debug_msg "${1} parameters of [cam ${2}]: ${3}"
 }
 
 cn_v4l2ctl_cam_sect_header_msg() {
