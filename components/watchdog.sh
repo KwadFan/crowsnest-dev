@@ -19,6 +19,10 @@ set -Ee
 CN_WATCHDOG_DEVICE_ARRAY=()
 CN_WATCHDOG_SLEEP_TIME="120"
 
+if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    CN_WATCHDOG_SLEEP_TIME="5"
+fi
+
 declare -gr CN_WATCHDOG_SLEEP_TIME
 
 cn_set_watchdog_device_array() {
