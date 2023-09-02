@@ -66,8 +66,10 @@ cn_log_err_msg() {
 }
 
 cn_log_debug_msg() {
-    prefix="DEBUG:"
-    cn_log_msg "${prefix} ${1}"
+    if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
+        prefix="DEBUG:"
+        cn_log_msg "${prefix} ${1}"
+    fi
 }
 
 cn_log_sect_header() {

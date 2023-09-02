@@ -29,9 +29,7 @@ fi
 declare -gr CN_WATCHDOG_SLEEP_TIME
 
 cn_set_watchdog_device_array() {
-    if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
-        cn_log_debug_msg "Gathering device list ..."
-    fi
+    cn_log_debug_msg "Gathering device list ..."
     if [[ "${CN_UVC_BY_ID[0]}" != "null" ]]; then
         for x in "${CN_UVC_VALID_DEVICES[@]}"; do
             CN_WATCHDOG_DEVICE_ARRAY+=( "${x}" )
@@ -46,13 +44,11 @@ cn_set_watchdog_device_array() {
 }
 
 cn_watchdog_debug_print_devices() {
-    if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
-        cn_log_sect_header "Watchdog: devices list"
-        for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
-            # for simplicity hardcode a 'tab'
-            cn_log_msg "    ${x}"
-        done
-    fi
+    cn_log_debug_msg "$(cn_log_sect_header "Watchdog: devices list")"
+    for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
+        # for simplicity hardcode a 'tab'
+        cn_log_debug_msg "    ${x}"
+    done
 }
 
 cn_watchdog_runtime() {
@@ -80,51 +76,8 @@ cn_init_watchdog() {
     fi
 
     cn_watchdog_debug_print_devices
-
-    cn_watchdog_get_real_path "/dev/v4l/by-id/usb-YGTek_Webcam_YG_U700_D.2021.0104.1403-video-index0"
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: watchdog.sh\n"
 fi
-
-
-# hw_uvc_dev:
-# ###########
-# declare -ar CN_UVC_BY_ID=([0]="/dev/v4l/by-id/usb-Sonix_Technology_Co.__Ltd._Trust_Webcam_Trust_Webcam-video-index0")
-# declare -ar CN_UVC_BY_PATH=([0]="/dev/v4l/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.1:1.0-video-index0")
-# declare -ar CN_UVC_VALID_DEVICES=([0]="/dev/video1" [1]="/dev/v4l/by-id/usb-Sonix_Technology_Co.__Ltd._Trust_Webcam_Trust_Webcam-video-index0" [2]="/dev/v4l/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.
-# 1:1.0-video-index0")
-# ###########
-# hw_libcamera:
-# ###########
-# declare -r CN_LIBCAMERA_AVAIL="1"
-# declare -r CN_LIBCAMERA_BIN_PATH="/usr/bin/libcamera-hello"
-# declare -r CN_LIBCAMERA_DEV_PATH="null"
-# declare -ar CN_LIBCAMERA_OUTPUT_ARRAY=([0]="No cameras available!")
-# ###########
-# hw_legacy_cam:
-# ###########
-# declare -r CN_LEGACY_DEV_AVAIL="1"
-# declare -r CN_LEGACY_DEV_PATH="/dev/video0"
-# declare -r CN_LEGACY_VCGENCMD_BIN="/usr/bin/vcgencmd"
-# ###########
-# log_avail_cam:
-# ###########
-# Libcamera dev count: 0
-# Legacy dev count: 1
-# UVC dev count: 1
-# Total dev count: 2
-# ###########
-
-# cn_get_alternate_valid_path() {
-#     local alternate_path
-#     local -a path
-#     path=()
-#     if [[ "${#CN_UVC_BY_PATH[@]}" != "0" ]]; then
-#         for alternate_path in $(cn_get_uvc_by_path_paths); do
-#             path+=("$(readlink "${alternate_path}" | sed 's/^\.\.\/\.\./\/dev/')")
-#         done
-#         echo "${path[@]}"
-#     fi
-# }
