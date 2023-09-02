@@ -78,14 +78,12 @@ cn_log_sect_header() {
 
 #call '| log_output "<prefix>"'
 cn_log_output() {
-    local prefix
-    prefix="DEBUG: ${1}"
     while read -r line; do
         ## Ustreamer workaround
         line="${line//===*/}"
         line="${line/--/}"
-        if [[ -n "${line}" ]] && [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
-            cn_log_msg "${prefix}: ${line}"
+        if [[ -n "${line}" ]]; then
+            cn_log_debug_msg "${line}"
         fi
     done
 }
