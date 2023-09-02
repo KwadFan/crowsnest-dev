@@ -73,19 +73,18 @@ cn_exec_cstreamer() {
         cn_streamer_param_msg "camera-streamer" "${1}" "${start_param[*]}"
     fi
 
-    while cn_cstreamer_loop "${1}" "${start_param[*]}"; do
+    cn_cstreamer_loop "${1}" "${start_param[*]}" &
+
+}
+
+cn_cstreamer_loop() {
+    while echo "${2}" | xargs "${CN_CAMERA_STREAMER_BIN_PATH}" 2>&1 \
+    | cn_log_output "camera-streamer [cam ${1}]"; do
         cn_streamer_failed_msg "camera-streamer" "${1}"
         cn_log_info_msg "Trying to restart in 5 seconds ..."
         cn_log_msg " "
         sleep 5
     done
-
-}
-
-cn_cstreamer_loop() {
-    echo "${2}" \
-    | xargs "${CN_CAMERA_STREAMER_BIN_PATH}" 2>&1 \
-    | cn_log_output "camera-streamer [cam ${1}]"
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
