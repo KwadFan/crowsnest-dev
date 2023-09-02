@@ -21,7 +21,6 @@ set -Ee
 
 CN_WATCHDOG_DEVICE_ARRAY=()
 CN_WATCHDOG_SLEEP_TIME="120"
-CN_WATCHDOG_LOST_DEV_COUNT="0"
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     CN_WATCHDOG_SLEEP_TIME="5"
@@ -53,36 +52,38 @@ cn_watchdog_debug_print_devices() {
 }
 
 cn_watchdog_runtime() {
-    local prefix
+    local lost_dev_count prefix
+    lost_dev_count="0"
     prefix="WATCHDOG:"
     sleep "${CN_WATCHDOG_SLEEP_TIME}"
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         # filter to by_id only!
         if [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ ! -e "${x}" ]] && \
-            [[ "${CN_WATCHDOG_LOST_DEV_COUNT}" -eq "0" ]]; then
-            CN_WATCHDOG_LOST_DEV_COUNT="$((CN_WATCHDOG_LOST_DEV_COUNT+1))"
+            [[ "${lost_dev_count}" -eq "0" ]]; then
+            lost_dev_count="$((lost_dev_count+1))"
             cn_log_msg " "
             cn_log_msg "${prefix} Lost device '${x}' !!!!"
             cn_log_info_msg "Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
             cn_log_msg " "
         elif [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ -e "${x}" ]] && \
-            [[ "${CN_WATCHDOG_LOST_DEV_COUNT}" -gt "0" ]]; then
-            CN_WATCHDOG_LOST_DEV_COUNT="$((CN_WATCHDOG_LOST_DEV_COUNT-1))"
+            [[ "${lost_dev_count}" -gt "0" ]]; then
+            lost_dev_count="$((lost_dev_count-1))"
             cn_log_msg " "
             cn_log_msg "${prefix} Device '${x}' returned ..."
             cn_log_info_msg "Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
             cn_log_msg " "
         fi
     done
-    if [[ "${CN_WATCHDOG_LOST_DEV_COUNT}" -gt "0" ]]; then
+    if [[ "${lost_dev_count}" -gt "0" ]]; then
         cn_log_msg " "
-        cn_log_msg "${prefix} Still missing ${CN_WATCHDOG_LOST_DEV_COUNT} device(s) ..."
+        cn_log_msg "${prefix} Still missing ${lost_dev_count} device(s) ..."
     fi
-    if [[ "${CN_DEV_MSG}" = "1" ]]; then
-        printf "watchdog:\n###########\n"
-        declare -p | grep "CN_WATCHDOG"
-        printf "###########\n"
-    fi
+    ### Let inplace commented out for debugging
+    # if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    #     printf "watchdog:\n###########\n"
+    #     declare -p | grep "CN_WATCHDOG"
+    #     printf "###########\n"
+    # fi
 }
 
 cn_init_watchdog() {
