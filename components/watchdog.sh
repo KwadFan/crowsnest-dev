@@ -56,7 +56,9 @@ cn_watchdog_debug_print_devices() {
 }
 
 cn_watchdog_get_real_path() {
-    printf "%s" "${1}" | xargs readlink | sed 's/^\.\.\/\.\./\/dev/'
+    local path
+    path="$(readlink "${1}" | sed 's/^\.\.\/\.\./\/dev/')"
+    printf "%s" "${path}"
 }
 
 cn_watchdog_runtime() {
