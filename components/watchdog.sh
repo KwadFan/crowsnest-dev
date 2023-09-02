@@ -39,7 +39,7 @@ cn_watchdog_debug_print_devices() {
     if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
         cn_log_sect_header "Watchdog: devices list"
         for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
-            printf "\t%s\n" "${x}" | cn_log_output
+            cn_log_msg "    %s\n" "${x}"
         done
     fi
 }
