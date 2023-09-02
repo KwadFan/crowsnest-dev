@@ -40,7 +40,7 @@ cn_init_watchdog() {
 
     cn_log_sect_header "Watchdog"
 
-    cn_log_info_msg "Initializing watchdog ..."
+    cn_log_debug_msg "Initializing watchdog ..."
 
     cn_set_watchdog_device_array
 

@@ -65,6 +65,11 @@ cn_log_err_msg() {
     cn_log_msg "${prefix} ${1}"
 }
 
+cn_log_debug_msg() {
+    prefix="DEBUG:"
+    cn_log_msg "${prefix} ${1}"
+}
+
 cn_log_sect_header() {
     cn_log_msg "-------- ${1} --------"
 }
