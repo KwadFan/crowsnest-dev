@@ -19,6 +19,8 @@ set -Ee
 CN_WATCHDOG_DEVICE_ARRAY=()
 CN_WATCHDOG_SLEEP_TIME="120"
 
+declare -gr CN_WATCHDOG_SLEEP_TIME
+
 cn_set_watchdog_device_array() {
     if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
         cn_log_debug_msg "Gathering device list ..."
