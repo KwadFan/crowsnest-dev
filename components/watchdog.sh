@@ -56,8 +56,9 @@ cn_watchdog_debug_print_devices() {
 }
 
 cn_watchdog_get_real_path() {
-    readlink "${1}" | sed 's/^\.\.\/\.\./\/dev/'
-    #printf "foo"
+    if [[ "${x}" =~ "/dev/v4l/by-id" ]]; then
+        readlink "${1}" | sed 's/^\.\.\/\.\./\/dev/'
+    fi
 }
 
 cn_watchdog_runtime() {
@@ -65,11 +66,11 @@ cn_watchdog_runtime() {
     sleep "${CN_WATCHDOG_SLEEP_TIME}"
 
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
-        if [[ "${CN_DEV_MSG}" = "1" ]]; then
-            printf "watchdog runtime:\n###########\n"
-            printf "Checking device: %s\n" "${x}"
-            printf "###########\n"
-        fi
+        # if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        #     printf "watchdog runtime:\n###########\n"
+        #     printf "Checking device: %s\n" "${x}"
+        #     printf "###########\n"
+        # fi
         real_path="$(cn_watchdog_get_real_path "${x}")"
         if [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ ! -e "${x}" ]]; then
             cn_log_warn_msg "Lost device(s) '${x}' ( ${real_path} ) !!!!"
@@ -92,6 +93,8 @@ cn_init_watchdog() {
     fi
 
     cn_watchdog_debug_print_devices
+
+    cn_watchdog_get_real_path "/dev/v4l/by-id/usb-YGTek_Webcam_YG_U700_D.2021.0104.1403-video-index0"
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
