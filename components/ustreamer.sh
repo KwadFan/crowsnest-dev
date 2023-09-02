@@ -65,7 +65,7 @@ cn_exec_ustreamer() {
     fi
 
 
-    cn_log_debug_msg "$(cn_streamer_param_msg "ustreamer" "${1}" "${start_param[*]}")"
+    cn_streamer_param_msg "ustreamer" "${1}" "${start_param[*]}"
 
     cn_ustreamer_loop "${1}" "${start_param[*]}" &
 
