@@ -83,7 +83,7 @@ cn_log_output() {
         line="${line//===*/}"
         line="${line/--/}"
         if [[ -n "${line}" ]]; then
-            cn_log_debug_msg "${line}"
+            cn_log_debug_msg "${1}: ${line}"
         fi
     done
 }
