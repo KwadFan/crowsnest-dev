@@ -125,7 +125,7 @@ main() {
     cn_init_watchdog
 
     while true; do
-        sleep 1
+        cn_watchdog_runtime
     done
 
 }
