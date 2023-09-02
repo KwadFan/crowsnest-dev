@@ -83,7 +83,7 @@ cn_cstreamer_loop() {
         cn_streamer_failed_msg "camera-streamer" "${1}"
         cn_log_info_msg "Trying to restart in 5 seconds ..."
         cn_log_msg " "
-        sleep 5
+        sleep 10
     done
 }
 
