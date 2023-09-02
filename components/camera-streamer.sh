@@ -83,6 +83,7 @@ cn_cstreamer_loop() {
     | cn_log_output "camera-streamer [cam ${1}]"
     # Should not be seen if running
     cn_streamer_failed_msg "camera-streamer" "${1}"
+    exit 1
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
