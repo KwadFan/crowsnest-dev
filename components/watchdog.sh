@@ -48,10 +48,10 @@ cn_watchdog_debug_print_devices() {
 
 cn_watchdog_runtime() {
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
+        sleep "${CN_WATCHDOG_SLEEP_TIME}"
         if [[ ! -f "${x}" ]]; then
             cn_log_warn_msg "Lost device '${x}'!"
         fi
-        sleep "${CN_WATCHDOG_SLEEP_TIME}"
     done
 }
 
