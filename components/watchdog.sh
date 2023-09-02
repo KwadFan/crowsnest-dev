@@ -11,6 +11,9 @@
 #### This File is distributed under GPLv3
 ####
 
+#### Note: Even if DRY paradigm should be obeyed, isolate watchdog from other
+####       parts of the application.
+
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
@@ -52,11 +55,16 @@ cn_watchdog_debug_print_devices() {
     fi
 }
 
+cn_watchdog_get_real_path() {
+    readlink "${1}" | sed 's/^\.\.\/\.\./\/dev/'
+}
+
 cn_watchdog_runtime() {
     sleep "${CN_WATCHDOG_SLEEP_TIME}"
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
-        if [[ ! -e "${x}" ]]; then
-            cn_log_warn_msg "Lost device(s) '${x}'!"
+        real_path="$(cn_watchdog_get_real_path "${x}")"
+        if [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ ! -e "${x}" ]]; then
+            cn_log_warn_msg "Lost device(s) '${x}' ( ${real_path} ) !!!!"
         fi
     done
 }
@@ -110,3 +118,15 @@ fi
 # UVC dev count: 1
 # Total dev count: 2
 # ###########
+
+# cn_get_alternate_valid_path() {
+#     local alternate_path
+#     local -a path
+#     path=()
+#     if [[ "${#CN_UVC_BY_PATH[@]}" != "0" ]]; then
+#         for alternate_path in $(cn_get_uvc_by_path_paths); do
+#             path+=("$(readlink "${alternate_path}" | sed 's/^\.\.\/\.\./\/dev/')")
+#         done
+#         echo "${path[@]}"
+#     fi
+# }
