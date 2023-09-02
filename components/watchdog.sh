@@ -16,12 +16,11 @@
 # Exit upon Errors
 set -Ee
 
-
 cn_init_watchdog() {
 
     cn_log_sect_header "Watchdog"
 
-    cn_log_info_msg "Watchdog started ..."
+    cn_log_info_msg "Initializing watchdog ..."
 
     # if [[ "${CN_DEV_MSG}" = "1" ]]; then
     #     printf "watchdog:\n###########\n"
