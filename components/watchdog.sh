@@ -20,7 +20,7 @@ CN_WATCHDOG_DEVICE_ARRAY=()
 
 cn_set_watchdog_device_array() {
     if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
-        cn_log_info_msg "Gathering device list ..."
+        cn_log_debug_msg "Gathering device list ..."
     fi
     if [[ "${CN_UVC_BY_ID[0]}" != "null" ]]; then
         for x in "${CN_UVC_VALID_DEVICES[@]}"; do
@@ -33,14 +33,22 @@ cn_set_watchdog_device_array() {
     if [[ "${CN_LEGACY_DEV_PATH}" != "null" ]]; then
         CN_WATCHDOG_DEVICE_ARRAY+=( "${CN_LEGACY_DEV_PATH}" )
     fi
+}
 
+cn_watchdog_debug_print_devices() {
+    if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
+        cn_log_sect_header "Watchdog: devices list"
+        for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
+            printf "\t%s\n" "${x}"
+        done
+    fi
 }
 
 cn_init_watchdog() {
 
     cn_log_sect_header "Watchdog"
 
-    cn_log_debug_msg "Initializing watchdog ..."
+    cn_log_info_msg "Initializing watchdog ..."
 
     cn_set_watchdog_device_array
 
@@ -49,6 +57,8 @@ cn_init_watchdog() {
         declare -p | grep "CN_WATCHDOG"
         printf "###########\n"
     fi
+
+    cn_watchdog_debug_print_devices
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
