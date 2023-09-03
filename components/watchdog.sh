@@ -28,7 +28,7 @@ if [[ "${CN_DEV_MSG}" = "1" ]]; then
 fi
 
 declare -gr CN_WATCHDOG_SLEEP_TIME
-declare -g CN_WATCHDOG_LOST_DEV_ARRAY
+declare -ag CN_WATCHDOG_LOST_DEV_ARRAY
 
 cn_watchdog_next_check_msg() {
     local prefix
@@ -51,6 +51,17 @@ cn_watchdog_returned_dev_msg() {
     cn_log_msg " "
     cn_log_msg "${prefix} Device '${1}' returned ..."
     cn_watchdog_next_check_msg
+    cn_log_msg " "
+}
+
+cn_watchdog_still_missing_msg() {
+    local prefix
+    prefix="WATCHDOG:"
+    cn_log_msg " "
+    cn_log_msg "${prefix} Still missing ${1} device(s) ..."
+    for x in ${2}; do
+        cn_log_msg "    ${x}"
+    done
     cn_log_msg " "
 }
 
@@ -82,32 +93,36 @@ cn_watchdog_runtime() {
     sleep "${CN_WATCHDOG_SLEEP_TIME}"
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         # filter to by_id only!
-        if [[ "${x}" =~ "/dev/v4l/by-id" ]]; then
-            if [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[*]}" -le "0" ]] \
+        if [[ "${x}" =~ "/dev/v4l/by-id" ]] \
+            && [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[*]}" -le "0" ]] \
             && [[ ! -e "${x}" ]]; then
                 CN_WATCHDOG_LOST_DEV_ARRAY+=("${x}")
                 cn_watchdog_lost_dev_msg "${x}"
-            fi
-            # if [[ "${#lost_dev[@]}" -eq "0" ]] && [[ ! -e "${x}" ]]; then
-            #     lost_dev+=("${x}")
-            #     cn_watchdog_lost_dev_msg "${x}"
-            # fi
-            # elif [[ "${lost_dev[*]}" =~ ${x} ]] && [[ -e "${x}" ]]; then
-            #     cn_watchdog_returned_dev_msg "${x}"
-            #     for i in "${!lost_dev[@]}"; do
-            #         if [[ "${lost_dev[${i}]}" = "${x}" ]]; then
-            #             unset "${lost_dev[${i}]}"
-            #         fi
-            #     done
-            # if [[ "${#lost_dev[@]}" -gt "0" ]] && [[ ! -e "${x}" ]]; then
-            #     cn_log_msg " "
-            #     cn_log_msg "${prefix} Still missing ${#lost_dev[*]} device(s) ..."
-            #     for dev in "${lost_dev[@]}"; do
-            #         cn_log_msg "    ${dev}"
-            #     done
-            #     cn_log_msg " "
-            # fi
         fi
+        if [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[*]}" -gt "0" ]]; then
+            cn_watchdog_still_missing_msg \
+                "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}" \
+                "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}"
+        fi
+        # if [[ "${#lost_dev[@]}" -eq "0" ]] && [[ ! -e "${x}" ]]; then
+        #     lost_dev+=("${x}")
+        #     cn_watchdog_lost_dev_msg "${x}"
+        # fi
+        # elif [[ "${lost_dev[*]}" =~ ${x} ]] && [[ -e "${x}" ]]; then
+        #     cn_watchdog_returned_dev_msg "${x}"
+        #     for i in "${!lost_dev[@]}"; do
+        #         if [[ "${lost_dev[${i}]}" = "${x}" ]]; then
+        #             unset "${lost_dev[${i}]}"
+        #         fi
+        #     done
+        # if [[ "${#lost_dev[@]}" -gt "0" ]] && [[ ! -e "${x}" ]]; then
+        #     cn_log_msg " "
+        #     cn_log_msg "${prefix} Still missing ${#lost_dev[*]} device(s) ..."
+        #     for dev in "${lost_dev[@]}"; do
+        #         cn_log_msg "    ${dev}"
+        #     done
+        #     cn_log_msg " "
+        # fi
     done
     ### Let inplace commented out for debugging
     # if [[ "${CN_DEV_MSG}" = "1" ]]; then
