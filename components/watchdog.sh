@@ -52,19 +52,18 @@ cn_watchdog_debug_print_devices() {
 }
 
 cn_watchdog_runtime() {
-    local prefix
-    local -a lost_dev
+    local prefix lost_dev
     prefix="WATCHDOG:"
     sleep "${CN_WATCHDOG_SLEEP_TIME}"
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         # filter to by_id only!
         if [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ ! -e "${x}" ]]; then
-            lost_dev+=( "${x}" )
+            lost_dev+="${x}"
             cn_log_msg " "
             cn_log_msg "${prefix} Lost device '${x}' !!!!"
             cn_log_msg "${prefix} Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
-            cn_log_debug_msg "${prefix} lost_dev: ${lost_dev[*]}"
-            cn_log_debug_msg "${prefix} lost_dev count: ${#lost_dev[*]}"
+            cn_log_debug_msg "${prefix} lost_dev: ${lost_dev}"
+            cn_log_debug_msg "${prefix} lost_dev count: ${#lost_dev}"
             cn_log_msg " "
         fi
         if [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ -e "${x}" ]] && \
