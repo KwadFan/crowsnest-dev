@@ -62,8 +62,10 @@ cn_watchdog_still_missing_msg() {
 }
 
 cn_watchdog_still_missing_dev_msg() {
+    local prefix
+    prefix="WATCHDOG:"
     for x in ${1}; do
-        cn_log_msg "    ${x}"
+        cn_log_msg "${prefix}    ${x}"
     done
     cn_watchdog_next_check_msg
     cn_log_msg " "
