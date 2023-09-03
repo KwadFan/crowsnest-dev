@@ -82,11 +82,12 @@ cn_watchdog_runtime() {
     sleep "${CN_WATCHDOG_SLEEP_TIME}"
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         # filter to by_id only!
-        if [[ "${x}" =~ "/dev/v4l/by-id" ]]; then
-            if [[ "${#lost_dev[@]}" -eq "0" ]] && [[ ! -e "${x}" ]]; then
-                lost_dev+=("${x}")
-                cn_watchdog_lost_dev_msg "${x}"
-            fi
+        if [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ ! -e "${x}" ]]; then
+            lost_dev+=("${x}")
+            # if [[ "${#lost_dev[@]}" -eq "0" ]] && [[ ! -e "${x}" ]]; then
+            #     lost_dev+=("${x}")
+            #     cn_watchdog_lost_dev_msg "${x}"
+            # fi
             # elif [[ "${lost_dev[*]}" =~ ${x} ]] && [[ -e "${x}" ]]; then
             #     cn_watchdog_returned_dev_msg "${x}"
             #     for i in "${!lost_dev[@]}"; do
@@ -94,16 +95,23 @@ cn_watchdog_runtime() {
             #             unset "${lost_dev[${i}]}"
             #         fi
             #     done
-            if [[ "${#lost_dev[@]}" -gt "0" ]] && [[ ! -e "${x}" ]]; then
-                cn_log_msg " "
-                cn_log_msg "${prefix} Still missing ${#lost_dev[*]} device(s) ..."
-                for dev in "${lost_dev[@]}"; do
-                    cn_log_msg "    ${dev}"
-                done
-                cn_log_msg " "
-            fi
+            # if [[ "${#lost_dev[@]}" -gt "0" ]] && [[ ! -e "${x}" ]]; then
+            #     cn_log_msg " "
+            #     cn_log_msg "${prefix} Still missing ${#lost_dev[*]} device(s) ..."
+            #     for dev in "${lost_dev[@]}"; do
+            #         cn_log_msg "    ${dev}"
+            #     done
+            #     cn_log_msg " "
+            # fi
         fi
     done
+    if [[ "${#lost_dev[@]}" -gt "0" ]]; then
+        for dev in "${lost_dev[@]}"; do
+            if [[ ! -e "${dev}" ]]; then
+                cn_watchdog_lost_dev_msg "${dev}"
+            fi
+        done
+    fi
     ### Let inplace commented out for debugging
     # if [[ "${CN_DEV_MSG}" = "1" ]]; then
     #     printf "watchdog:\n###########\n"
