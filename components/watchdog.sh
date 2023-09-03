@@ -115,6 +115,10 @@ cn_watchdog_runtime() {
             fi
         fi
     done
+    if [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}" -gt "0" ]]; then
+        cn_watchdog_still_missing_msg "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}"
+        cn_watchdog_still_missing_dev_msg "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}"
+    fi
     ### Let inplace commented out for debugging
     # if [[ "${CN_DEV_MSG}" = "1" ]]; then
     #     printf "watchdog:\n###########\n"
