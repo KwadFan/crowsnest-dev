@@ -77,11 +77,15 @@ cn_watchdog_set_device_array() {
 }
 
 cn_watchdog_remove_dev_from_array() {
-    for i in "${!CN_WATCHDOG_LOST_DEV_ARRAY[@]}"; do
-        if [[ "${CN_WATCHDOG_LOST_DEV_ARRAY[${i}]}" = "${1}" ]]; then
-            unset "${CN_WATCHDOG_LOST_DEV_ARRAY[${i}]}"
-        fi
-    done
+    if [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}" -lt "2" ]]; then
+        for i in "${!CN_WATCHDOG_LOST_DEV_ARRAY[@]}"; do
+            if [[ "${CN_WATCHDOG_LOST_DEV_ARRAY[${i}]}" = "${1}" ]]; then
+                unset "${CN_WATCHDOG_LOST_DEV_ARRAY[${i}]}"
+            fi
+        done
+    else
+        CN_WATCHDOG_LOST_DEV_ARRAY=()
+    fi
 }
 
 cn_watchdog_debug_print_devices() {
@@ -115,11 +119,11 @@ cn_watchdog_runtime() {
         cn_watchdog_still_missing_dev_msg "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}"
     fi
     ### Let inplace commented out for debugging
-    if [[ "${CN_DEV_MSG}" = "1" ]]; then
-        printf "watchdog:\n###########\n"
-        declare -p | grep "CN_WATCHDOG"
-        printf "###########\n"
-    fi
+    # if [[ "${CN_DEV_MSG}" = "1" ]]; then
+    #     printf "watchdog:\n###########\n"
+    #     declare -p | grep "CN_WATCHDOG"
+    #     printf "###########\n"
+    # fi
 }
 
 cn_init_watchdog() {
