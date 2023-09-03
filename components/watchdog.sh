@@ -82,8 +82,11 @@ cn_watchdog_runtime() {
     sleep "${CN_WATCHDOG_SLEEP_TIME}"
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         # filter to by_id only!
-        if [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ ! -e "${x}" ]]; then
-            lost_dev+=("${x}")
+        if [[ "${x}" =~ "/dev/v4l/by-id" ]]; then
+            if [[ -z "${lost_dev[*]}" ]] && [[ ! -e "${x}" ]]; then
+                lost_dev+=("${x}")
+                cn_watchdog_lost_dev_msg "${x}"
+            fi
             # if [[ "${#lost_dev[@]}" -eq "0" ]] && [[ ! -e "${x}" ]]; then
             #     lost_dev+=("${x}")
             #     cn_watchdog_lost_dev_msg "${x}"
@@ -105,13 +108,6 @@ cn_watchdog_runtime() {
             # fi
         fi
     done
-    if [[ "${#lost_dev[@]}" -gt "0" ]]; then
-        for dev in "${lost_dev[@]}"; do
-            if [[ ! -e "${dev}" ]]; then
-                cn_watchdog_lost_dev_msg "${dev}"
-            fi
-        done
-    fi
     ### Let inplace commented out for debugging
     # if [[ "${CN_DEV_MSG}" = "1" ]]; then
     #     printf "watchdog:\n###########\n"
