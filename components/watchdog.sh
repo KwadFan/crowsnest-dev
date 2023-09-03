@@ -83,7 +83,7 @@ cn_watchdog_runtime() {
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         # filter to by_id only!
         if [[ "${x}" =~ "/dev/v4l/by-id" ]]; then
-            if [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[*]}" -le "1" ]] \
+            if [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[*]}" -le "0" ]] \
             && [[ ! -e "${x}" ]]; then
                 CN_WATCHDOG_LOST_DEV_ARRAY+=("${x}")
                 cn_watchdog_lost_dev_msg "${x}"
