@@ -58,7 +58,7 @@ cn_watchdog_runtime() {
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         # filter to by_id only!
         if [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ ! -e "${x}" ]]; then
-            lost_dev+="${x}"
+            lost_dev+="${x} "
             cn_log_msg " "
             cn_log_msg "${prefix} Lost device '${x}' !!!!"
             cn_log_msg "${prefix} Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
