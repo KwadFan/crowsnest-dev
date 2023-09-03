@@ -21,12 +21,14 @@ set -Ee
 
 CN_WATCHDOG_DEVICE_ARRAY=()
 CN_WATCHDOG_SLEEP_TIME="120"
+CN_WATCHDOG_LOST_DEV_ARRAY=()
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     CN_WATCHDOG_SLEEP_TIME="5"
 fi
 
 declare -gr CN_WATCHDOG_SLEEP_TIME
+declare -g CN_WATCHDOG_LOST_DEV_ARRAY
 
 cn_watchdog_next_check_msg() {
     local prefix
@@ -77,14 +79,13 @@ cn_watchdog_debug_print_devices() {
 
 cn_watchdog_runtime() {
     local prefix
-    local -a lost_dev
-    lost_dev=()
     sleep "${CN_WATCHDOG_SLEEP_TIME}"
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         # filter to by_id only!
         if [[ "${x}" =~ "/dev/v4l/by-id" ]]; then
-            if [[ ! "${lost_dev[*]}" =~ ${x} ]] && [[ ! -e "${x}" ]]; then
-                lost_dev+=("${x}")
+            if [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[*]}" -le "1" ]] \
+            && [[ ! -e "${x}" ]]; then
+                CN_WATCHDOG_LOST_DEV_ARRAY+=("${x}")
                 cn_watchdog_lost_dev_msg "${x}"
             fi
             # if [[ "${#lost_dev[@]}" -eq "0" ]] && [[ ! -e "${x}" ]]; then
