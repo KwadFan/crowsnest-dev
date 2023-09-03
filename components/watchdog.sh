@@ -63,7 +63,6 @@ cn_watchdog_runtime() {
             cn_log_msg "${prefix} Lost device '${x}' !!!!"
             cn_log_msg "${prefix} Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
             cn_log_debug_msg "${prefix} lost_dev: ${lost_dev}"
-            cn_log_debug_msg "${prefix} lost_dev count: ${#lost_dev}"
             cn_log_msg " "
         elif [[ "${lost_dev}" =~ ${x} ]] && [[ -e "${x}" ]]; then
             cn_log_msg " "
@@ -71,16 +70,15 @@ cn_watchdog_runtime() {
             cn_log_info_msg "Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
             cn_log_msg " "
             lost_dev="${lost_dev//${x}/}"
+        elif [[ "${lost_dev}" =~ ${x} ]] && [[ ! -e "${x}" ]]; then
+            cn_log_msg " "
+            cn_log_msg "${prefix} Still missing ${#lost_dev[*]} device(s) ..."
+            for dev in ${lost_dev}; do
+                cn_log_msg "    ${dev}"
+            done
+            cn_log_msg " "
         fi
     done
-    if [[ "${#lost_dev[*]}" -gt "0" ]]; then
-        cn_log_msg " "
-        cn_log_msg "${prefix} Still missing ${#lost_dev[*]} device(s) ..."
-        for x in "${lost_dev[@]}"; do
-            cn_log_msg "    ${x}"
-        done
-        cn_log_msg " "
-    fi
     ### Let inplace commented out for debugging
     # if [[ "${CN_DEV_MSG}" = "1" ]]; then
     #     printf "watchdog:\n###########\n"
