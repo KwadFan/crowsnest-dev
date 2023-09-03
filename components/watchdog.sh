@@ -65,6 +65,7 @@ cn_watchdog_still_missing_dev_msg() {
     for x in ${1}; do
         cn_log_msg "    ${x}"
     done
+    cn_watchdog_next_check_msg
     cn_log_msg " "
 }
 
