@@ -30,6 +30,7 @@ fi
 declare -gr CN_WATCHDOG_SLEEP_TIME
 declare -ag CN_WATCHDOG_LOST_DEV_ARRAY
 
+### msg's
 cn_watchdog_next_check_msg() {
     local prefix
     prefix="WATCHDOG:"
@@ -71,7 +72,7 @@ cn_watchdog_still_missing_dev_msg() {
     cn_log_msg " "
 }
 
-cn_set_watchdog_device_array() {
+cn_watchdog_set_device_array() {
     cn_log_debug_msg "Gathering device list ..."
     if [[ "${CN_UVC_BY_ID[0]}" != "null" ]]; then
         for x in "${CN_UVC_VALID_DEVICES[@]}"; do
@@ -84,6 +85,14 @@ cn_set_watchdog_device_array() {
     if [[ "${CN_LEGACY_DEV_PATH}" != "null" ]]; then
         CN_WATCHDOG_DEVICE_ARRAY+=( "${CN_LEGACY_DEV_PATH}" )
     fi
+}
+
+cn_watchdog_remove_dev_from_array() {
+    for i in "${!CN_WATCHDOG_LOST_DEV_ARRAY[@]}"; do
+        if [[ "${CN_WATCHDOG_LOST_DEV_ARRAY[${i}]}" = "${1}" ]]; then
+            unset "${CN_WATCHDOG_LOST_DEV_ARRAY[${i}]}"
+        fi
+    done
 }
 
 cn_watchdog_debug_print_devices() {
@@ -111,27 +120,9 @@ cn_watchdog_runtime() {
             elif [[ "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}" =~ ${x} ]] \
             && [[ -e "${x}" ]]; then
                 cn_watchdog_returned_dev_msg "${x}"
+                cn_watchdog_remove_dev_from_array "${x}"
             fi
         fi
-        # if [[ "${#lost_dev[@]}" -eq "0" ]] && [[ ! -e "${x}" ]]; then
-        #     lost_dev+=("${x}")
-        #     cn_watchdog_lost_dev_msg "${x}"
-        # fi
-        # elif [[ "${lost_dev[*]}" =~ ${x} ]] && [[ -e "${x}" ]]; then
-        #     cn_watchdog_returned_dev_msg "${x}"
-        #     for i in "${!lost_dev[@]}"; do
-        #         if [[ "${lost_dev[${i}]}" = "${x}" ]]; then
-        #             unset "${lost_dev[${i}]}"
-        #         fi
-        #     done
-        # if [[ "${#lost_dev[@]}" -gt "0" ]] && [[ ! -e "${x}" ]]; then
-        #     cn_log_msg " "
-        #     cn_log_msg "${prefix} Still missing ${#lost_dev[*]} device(s) ..."
-        #     for dev in "${lost_dev[@]}"; do
-        #         cn_log_msg "    ${dev}"
-        #     done
-        #     cn_log_msg " "
-        # fi
     done
     ### Let inplace commented out for debugging
     # if [[ "${CN_DEV_MSG}" = "1" ]]; then
@@ -147,7 +138,7 @@ cn_init_watchdog() {
 
     cn_log_info_msg "Initializing watchdog ..."
 
-    cn_set_watchdog_device_array
+    cn_watchdog_set_device_array
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "watchdog:\n###########\n"
