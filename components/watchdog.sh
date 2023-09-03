@@ -78,8 +78,8 @@ cn_watchdog_set_device_array() {
 
 cn_watchdog_remove_dev_from_array() {
     for i in "${!CN_WATCHDOG_LOST_DEV_ARRAY[@]}"; do
-        if [[ "${CN_WATCHDOG_LOST_DEV_ARRAY[i]}" = "${1}" ]]; then
-            unset "${CN_WATCHDOG_LOST_DEV_ARRAY[i]}"
+        if [[ ${CN_WATCHDOG_LOST_DEV_ARRAY[i]} = "${1}" ]]; then
+            unset "CN_WATCHDOG_LOST_DEV_ARRAY[i]"
         fi
     done
 }
