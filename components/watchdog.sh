@@ -108,6 +108,9 @@ cn_watchdog_runtime() {
             && [[ ! -e "${x}" ]]; then
                 cn_watchdog_still_missing_msg "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}"
                 cn_watchdog_still_missing_dev_msg "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}"
+            elif [[ "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}" =~ ${x} ]] \
+            && [[ -e "${x}" ]]; then
+                cn_watchdog_returned_dev_msg "${x}"
             fi
         fi
         # if [[ "${#lost_dev[@]}" -eq "0" ]] && [[ ! -e "${x}" ]]; then
