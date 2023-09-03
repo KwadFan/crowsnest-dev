@@ -104,7 +104,6 @@ cn_watchdog_debug_print_devices() {
 }
 
 cn_watchdog_runtime() {
-    sleep "${CN_WATCHDOG_SLEEP_TIME}"
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         # filter to by_id only!
         if [[ "${x}" =~ "/dev/v4l/by-id" ]]; then
@@ -115,6 +114,7 @@ cn_watchdog_runtime() {
             fi
         fi
     done
+    sleep "${CN_WATCHDOG_SLEEP_TIME}"
     if [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}" -gt "0" ]]; then
         cn_watchdog_still_missing_msg "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}"
         cn_watchdog_still_missing_dev_msg "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}"
