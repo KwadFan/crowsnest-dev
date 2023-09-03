@@ -120,7 +120,12 @@ cn_watchdog_runtime() {
             elif [[ "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}" =~ ${x} ]] \
             && [[ -e "${x}" ]]; then
                 cn_watchdog_returned_dev_msg "${x}"
-                cn_watchdog_remove_dev_from_array "${x}"
+                #cn_watchdog_remove_dev_from_array "${x}"
+                for i in "${!CN_WATCHDOG_LOST_DEV_ARRAY[@]}"; do
+                    if [[ "${CN_WATCHDOG_LOST_DEV_ARRAY[${i}]}" = "${x}" ]]; then
+                        unset "${CN_WATCHDOG_LOST_DEV_ARRAY[${i}]}"
+                    fi
+                done
             fi
         fi
     done
