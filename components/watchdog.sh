@@ -104,7 +104,6 @@ cn_watchdog_debug_print_devices() {
 }
 
 cn_watchdog_runtime() {
-    local prefix
     sleep "${CN_WATCHDOG_SLEEP_TIME}"
     for x in "${CN_WATCHDOG_DEVICE_ARRAY[@]}"; do
         # filter to by_id only!
@@ -113,18 +112,6 @@ cn_watchdog_runtime() {
             && [[ ! -e "${x}" ]]; then
                 CN_WATCHDOG_LOST_DEV_ARRAY+=("${x}")
                 cn_watchdog_lost_dev_msg "${x}"
-            elif [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[*]}" -gt "0" ]] \
-            && [[ ! -e "${x}" ]]; then
-                cn_watchdog_still_missing_msg "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}"
-                cn_watchdog_still_missing_dev_msg "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}"
-            elif [[ "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}" =~ ${x} ]] \
-            && [[ -e "${x}" ]]; then
-                cn_watchdog_returned_dev_msg "${x}"
-                if [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}" -gt "1" ]]; then
-                    cn_watchdog_remove_dev_from_array "${x}"
-                else
-                    CN_WATCHDOG_LOST_DEV_ARRAY=()
-                fi
             fi
         fi
     done
@@ -156,3 +143,18 @@ cn_init_watchdog() {
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: watchdog.sh\n"
 fi
+
+
+# elif [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[*]}" -gt "0" ]] \
+#             && [[ ! -e "${x}" ]]; then
+#                 cn_watchdog_still_missing_msg "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}"
+#                 cn_watchdog_still_missing_dev_msg "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}"
+#             elif [[ "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}" =~ ${x} ]] \
+#             && [[ -e "${x}" ]]; then
+#                 cn_watchdog_returned_dev_msg "${x}"
+#                 if [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}" -gt "1" ]]; then
+#                     cn_watchdog_remove_dev_from_array "${x}"
+#                 else
+#                     CN_WATCHDOG_LOST_DEV_ARRAY=()
+#                 fi
+#             fi
