@@ -62,14 +62,14 @@ cn_watchdog_runtime() {
             lost_dev+=( "${x}" )
             cn_log_msg " "
             cn_log_msg "${prefix} Lost device '${x}' !!!!"
-            cn_log_info_msg "Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
+            cn_log_msg "${prefix} Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
             cn_log_msg " "
         elif [[ "${x}" =~ "/dev/v4l/by-id" ]] && [[ -e "${x}" ]]; then
-            lost_dev=( "${lost_dev[@]/$x}" )
             cn_log_msg " "
             cn_log_msg "${prefix} Device '${x}' returned ..."
             cn_log_info_msg "Next check in ${CN_WATCHDOG_SLEEP_TIME} seconds ..."
             cn_log_msg " "
+            unset "lost_dev[${x}]"
         fi
     done
     if [[ "${#lost_dev[*]}" -gt "0" ]]; then
