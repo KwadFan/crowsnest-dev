@@ -86,14 +86,15 @@ cn_watchdog_runtime() {
             if [[ "${#lost_dev[@]}" -eq "0" ]] && [[ ! -e "${x}" ]]; then
                 lost_dev+=("${x}")
                 cn_watchdog_lost_dev_msg "${x}"
-            elif [[ "${lost_dev[*]}" =~ ${x} ]] && [[ -e "${x}" ]]; then
-                cn_watchdog_returned_dev_msg "${x}"
-                for i in "${!lost_dev[@]}"; do
-                    if [[ "${lost_dev[${i}]}" = "${x}" ]]; then
-                        unset "${lost_dev[${i}]}"
-                    fi
-                done
-            elif [[ "${#lost_dev[@]}" -gt "0" ]] && [[ ! -e "${x}" ]]; then
+            fi
+            # elif [[ "${lost_dev[*]}" =~ ${x} ]] && [[ -e "${x}" ]]; then
+            #     cn_watchdog_returned_dev_msg "${x}"
+            #     for i in "${!lost_dev[@]}"; do
+            #         if [[ "${lost_dev[${i}]}" = "${x}" ]]; then
+            #             unset "${lost_dev[${i}]}"
+            #         fi
+            #     done
+            if [[ "${#lost_dev[@]}" -gt "0" ]] && [[ ! -e "${x}" ]]; then
                 cn_log_msg " "
                 cn_log_msg "${prefix} Still missing ${#lost_dev[*]} device(s) ..."
                 for dev in "${lost_dev[@]}"; do
