@@ -19,17 +19,6 @@
 # Exit upon Errors
 set -Ee
 
-CN_WATCHDOG_DEVICE_ARRAY=()
-CN_WATCHDOG_SLEEP_TIME="120"
-CN_WATCHDOG_LOST_DEV_ARRAY=()
-
-if [[ "${CN_DEV_MSG}" = "1" ]]; then
-    CN_WATCHDOG_SLEEP_TIME="5"
-fi
-
-declare -gr CN_WATCHDOG_SLEEP_TIME
-declare -ag CN_WATCHDOG_LOST_DEV_ARRAY
-
 ### msg's
 cn_watchdog_next_check_msg() {
     local prefix
@@ -115,6 +104,11 @@ cn_watchdog_runtime() {
         fi
     done
     sleep "${CN_WATCHDOG_SLEEP_TIME}"
+    for dev in "${CN_WATCHDOG_LOST_DEV_ARRAY[@]}"; do
+        if [[ -e "${dev}" ]]; then
+            cn_watchdog_returned_dev_msg "${dev}"
+        fi
+    done
     if [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}" -gt "0" ]]; then
         cn_watchdog_still_missing_msg "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}"
         cn_watchdog_still_missing_dev_msg "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}"
@@ -128,6 +122,17 @@ cn_watchdog_runtime() {
 }
 
 cn_init_watchdog() {
+
+    CN_WATCHDOG_DEVICE_ARRAY=()
+    CN_WATCHDOG_SLEEP_TIME="120"
+    CN_WATCHDOG_LOST_DEV_ARRAY=()
+
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        CN_WATCHDOG_SLEEP_TIME="5"
+    fi
+
+    declare -gr CN_WATCHDOG_SLEEP_TIME
+    declare -ag CN_WATCHDOG_LOST_DEV_ARRAY
 
     cn_log_sect_header "Watchdog"
 
