@@ -153,18 +153,3 @@ cn_init_watchdog() {
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: watchdog.sh\n"
 fi
-
-
-# elif [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[*]}" -gt "0" ]] \
-#             && [[ ! -e "${x}" ]]; then
-#                 cn_watchdog_still_missing_msg "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}"
-#                 cn_watchdog_still_missing_dev_msg "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}"
-#             elif [[ "${CN_WATCHDOG_LOST_DEV_ARRAY[*]}" =~ ${x} ]] \
-#             && [[ -e "${x}" ]]; then
-#                 cn_watchdog_returned_dev_msg "${x}"
-#                 if [[ "${#CN_WATCHDOG_LOST_DEV_ARRAY[@]}" -gt "1" ]]; then
-#                     cn_watchdog_remove_dev_from_array "${x}"
-#                 else
-#                     CN_WATCHDOG_LOST_DEV_ARRAY=()
-#                 fi
-#             fi
