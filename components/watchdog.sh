@@ -84,7 +84,7 @@ cn_watchdog_debug_print_devices() {
         # for simplicity hardcode a 'tab'
         cn_log_debug_msg "    ${x}"
     done
-    cn_log_msg " "
+    [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]] && cn_log_msg " "
 }
 
 cn_watchdog_runtime() {
