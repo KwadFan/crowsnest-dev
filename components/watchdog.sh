@@ -142,8 +142,8 @@ cn_init_watchdog() {
     fi
 
     cn_watchdog_debug_print_devices
-    cn_log_msg " "
 
+    cn_log_msg " "
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
