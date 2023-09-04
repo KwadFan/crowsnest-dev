@@ -16,7 +16,7 @@
 # Exit upon Errors
 set -Ee
 
-cn_exec_cstreamer() {
+cn_exec_camera_streamer() {
     local cam custom_flags device port res
     local -a start_param
     cam="CAM_${1}"
