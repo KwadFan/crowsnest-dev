@@ -25,6 +25,7 @@ cn_exec_cstreamer() {
     fps="CN_${cam}_MAX_FPS"
     port="CN_${cam}_PORT"
     res="CN_${cam}_RESOLUTION"
+    v4l2ctl="CN_${cam}_V4L2CTL_ARRAY"
     start_param=( --camera-auto_reconnect=1 )
 
     # Split resolution
@@ -56,6 +57,13 @@ cn_exec_cstreamer() {
     start_param+=( --camera-width="$(get_width_val)" )
     start_param+=( --camera-height="$(get_height_val)" )
     start_param+=( --camera-fps="${!fps}" )
+
+    #v4l2ctl handling
+    if [[ -n "${!v4l2ctl}" ]]; then
+        for ctrl in "${!v4l2ctl}"; do
+            start_param+=( --camera-option="${ctrl}" )
+        done
+    fi
 
     if [[ -n "${!custom_flags}" ]]; then
         for fl in "${!custom_flags}"; do
