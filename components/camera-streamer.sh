@@ -25,6 +25,8 @@ cn_exec_cstreamer() {
     fps="CN_${cam}_MAX_FPS"
     port="CN_${cam}_PORT"
     res="CN_${cam}_RESOLUTION"
+    rtsp_enabled="CN_${cam}_ENABLE_RTSP"
+    rtsp_port="CN_${cam}_RTSP_PORT"
     v4l2ctl="CN_${cam}_V4L2CTL_ARRAY[@]"
     start_param=( --camera-auto_reconnect=1 )
 
@@ -58,6 +60,9 @@ cn_exec_cstreamer() {
     start_param+=( --camera-height="$(get_height_val)" )
     start_param+=( --camera-fps="${!fps}" )
 
+    if [[ "${!rtsp_enabled}" = "true" ]]; then
+        start_param+=( --rtsp-port="${!rtsp_port}" )
+    fi
     #v4l2ctl handling
     if [[ -n "${!v4l2ctl}" ]]; then
         for ctrl in "${!v4l2ctl}"; do
