@@ -25,7 +25,7 @@ cn_exec_cstreamer() {
     fps="CN_${cam}_MAX_FPS"
     port="CN_${cam}_PORT"
     res="CN_${cam}_RESOLUTION"
-    v4l2ctl="CN_${cam}_V4L2CTL_ARRAY"
+    v4l2ctl="CN_${cam}_V4L2CTL_ARRAY[@]"
     start_param=( --camera-auto_reconnect=1 )
 
     # Split resolution
