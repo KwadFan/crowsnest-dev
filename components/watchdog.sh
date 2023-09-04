@@ -68,12 +68,12 @@ cn_watchdog_set_device_array() {
             CN_WATCHDOG_DEVICE_ARRAY+=( "${x}" )
         done
     fi
-    if [[ "${CN_LIBCAMERA_DEV_PATH}" != "null" ]]; then
-        CN_WATCHDOG_DEVICE_ARRAY+=( "${CN_LIBCAMERA_DEV_PATH}" )
-    fi
-    if [[ "${CN_LEGACY_DEV_PATH}" != "null" ]]; then
-        CN_WATCHDOG_DEVICE_ARRAY+=( "${CN_LEGACY_DEV_PATH}" )
-    fi
+    # if [[ "${CN_LIBCAMERA_DEV_PATH}" != "null" ]]; then
+    #     CN_WATCHDOG_DEVICE_ARRAY+=( "${CN_LIBCAMERA_DEV_PATH}" )
+    # fi
+    # if [[ "${CN_LEGACY_DEV_PATH}" != "null" ]]; then
+    #     CN_WATCHDOG_DEVICE_ARRAY+=( "${CN_LEGACY_DEV_PATH}" )
+    # fi
 }
 
 cn_watchdog_remove_dev_from_array() {
