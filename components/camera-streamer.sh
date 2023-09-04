@@ -35,7 +35,7 @@ cn_exec_cstreamer() {
         (sed 's/#.*//' | cut -d'x' -f1) <<< "${!res}"
     }
 
-    start_param=( --http-port="${!port}" )
+    start_param+=( --http-port="${!port}" )
 
     ## camera type handling
     if [[ "${!device}" = "libcamera" ]] \
