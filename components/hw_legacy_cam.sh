@@ -31,7 +31,7 @@ cn_get_legacy_dev_avail() {
     && [[ "${CN_LIBCAMERA_DEV_PATH}" = "null" ]]; then
         legacy_avail="$("${CN_LEGACY_VCGENCMD_BIN}" get_camera | cut -d',' -f1)"
         [[ "${legacy_avail}" = "supported=1 detected=1" ]] \
-        && CN_LEGACY_DEV_AVAIL="1"
+        && CN_LEGACY_DEV_AVAIL="1" || CN_LEGACY_DEV_AVAIL="0"
     else
         CN_LEGACY_DEV_AVAIL="0"
     fi
