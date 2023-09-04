@@ -133,7 +133,7 @@ cn_init_watchdog() {
     cn_log_sect_header "Watchdog"
 
     cn_log_info_msg "Initializing watchdog ..."
-    cn_log_msg " "
+    [[ "${CN_SELF_LOG_LEVEL}" != "debug" ]] && cn_log_msg " "
 
     cn_watchdog_set_device_array
 
