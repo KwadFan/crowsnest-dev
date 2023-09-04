@@ -84,7 +84,6 @@ cn_watchdog_debug_print_devices() {
         # for simplicity hardcode a 'tab'
         cn_log_debug_msg "    ${x}"
     done
-    [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]] && cn_log_msg " "
 }
 
 cn_watchdog_runtime() {
@@ -133,7 +132,6 @@ cn_init_watchdog() {
     cn_log_sect_header "Watchdog"
 
     cn_log_info_msg "Initializing watchdog ..."
-    [[ "${CN_SELF_LOG_LEVEL}" != "debug" ]] && cn_log_msg " "
 
     cn_watchdog_set_device_array
 
@@ -144,6 +142,8 @@ cn_init_watchdog() {
     fi
 
     cn_watchdog_debug_print_devices
+    cn_log_msg " "
+
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
