@@ -49,7 +49,7 @@ cn_init_libcamera_controls() {
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "log_libcamera_controls:\n###########\n"
-        declare -p | grep "CN_CN_LIBCAMERA_CTRLS_ARRAY"
+        declare -p | grep "CN_LIBCAMERA_CTRLS_ARRAY"
         printf "###########\n"
     fi
 }
