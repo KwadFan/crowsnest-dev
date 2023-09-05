@@ -26,7 +26,7 @@ ctrls = picam.camera_controls
 
 for key, value in ctrls.items():
         min, max, default = value
-        print(f"{key}:\t min={min} max={max} default={default}\n")
+        print(f"{key}:\t\tmin={min} max={max} default={default}\n")
 
 EOL
 }
