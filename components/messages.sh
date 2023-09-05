@@ -151,6 +151,11 @@ cn_libcamera_dev_msg() {
     cn_log_msg " "
 }
 
+cn_libcamera_dev_info_msg() {
+    cn_log_msg " "
+    cn_log_msg "here!"
+}
+
 cn_supported_formats_msg() {
     cn_log_msg "Supported formats:"
     # put some whitespace here
