@@ -35,7 +35,9 @@ cn_set_libcamera_controls() {
     local get_ctrls
     if [[ "${CN_LIBCAMERA_AVAIL}" = "1" ]]; then
         get_ctrls="$(cn_get_libcamera_controls 2> /dev/null)"
-        readarray -t CN_LIBCAMERA_CTRLS_ARRAY < "${get_ctrls}"
+        for x in ${get_ctrls}; do
+            CN_LIBCAMERA_CTRLS_ARRAY+=("${x}")
+        done
         # shellcheck disable=SC2034
         declare -ar CN_LIBCAMERA_CTRLS_ARRAY
     fi
