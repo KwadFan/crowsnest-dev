@@ -157,6 +157,15 @@ cn_libcamera_dev_info_msg() {
     for x in "${CN_LIBCAMERA_OUTPUT_ARRAY[@]:2}"; do
         cn_log_msg "${x}"
     done
+    cn_log_msg " "
+}
+
+cn_libcamera_dev_ctrls_msg() {
+    cn_log_msg "Supported Controls:"
+    for x in "${CN_LIBCAMERA_CTRLS_ARRAY[@]}"; do
+        cn_log_msg "    ${x}"
+    done
+    cn_log_msg " "
 }
 
 cn_supported_formats_msg() {
