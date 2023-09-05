@@ -32,6 +32,8 @@ for key, value in ctrls.items():
             ctrl_type = "float"
         elif type(min) is bool:
             ctrl_type = "bool"
+        elif type(min) is tuple:
+            ctrl_type = "tuple"
         else:
             ctrl_type=type(min)
 
