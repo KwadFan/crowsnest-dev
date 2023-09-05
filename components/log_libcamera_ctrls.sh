@@ -39,7 +39,7 @@ cn_set_libcamera_controls() {
             fi
         done < <(cn_get_libcamera_controls 2> /dev/null)
         # shellcheck disable=SC2034
-        declare -ar CN_LIBCAMERA_CTRLS_ARRAY
+        declare -gar CN_LIBCAMERA_CTRLS_ARRAY
     fi
 }
 
