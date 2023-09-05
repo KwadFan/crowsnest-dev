@@ -33,7 +33,7 @@ for key, value in ctrls.items():
         elif type(min) is bool:
             ctrl_type = "bool"
         else:
-            ctrl_type="not known"
+            ctrl_type=type(min)
 
         print(f"{key} ({ctrl_type}) :\t\tmin={min} max={max} default={default}\n")
 
