@@ -32,20 +32,19 @@ EOL
 }
 
 cn_set_libcamera_controls() {
-    if [[ "${CN_LIBCAMERA_AVAIL}" = "1" ]]; then
-        while read -r line; do
-            if [[ -n "${line}" ]]; then
-                CN_LIBCAMERA_CTRLS_ARRAY+=("${line}")
-            fi
-        done < <(cn_get_libcamera_controls 2> /dev/null)
-        # shellcheck disable=SC2034
-        declare -gar CN_LIBCAMERA_CTRLS_ARRAY
-    fi
+    while read -r line; do
+        if [[ -n "${line}" ]]; then
+            CN_LIBCAMERA_CTRLS_ARRAY+=("${line}")
+        fi
+    done < <(cn_get_libcamera_controls 2> /dev/null)
+    # shellcheck disable=SC2034
+    declare -gar CN_LIBCAMERA_CTRLS_ARRAY
 }
 
-
 cn_init_libcamera_controls() {
-    cn_set_libcamera_controls
+    if [[ "${CN_LIBCAMERA_AVAIL}" = "1" ]]; then
+        cn_set_libcamera_controls
+    fi
 
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "log_libcamera_controls:\n###########\n"
