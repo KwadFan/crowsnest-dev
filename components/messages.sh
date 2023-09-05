@@ -153,7 +153,10 @@ cn_libcamera_dev_msg() {
 
 cn_libcamera_dev_info_msg() {
     cn_log_msg " "
-    cn_log_msg "here!"
+    cn_log_msg "Libcamera device information:"
+    for x in "${CN_LIBCAMERA_OUTPUT_ARRAY[@]:2}"; do
+        cn_log_msg "${x}"
+    done
 }
 
 cn_supported_formats_msg() {
