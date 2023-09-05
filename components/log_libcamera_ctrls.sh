@@ -26,7 +26,16 @@ ctrls = picam.camera_controls
 
 for key, value in ctrls.items():
         min, max, default = value
-        print(f"{key}:\t\tmin={min} max={max} default={default}\n")
+        if type(min) is int:
+            ctrl_type = "int"
+        elif type(min) is float:
+            ctrl_type = "float"
+        elif type(min) is bool:
+            ctrl_type = "bool"
+        else:
+            ctrl_type="not known"
+
+        print(f"{key} ({ctrl_type}) :\t\tmin={min} max={max} default={default}\n")
 
 EOL
 }
