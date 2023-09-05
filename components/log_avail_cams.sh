@@ -54,8 +54,11 @@ cn_log_libcamera_dev() {
     if [[ "${CN_LIBCAMERA_AVAIL}" = "1" ]] \
     && [[ "${CN_LIBCAMERA_DEV_PATH}" != "null" ]]; then
         cn_libcamera_dev_msg
+
         cn_dev_video_path_msg "${CN_LIBCAMERA_DEV_PATH}"
+
         cn_libcamera_dev_info_msg
+
         cn_libcamera_dev_ctrls_msg
     fi
 }

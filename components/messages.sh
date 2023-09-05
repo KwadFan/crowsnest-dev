@@ -162,6 +162,7 @@ cn_libcamera_dev_info_msg() {
 
 cn_libcamera_dev_ctrls_msg() {
     cn_log_msg "Supported Controls:"
+    cn_log_msg " "
     for x in "${CN_LIBCAMERA_CTRLS_ARRAY[@]}"; do
         cn_log_msg "    ${x}"
     done
