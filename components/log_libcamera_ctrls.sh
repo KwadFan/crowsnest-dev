@@ -34,7 +34,9 @@ EOL
 cn_set_libcamera_controls() {
     if [[ "${CN_LIBCAMERA_AVAIL}" = "1" ]]; then
         while read -r line; do
-            CN_LIBCAMERA_CTRLS_ARRAY+=("${line}")
+            if [[ -n "${line}" ]]; then
+                CN_LIBCAMERA_CTRLS_ARRAY+=("${line}")
+            fi
         done < <(cn_get_libcamera_controls 2> /dev/null)
         # shellcheck disable=SC2034
         declare -ar CN_LIBCAMERA_CTRLS_ARRAY
