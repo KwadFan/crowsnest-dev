@@ -26,18 +26,50 @@ cn_deep_config_check_mode() {
 
         cn_log_check_mode_failed_msg "${!mode_sect}"
 
-        cn_stopped_msg
-
-        exit 1
+        cn_check_failed
     fi
 }
 
+cn_deep_config_check_port() {
+    local port
+    port="CN_CAM_${1}_PORT"
+    if [[ "${!port}" =~ [0-9] ]] \
+    && [[ "${!port}" -gt "0" ]] \
+    && [[ "${!port}" -le "65535" ]]; then
+        cn_log_check_state_msg "port" "${!port}" "0"
+    else
+        cn_log_check_state_msg "port" "${!port}" "1"
+    fi
+}
+
+cn_deep_config_check_device() {
+    true
+}
+
+cn_deep_config_check_resolution() {
+    true
+}
+
+cn_deep_config_check_max_fps() {
+    true
+}
+
+cn_deep_config_check_rtsp() {
+    true
+}
+
+cn_check_failed() {
+    cn_stopped_msg
+
+    exit 1
+}
+
 cn_init_deep_config_check() {
+    cn_log_sect_header "Configuration Check"
+    cn_log_info_msg "This will check your cam sections for possible errors ..."
+    cn_log_msg " "
 
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
-        cn_log_sect_header "Configuration Check"
-        cn_log_info_msg "This will check your configration file for possible errors ..."
-        cn_log_msg " "
         cn_log_sect_header "Cam section: cam ${cam}"
 
         cn_deep_config_check_mode "${cam}"
