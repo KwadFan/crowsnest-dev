@@ -285,7 +285,7 @@ cn_log_check_mode_failed_msg() {
     cn_log_info_msg "Please use one of the following modes ..."
 
     for x in "${CN_AVAIL_BACKENDS[@]}"; do
-        cn_log_info_msg "    ${x}"
+        cn_log_info_msg "    mode: ${x}"
     done
 
     cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_MODE_CFG}."
