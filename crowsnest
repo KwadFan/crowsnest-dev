@@ -16,9 +16,6 @@
 # Exit upon Errors
 set -Ee
 
-# Deep Debug
-#set -x
-
 CN_WORKDIR_PATH="$(dirname "$(readlink -f "${0}")")"
 declare -g -r CN_WORKDIR_PATH
 
@@ -123,9 +120,7 @@ main() {
 
     cn_init_v4l2ctl
 
-    if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
-        cn_init_deep_config_check
-    fi
+    cn_init_deep_config_check
 
     cn_init_streams
 

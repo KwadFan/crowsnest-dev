@@ -21,7 +21,10 @@ set -Ee
 cn_init_deep_config_check() {
 
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
-        cn_log_msg "Hello ${cam}"
+        cn_log_sect_header "Configuration Check"
+        cn_log_info_msg "This will check your configration file for possible errors ..."
+        cn_log_msg " "
+        cn_log_sect_header "Cam section: cam ${cam}"
     done
 
     # if [[ "${CN_DEV_MSG}" = "1" ]]; then
