@@ -29,6 +29,7 @@ cn_deep_config_check_mode() {
             cn_log_msg "${x}"
         done
         cn_log_msg " "
+        exit 1
     fi
 }
 
