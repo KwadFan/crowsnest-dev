@@ -27,8 +27,10 @@ cn_deep_config_check_mode() {
         cn_log_info_msg "Please use one of the following modes ..."
 
         for x in "${CN_AVAIL_BACKENDS[@]}"; do
-            cn_log_msg "${x}"
+            cn_log_info_msg "    ${x}"
         done
+
+        cn_log_info_msg "For details please visit https://crowsnest.mainsail.xyz/configuration/cam-section#mode"
 
         cn_log_msg " "
 
