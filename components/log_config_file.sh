@@ -19,6 +19,7 @@ set -Ee
 cn_print_cfg() {
     local cfg
     cn_log_sect_header "Configfile: '${CN_CONFIG_FILE}'"
+    cn_log_msg "This section is only shown, if 'log_level: debug' is set!"
     # put a little whitespace here
     cn_log_msg " "
     mapfile -t cfg < <(sed '/^#.*/d;/./,$!d' "${CN_CONFIG_FILE}" | cut -d'#' -f1)
