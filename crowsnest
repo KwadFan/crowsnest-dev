@@ -104,9 +104,6 @@ main() {
         cn_print_cfg
     fi
 
-    if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
-        cn_init_deep_config_check
-    fi
 
     cn_init_check_backends
 
@@ -125,6 +122,10 @@ main() {
     cn_init_print_devices
 
     cn_init_v4l2ctl
+
+    if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
+        cn_init_deep_config_check
+    fi
 
     cn_init_streams
 
