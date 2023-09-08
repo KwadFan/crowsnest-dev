@@ -20,7 +20,7 @@ set -Ee
 
 cn_init_deep_config_check() {
 
-    for cam in "${CONFIGURED_CAMS[@]}"; do
+    for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         cn_log_msg "Hello ${cam}"
     done
 
