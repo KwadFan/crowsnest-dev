@@ -16,7 +16,18 @@
 # Exit upon Errors
 set -Ee
 
-
+cn_deep_config_check_mode() {
+    local mode_sect
+    mode_sect="CN_CAM_${1}_MODE"
+    if [[ ! "${CN_AVAIL_BACKENDS[*]}" =~ "${!mode_sect}" ]]; then
+        cn_log_error_msg "You set '${!mode_sect}'! This is not a valid mode!"
+        cn_log_info_msg "Please use one of the following modes ..."
+        for x in "${CN_AVAIL_BACKENDS[@]}"; do
+            cn_log_msg "${x}"
+        done
+        cn_log_msg " "
+    fi
+}
 
 cn_init_deep_config_check() {
 
@@ -25,6 +36,9 @@ cn_init_deep_config_check() {
         cn_log_info_msg "This will check your configration file for possible errors ..."
         cn_log_msg " "
         cn_log_sect_header "Cam section: cam ${cam}"
+
+        cn_deep_config_check_mode "${cam}"
+
     done
 
     # if [[ "${CN_DEV_MSG}" = "1" ]]; then
