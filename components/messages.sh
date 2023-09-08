@@ -22,6 +22,10 @@ declare -gr CN_DOCS_BASE_URL
 CN_DOCS_LOG_LEVEL="/configuration/crowsnest-section#log_level"
 declare -gr CN_DOCS_LOG_LEVEL
 
+CN_DOCS_MODE_CFG="/configuration/cam-section#mode"
+declare -gr CN_DOCS_MODE_CFG
+
+
 CN_DOCS_CAM_SECTION="/configuration/cam-section"
 declare -gr CN_DOCS_CAM_SECTION
 
@@ -264,6 +268,28 @@ cn_v4l2ctl_allowed_range_msg() {
 cn_v4l2ctl_ctrl_not_supported_msg() {
     cn_log_err_msg "V4L2 Control '${1}' is not supported! Setup skipped ..."
     # put some whitespace here
+    cn_log_msg " "
+}
+
+cn_log_check_state_msg() {
+    if [[ "${3}" = "0" ]]; then
+        cn_log_msg "CHECK: ${1} is set to '${2}' ... [PASSED]"
+    fi
+    if [[ "${3}" = "1" ]]; then
+        cn_log_msg "CHECK: ${1} is set to '${2}' ... [FAILED]"
+    fi
+}
+
+cn_log_check_mode_failed_msg() {
+    cn_log_err_msg "You set 'mode: ${1}', invalid entry!"
+    cn_log_info_msg "Please use one of the following modes ..."
+
+    for x in "${CN_AVAIL_BACKENDS[@]}"; do
+        cn_log_info_msg "    ${x}"
+    done
+
+    cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_MODE_CFG}."
+
     cn_log_msg " "
 }
 

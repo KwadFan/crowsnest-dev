@@ -20,19 +20,11 @@ cn_deep_config_check_mode() {
     local mode_sect
     mode_sect="CN_CAM_${1}_MODE"
     if [[ "${CN_AVAIL_BACKENDS[*]}" =~ ${!mode_sect} ]]; then
-        cn_log_msg "CHECK: Mode is set to '${!mode_sect}' ... [PASSED]"
+        cn_log_check_state_msg "Mode" "${!mode_sect}" "0"
     else
-        cn_log_msg "CHECK: Mode is set to ${!mode_sect} ... [FAILED]"
-        cn_log_err_msg "You set '${!mode_sect}'! This is not a valid mode!"
-        cn_log_info_msg "Please use one of the following modes ..."
+        cn_log_check_state_msg "Mode" "${!mode_sect}" "1"
 
-        for x in "${CN_AVAIL_BACKENDS[@]}"; do
-            cn_log_info_msg "    ${x}"
-        done
-
-        cn_log_info_msg "For details please visit https://crowsnest.mainsail.xyz/configuration/cam-section#mode"
-
-        cn_log_msg " "
+        cn_log_check_mode_failed_msg "${!mode_sect}"
 
         cn_stopped_msg
 
