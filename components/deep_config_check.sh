@@ -20,7 +20,7 @@ cn_deep_config_check_mode() {
     local mode_sect
     mode_sect="CN_CAM_${1}_MODE"
     if [[ "${CN_AVAIL_BACKENDS[*]}" =~ ${!mode_sect} ]]; then
-        cn_log_msg "CHECK: Mode is set to ${!mode_sect} ... [PASSED]"
+        cn_log_msg "CHECK: Mode is set to '${!mode_sect}' ... [PASSED]"
     else
         cn_log_msg "CHECK: Mode is set to ${!mode_sect} ... [FAILED]"
         cn_log_error_msg "You set '${!mode_sect}'! This is not a valid mode!"
@@ -41,6 +41,8 @@ cn_init_deep_config_check() {
         cn_log_sect_header "Cam section: cam ${cam}"
 
         cn_deep_config_check_mode "${cam}"
+
+        cn_log_msg " "
 
     done
 
