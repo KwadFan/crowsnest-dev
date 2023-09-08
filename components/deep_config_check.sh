@@ -19,7 +19,10 @@ set -Ee
 cn_deep_config_check_mode() {
     local mode_sect
     mode_sect="CN_CAM_${1}_MODE"
-    if [[ ! "${CN_AVAIL_BACKENDS[*]}" =~ "${!mode_sect}" ]]; then
+    if [[ "${CN_AVAIL_BACKENDS[*]}" =~ ${!mode_sect} ]]; then
+        cn_log_msg "CHECK: Mode is set to ${!mode_sect} ... [PASSED]"
+    else
+        cn_log_msg "CHECK: Mode is set to ${!mode_sect} ... [FAILED]"
         cn_log_error_msg "You set '${!mode_sect}'! This is not a valid mode!"
         cn_log_info_msg "Please use one of the following modes ..."
         for x in "${CN_AVAIL_BACKENDS[@]}"; do
