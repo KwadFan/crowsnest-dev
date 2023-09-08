@@ -26,7 +26,7 @@ cn_deep_config_check_mode() {
 
         cn_log_check_mode_failed_msg "${!mode_sect}"
 
-        cn_check_failed
+        cn_deep_config_check_failed
     fi
 }
 
@@ -39,6 +39,8 @@ cn_deep_config_check_port() {
         cn_log_check_state_msg "port" "${!port}" "0"
     else
         cn_log_check_state_msg "port" "${!port}" "1"
+
+        cn_deep_config_check_failed
     fi
 }
 
@@ -58,7 +60,7 @@ cn_deep_config_check_rtsp() {
     true
 }
 
-cn_check_failed() {
+cn_deep_config_check_failed() {
     cn_stopped_msg
 
     exit 1
@@ -73,6 +75,14 @@ cn_init_deep_config_check() {
         cn_log_sect_header "Cam section: cam ${cam}"
 
         cn_deep_config_check_mode "${cam}"
+
+        cn_deep_config_check_port "${cam}"
+
+        # cn_deep_config_check_device "${cam}"
+
+        # cn_deep_config_check_max_fps "${cam}"
+
+        # cn_deep_config_check_resolution "${cam}"
 
         cn_log_msg " "
 
