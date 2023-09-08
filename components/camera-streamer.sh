@@ -103,16 +103,3 @@ cn_cstreamer_loop() {
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: camera-streamer.sh\n"
 fi
-
-
-#     # v4l2 option handling
-#     v4l2ctl="$(get_param "cam ${cam_sec}" v4l2ctl)"
-#     if [ -n "${v4l2ctl}" ]; then
-#         IFS="," read -ra opt < <(echo "${v4l2ctl}" | tr -d " "); unset IFS
-#         log_msg "V4L2 Control: Handling done by camera-streamer ..."
-#         log_msg "V4L2 Control: Trying to set: ${v4l2ctl}"
-#         # loop through options
-#         for param in "${opt[@]}"; do
-#             start_param+=( --camera-options="${param}" )
-#         done
-#     fi
