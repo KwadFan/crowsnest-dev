@@ -267,35 +267,6 @@ cn_v4l2ctl_ctrl_not_supported_msg() {
     cn_log_msg " "
 }
 
-# below marked as deprecated!
-# function deprecated_msg_1 {
-#     cn_log_msg "Parameter 'streamer' is deprecated!"
-#     cn_log_msg "Please use mode: [ mjpg | multi ]"
-#     cn_log_msg "ERROR: Please update your crowsnest.conf! Stopped."
-# }
-
-# function unknown_mode_msg {
-#     cn_log_msg "WARN: Unknown Mode configured!"
-#     cn_log_msg "WARN: Using 'mode: mjpg' as fallback!"
-# }
-
-# ## v4l2_control lib
-# function detected_broken_dev_msg {
-#     cn_log_msg "WARN: Detected 'brokenfocus' device."
-#     cn_log_msg "INFO: Trying to set to configured Value."
-# }
-
-# # call debug_focus_val_msg <value>
-# # ex.: debug_focus_val_msg focus_absolute=30
-# function debug_focus_val_msg {
-#     cn_log_msg "DEBUG: Value is now: ${1}"
-# }
-
-# ## blockyfix
-# function blockyfix_msg_1 {
-#     cn_log_msg "INFO: Blockyfix: Setting video_bitrate_mode to constant."
-# }
-
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: messages.sh\n"
 fi

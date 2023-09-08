@@ -76,6 +76,11 @@ cn_log_sect_header() {
     cn_log_msg "-------- ${1} --------"
 }
 
+cn_log_debug_sect_header() {
+    cn_log_msg "DEBUG: -------- ${1} --------"
+}
+
+
 #call '| log_output "<prefix>"'
 cn_log_output() {
     while read -r line; do

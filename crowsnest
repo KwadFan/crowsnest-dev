@@ -100,7 +100,7 @@ main() {
 
     cn_init_check_deps
 
-    if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
+    if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
         cn_print_cfg
     fi
 
