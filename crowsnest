@@ -104,6 +104,10 @@ main() {
         cn_print_cfg
     fi
 
+    if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
+        cn_init_deep_config_check
+    fi
+
     cn_init_check_backends
 
     if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
