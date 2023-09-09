@@ -92,7 +92,7 @@ cn_deep_config_check_failed() {
 
 cn_init_deep_config_check() {
     cn_log_sect_header "Configuration Check"
-    cn_log_info_msg "This will check your cam sections for possible errors ..."
+    cn_log_info_msg "Checking configured cam section(s) for possible errors ..."
     cn_log_msg " "
 
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
