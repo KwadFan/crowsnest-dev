@@ -94,7 +94,7 @@ cn_init_deep_config_check() {
 
         cn_deep_config_check_port "${cam}"
 
-        # cn_deep_config_check_device "${cam}"
+        cn_deep_config_check_device "${cam}"
 
         # cn_deep_config_check_max_fps "${cam}"
 
