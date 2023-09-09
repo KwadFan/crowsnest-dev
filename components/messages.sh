@@ -275,10 +275,10 @@ cn_v4l2ctl_ctrl_not_supported_msg() {
 
 cn_log_check_state_msg() {
     if [[ "${3}" = "0" ]]; then
-        cn_log_msg "CHECK: ${1} is set to '${2}' ... [PASSED]"
+        cn_log_msg "CHECK: Parameter '${1}' is set to '${2}' ... [PASSED]"
     fi
     if [[ "${3}" = "1" ]]; then
-        cn_log_msg "CHECK: ${1} is set to '${2}' ... [FAILED]"
+        cn_log_msg "CHECK: Parameter '${1}' is set to '${2}' ... [FAILED]"
     fi
 }
 
@@ -305,6 +305,9 @@ cn_log_check_port_failed_msg() {
     cn_log_msg " "
 }
 
+cn_log_check_dev_path_msg() {
+    cn_log_check_state_msg "device" "${1}" "0"
+}
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: messages.sh\n"
