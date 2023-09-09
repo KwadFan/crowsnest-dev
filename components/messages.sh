@@ -314,7 +314,7 @@ cn_log_check_port_failed_msg() {
 cn_log_check_dev_path_msg() {
     cn_log_check_state_msg "device" "${1}" "2"
 
-    cn_log_msg "CHECK (WARN): Using '${1}' leads to unaexpected behaviour!"
+    cn_log_msg "CHECK (WARN): Using '${1}' may lead to unexpected behaviour(s)!"
 
     cn_log_msg "CHECK (WARN): Please use '/dev/v4l/by-id' or '/dev/v4l/by-path' instead!"
 
