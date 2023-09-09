@@ -92,7 +92,7 @@ cn_deep_config_check_resolution() {
 cn_deep_config_check_max_fps() {
     local max_fps
     max_fps="CN_CAM_${1}_MAX_FPS"
-    if [[ "${!max_fps}" = "^[0-9]+$" ]]; then
+    if [[ "${!max_fps}" = ^[0-9]+$ ]]; then
 
         cn_log_check_state_msg "max_fps" "${!max_fps}" "0"
 
