@@ -61,7 +61,7 @@ cn_deep_config_check_device() {
 
     elif [[ "${CN_UVC_VALID_DEVICES[*]}" =~ ${!device} ]]; then
 
-        cn_log_check_state_msg "device" "${port}" "0"
+        cn_log_check_state_msg "device" "${!device}" "0"
 
         cn_log_msg "CHECK: Path '${!device}' is a valid device!"
 
