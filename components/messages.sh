@@ -280,6 +280,9 @@ cn_log_check_state_msg() {
     if [[ "${3}" = "1" ]]; then
         cn_log_msg "CHECK: Parameter '${1}' is set to '${2}' ... [FAILED]"
     fi
+    if [[ "${3}" = "2" ]]; then
+        cn_log_msg "CHECK: Parameter '${1}' is set to '${2}' ... [WARN]"
+    fi
 }
 
 cn_log_check_mode_failed_msg() {
@@ -306,7 +309,7 @@ cn_log_check_port_failed_msg() {
 }
 
 cn_log_check_dev_path_msg() {
-    cn_log_check_state_msg "device" "${1}" "0"
+    cn_log_check_state_msg "device" "${1}" "2"
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
