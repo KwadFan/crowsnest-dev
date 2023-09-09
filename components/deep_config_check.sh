@@ -77,7 +77,7 @@ cn_deep_config_check_device() {
         fi
 
     else
-        cn_log_msg "not valid entry..."
+        cn_log_check_state_msg "device" "${!device}" "1"
 
         cn_deep_config_check_failed
     fi
