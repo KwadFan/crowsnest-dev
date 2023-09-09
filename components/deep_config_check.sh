@@ -137,7 +137,7 @@ cn_init_deep_config_check() {
 
         # cn_deep_config_check_resolution "${cam}"
 
-        # cn_deep_config_check_max_fps "${cam}"
+        cn_deep_config_check_max_fps "${cam}"
 
 
         cn_log_msg " "
