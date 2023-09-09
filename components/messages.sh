@@ -310,6 +310,20 @@ cn_log_check_port_failed_msg() {
 
 cn_log_check_dev_path_msg() {
     cn_log_check_state_msg "device" "${1}" "2"
+
+    cn_log_warn_msg "Using '${1}' leads to unaexpected behaviour!"
+
+    cn_log_warn_msg "Please use '/dev/v4l/by-id' or '/dev/v4l/by-path' instead!"
+
+    cn_log_warn_msg "Valid device path(s):"
+
+    for x in "${CN_UVC_VALID_DEVICES[@]}"; do
+        if [[ "${x}" =~ "/dev/v4l" ]]; then
+            cn_log_warn_msg "    ${x}"
+        fi
+    done
+
+    cn_log_msg " "
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
