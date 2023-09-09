@@ -97,12 +97,16 @@ cn_init_deep_config_check() {
 
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         cn_log_sect_header "Cam section: cam ${cam}"
+        cn_log_msg " "
 
         cn_deep_config_check_mode "${cam}"
+        cn_log_msg " "
 
         cn_deep_config_check_port "${cam}"
+        cn_log_msg " "
 
         cn_deep_config_check_device "${cam}"
+        cn_log_msg " "
 
         # cn_deep_config_check_max_fps "${cam}"
 
