@@ -63,7 +63,18 @@ cn_deep_config_check_device() {
 
         cn_log_check_state_msg "device" "${!device}" "0"
 
-        cn_log_msg "CHECK: Path '${!device}' is a valid device!"
+    elif [[ "${!device}" =~ "/base/soc" ]]; then
+        if [[ "${!device}" = "${CN_LIBCAMERA_DEV_PATH}" ]]; then
+
+            cn_log_check_state_msg "device" "${!device}" "0"
+
+        else
+
+            cn_log_check_state_msg "device" "${!device}" "1"
+
+            cn_deep_config_check_failed
+
+        fi
 
     else
         cn_log_msg "not valid entry..."
