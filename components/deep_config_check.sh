@@ -51,12 +51,20 @@ cn_deep_config_check_device() {
     device="CN_CAM_${1}_DEVICE"
     if [[ "${!device}" =~ /dev/video[0-9] ]] \
     && [[ "${CN_LEGACY_DEV_PATH}" = "${!device}" ]]; then
+
         cn_log_msg "legacy cam ..."
+
     elif [[ "${!device}" =~ /dev/video[0-9] ]] \
     && [[ "${CN_UVC_VALID_DEVICES[*]}" =~ ${!device} ]]; then
+
         cn_log_check_dev_path_msg "${!device}"
+
     elif [[ "${CN_UVC_VALID_DEVICES[*]}" =~ ${!device} ]]; then
-        cn_log_msg "passed ..."
+
+        cn_log_check_state_msg "device" "${port}" "0"
+
+        cn_log_msg "CHECK: Path '${!device}' is a valid device!"
+
     else
         cn_log_msg "not valid entry..."
 
