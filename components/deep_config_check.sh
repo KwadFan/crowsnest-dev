@@ -100,7 +100,7 @@ cn_deep_config_check_max_fps() {
 
         cn_log_check_state_msg "max_fps" "${!max_fps}" "1"
 
-        cn_log_check_max_fps_msg "${!max_fps}"
+        cn_log_check_max_fps_msg
 
         cn_deep_config_check_failed
 

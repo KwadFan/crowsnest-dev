@@ -348,7 +348,7 @@ cn_check_raspicam_faq_msg() {
 
 cn_log_check_max_fps_msg() {
 
-    cn_log_err_msg "Parameter 'max_fps' is set to '${1}', only integers are allowed!"
+    cn_log_err_msg "For parameter 'max_fps' only integers are allowed!"
 
     cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_MAX_FPS_CFG}."
 
