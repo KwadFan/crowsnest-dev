@@ -25,6 +25,8 @@ declare -gr CN_DOCS_LOG_LEVEL
 CN_DOCS_MODE_CFG="/configuration/cam-section#mode"
 declare -gr CN_DOCS_MODE_CFG
 
+CN_DOCS_PORT_CFG="/configuration/cam-section#port"
+declare -gr CN_DOCS_PORT_CFG
 
 CN_DOCS_CAM_SECTION="/configuration/cam-section"
 declare -gr CN_DOCS_CAM_SECTION
@@ -292,6 +294,17 @@ cn_log_check_mode_failed_msg() {
 
     cn_log_msg " "
 }
+
+cn_log_check_port_failed_msg() {
+    cn_log_err_msg "You set 'port: ${1}', invalid entry!"
+
+    cn_log_info_msg "Please use only integers in range of 1 - 65535 !"
+
+    cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_PORT_CFG}."
+
+    cn_log_msg " "
+}
+
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: messages.sh\n"

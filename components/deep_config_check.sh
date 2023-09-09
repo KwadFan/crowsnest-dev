@@ -40,6 +40,8 @@ cn_deep_config_check_port() {
     else
         cn_log_check_state_msg "port" "${!port}" "1"
 
+        cn_log_check_port_failed_msg "${!port}"
+
         cn_deep_config_check_failed
     fi
 }
