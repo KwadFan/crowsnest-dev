@@ -47,7 +47,21 @@ cn_deep_config_check_port() {
 }
 
 cn_deep_config_check_device() {
-    true
+    local device
+    device="CN_CAM_${1}_DEVICE"
+    if [[ "${!device}" =~ /dev/video[0-9] ]] \
+    && [[ "${CN_LEGACY_DEV_PATH}" = "${!device}" ]]; then
+        cn_log_msg "legacy cam ..."
+    elif [[ "${!device}" =~ /dev/video[0-9] ]] \
+    && [[ "${CN_UVC_VALID_DEVICES[*]}" =~ ${!device} ]]; then
+        cn_log_warn_msg "Use better option"
+    elif [[ "${CN_UVC_VALID_DEVICES[*]}" =~ ${!device} ]]; then
+        cn_log_msg "passed ..."
+    else
+        cn_log_msg "not valid entry..."
+
+        cn_deep_config_check_failed
+    fi
 }
 
 cn_deep_config_check_resolution() {
