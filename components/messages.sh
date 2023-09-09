@@ -28,6 +28,9 @@ declare -gr CN_DOCS_MODE_CFG
 CN_DOCS_PORT_CFG="/configuration/cam-section#port"
 declare -gr CN_DOCS_PORT_CFG
 
+CN_DOCS_DEV_CFG="/configuration/cam-section#device"
+declare -gr CN_DOCS_DEV_CFG
+
 CN_DOCS_CAM_SECTION="/configuration/cam-section"
 declare -gr CN_DOCS_CAM_SECTION
 
@@ -322,6 +325,8 @@ cn_log_check_dev_path_msg() {
             cn_log_msg "CHECK (WARN):     ${x}"
         fi
     done
+
+    cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_DEV_CFG}."
 
     cn_log_msg " "
 }
