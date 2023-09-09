@@ -90,7 +90,21 @@ cn_deep_config_check_resolution() {
 }
 
 cn_deep_config_check_max_fps() {
-    true
+    local max_fps
+    max_fps="CN_CAM_${1}_MAX_FPS"
+    if [[ "${!max_fps}" = "[0-9]" ]]; then
+
+        cn_log_check_state_msg "max_fps" "${!max_fps}" "0"
+
+    else
+
+        cn_log_check_state_msg "max_fps" "${!max_fps}" "1"
+
+        cn_log_check_max_fps_msg "${!max_fps}"
+
+        cn_deep_config_check_failed
+
+    fi
 }
 
 cn_deep_config_check_rtsp() {
@@ -121,9 +135,10 @@ cn_init_deep_config_check() {
         cn_deep_config_check_device "${cam}"
         cn_log_msg " "
 
+        # cn_deep_config_check_resolution "${cam}"
+
         # cn_deep_config_check_max_fps "${cam}"
 
-        # cn_deep_config_check_resolution "${cam}"
 
         cn_log_msg " "
 

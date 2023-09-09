@@ -31,6 +31,9 @@ declare -gr CN_DOCS_PORT_CFG
 CN_DOCS_DEV_CFG="/configuration/cam-section#device"
 declare -gr CN_DOCS_DEV_CFG
 
+CN_DOCS_MAX_FPS_CFG="/configuration/cam-section#max_fps"
+declare -gr CN_DOCS_MAX_FPS_CFG
+
 CN_DOCS_FAQ_RASPICAM="/faq/how-to-setup-a-raspicam"
 declare -gr CN_DOCS_FAQ_RASPICAM
 
@@ -339,6 +342,15 @@ cn_check_raspicam_faq_msg() {
     cn_log_err_msg "Path '${1}' is not a valid device path!"
 
     cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_FAQ_RASPICAM}."
+
+    cn_log_msg " "
+}
+
+cn_log_check_max_fps_msg() {
+
+    cn_log_err_msg "Parameter 'max_fps' is set to '${1}', only integers are allowed!"
+
+    cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_MAX_FPS_CFG}."
 
     cn_log_msg " "
 }
