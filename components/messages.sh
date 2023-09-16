@@ -175,7 +175,6 @@ cn_libcamera_dev_info_msg() {
     for x in "${CN_LIBCAMERA_OUTPUT_ARRAY[@]:2}"; do
         cn_log_msg "${x}"
     done
-    cn_log_msg " "
 }
 
 cn_libcamera_dev_ctrls_msg() {
