@@ -38,7 +38,7 @@ fi
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
     printf "This is a component of crowsnest!\n"
-    printf "Components are not meant to be executed, therefor...\n"
+    printf "Components are not meant to be executed, therefore...\n"
     printf "DO NOT EXECUTE %s ON ITS OWN!\n" "$(basename "${0}")"
     exit 1
 fi
