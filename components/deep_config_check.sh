@@ -67,7 +67,6 @@ cn_deep_config_check_device() {
             cn_check_raspicam_faq_msg "${!device}"
             cn_deep_config_check_failed
         fi
-
     else
         cn_log_check_state_msg "device" "${!device}" "1"
         cn_deep_config_check_failed
