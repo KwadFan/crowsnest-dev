@@ -105,7 +105,7 @@ cn_deep_config_check_rtsp() {
 }
 
 cn_deep_config_check_self_no_proxy() {
-    if [[ ! "${CN_SELF_NO_PROXY+x}" ]]; then
+    if [[ -n "${CN_SELF_NO_PROXY}" ]]; then
         cn_self_no_proxy_deprecated_msg
     fi
 }
