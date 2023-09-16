@@ -368,6 +368,13 @@ cn_log_check_max_fps_msg() {
     cn_log_msg " "
 }
 
+cn_self_no_proxy_deprecated_msg() {
+    cn_log_warn_msg "Parameter 'no_proxy' in section '[crowsnest]' is deprecated!"
+    cn_log_warn_msg "Please move 'no_proxy' to the desired cam section!"
+    cn_log_msg " "
+}
+
+
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: messages.sh\n"
 fi
