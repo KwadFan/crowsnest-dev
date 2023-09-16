@@ -142,5 +142,5 @@ if [[ "${CN_DEV_MSG}" = "1" ]]; then
 fi
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
-    cn_log_msg "DO NO EXECUTE ${0} ON ITS OWN!"
+    printf "DO NO EXECUTE %s ON ITS OWN!" "${0}"
 fi
