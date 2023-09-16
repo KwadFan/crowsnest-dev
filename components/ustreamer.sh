@@ -23,7 +23,7 @@ cn_exec_ustreamer() {
     custom_flags="CN_${cam}_CUSTOM_FLAGS"
     device="CN_${cam}_DEVICE"
     fps="CN_${cam}_MAX_FPS"
-    no_proxy="CN_${cam}_CUSTOM_FLAGS"
+    no_proxy="CN_${cam}_NO_PROXY"
     port="CN_${cam}_PORT"
     res="CN_${cam}_RESOLUTION"
     start_param=( --tcp-nodelay --no-log-colors )
