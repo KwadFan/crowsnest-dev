@@ -142,5 +142,7 @@ if [[ "${CN_DEV_MSG}" = "1" ]]; then
 fi
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
+    printf "This is a component of crowsnest!\n"
+    printf "Components are not meant to be executed, therefor...\n"
     printf "DO NO EXECUTE %s ON ITS OWN!\n" "$(basename "${0}")"
 fi
