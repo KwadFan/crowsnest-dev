@@ -18,7 +18,7 @@ set -Ee
 
 cn_check_config_exist() {
     if [[ ! -f "${CN_CONFIG_FILE}" ]]; then
-        cn_config_file_missing
+        cn_config_file_missing_msg
         exit 1
     fi
 }

@@ -78,7 +78,7 @@ cn_stopped_msg() {
     cn_log_msg "Goodbye..."
 }
 
-cn_config_file_missing() {
+cn_config_file_missing_msg() {
     cn_log_err_msg "Given configuration file '${CROWSNEST_CONFIG_FILE}' doesn't exist!"
     cn_stopped_msg
 }
