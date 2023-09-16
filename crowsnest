@@ -77,94 +77,60 @@ cn_shutdown() {
 }
 
 main() {
-    ### Import components
+    ### Crowsnest initial setup and checks
     cn_import_components
 
-    ### Init traps
     trap 'cn_shutdown' 1 2 3 15
     trap 'cn_err_exit $? $LINENO' ERR
 
-    ### Parse Args
-    ## file: arg_parser.sh
     cn_init_argparse "${@}"
 
-    ### Init config parsing, put config to Vars
-    ## file: config_parser.sh
     cn_init_config_parse
 
-    ### Init logging, get/set loglevel
-    ## file: logging.sh
     cn_init_logging
 
-    ### Print Host informations
-    ## file: host_info.sh
     if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
         cn_init_print_host
     fi
 
-    ### Check for Crownest dependencies
-    ## file: self_dep_check.sh
     cn_init_check_deps
 
-    ### Log /boot/config.txt if exist
-    ## file: log_config_file.sh
     if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
         cn_print_cfg
     fi
 
-    ### Get/Set available Backends
-    ## file: log_avail_backend.sh
     cn_init_check_backends
 
-    ### Get backend versions, and write to log depending on Loglevel
-    ## file: log_backend_version.sh
     if [[ "${CN_SELF_LOG_LEVEL}" != "quiet" ]]; then
         cn_init_backend_version
     fi
 
-    # ---------------------- Beginn hardware handling ----------------------
-    ### Get/Set available USB Cams
-    ## file: hw_uvc_dev.sh
+    # ---- Beginn hardware handling ----
+    ### Get/Set available Cams
     cn_init_hw_uvc
-
-    ### Get available 'libcamera' devices and binary paths
-    ## file: hw_libcamera.sh
+    cn_init_hw_legacy
     cn_init_hw_libcamera
 
     ### Get available 'libcamera' controls
-    ## file: log_libcamera_ctrls.sh
     cn_init_libcamera_controls
 
-    ### Get available 'legacy' devices and binary paths
-    ## file: hw_legacy_cam.sh
-    cn_init_hw_legacy
-
-    ## file: log_avail_cams.sh
     cn_init_print_devices
-    # ---------------------- End hardware handling ----------------------
+    # ---- End hardware handling ----
 
-    # ---------------------- Beginn configuration handling ----------------------
+    # ---- Beginn configuration handling ----
     ### Inspect given config file for errors.
-    ## file: deep_config_check.sh
     cn_init_deep_config_check
 
     ### Setup camera due v4l2-ctl or camera-streamer (depends on used 'mode')
-    ## file: v4l2_control.sh
     cn_init_v4l2ctl
+    # ---- End configuration handling ----
 
-    # ---------------------- End configuration handling ----------------------
-
-    ### Init configured streamer/devices
-    ## file: init_streams.sh
     cn_init_streams
 
-    ### Prepare watchdog runtime
-    ## file: watchdog.sh
     cn_init_watchdog
 
     while true; do
         ### Jail Crowsnest into loop using watchdog
-        ## file: watchdog.sh
         cn_watchdog_runtime
     done
 }
