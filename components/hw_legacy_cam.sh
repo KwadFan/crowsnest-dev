@@ -17,10 +17,11 @@
 set -Ee
 
 cn_get_vcgencmd_path() {
-    local vcgencmd_bin_path
-    vcgencmd_bin_path="$(command -v vcgencmd 2> /dev/null)"
-    [[ -n "${vcgencmd_bin_path:-null}" ]] \
-    && CN_LEGACY_VCGENCMD_BIN="${vcgencmd_bin_path}"
+    if command -v vcgencmd; then
+        CN_LEGACY_VCGENCMD_BIN="$(command -v vcgencmd)"
+    else
+        CN_LEGACY_VCGENCMD_BIN="null"
+    fi
     # shellcheck disable=SC2034
     declare -gr CN_LEGACY_VCGENCMD_BIN
 }
