@@ -87,7 +87,7 @@ cn_deep_config_check_device() {
 
 cn_deep_config_check_resolution() {
     local resolution
-    resolution="CN_CAM_${1}_resolution"
+    resolution="CN_CAM_${1}_RESOLUTION"
     if [[ "${!resolution}" =~ ^[0-9]*[0-9]+x+[0-9]*[0-9]$ ]]; then
 
         cn_log_check_state_msg "resolution" "${!resolution}" "0"
