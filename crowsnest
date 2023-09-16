@@ -31,11 +31,9 @@ cn_import_components() {
     local -a components
     local files
     files="$(find "${CN_WORKDIR_PATH}/components/" -type f -not -name '.*' -printf '%f\n')"
-
     for file in ${files}; do
         components+=("${file}")
     done
-
     for component in "${components[@]}"; do
         # shellcheck disable=SC1090
         . "${CN_WORKDIR_PATH}"/components/"${component}"
@@ -79,7 +77,6 @@ cn_shutdown() {
 }
 
 main() {
-
     cn_import_components
 
     trap 'cn_shutdown' 1 2 3 15
@@ -100,7 +97,6 @@ main() {
     if [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
         cn_print_cfg
     fi
-
 
     cn_init_check_backends
 
@@ -129,7 +125,6 @@ main() {
     while true; do
         cn_watchdog_runtime
     done
-
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
