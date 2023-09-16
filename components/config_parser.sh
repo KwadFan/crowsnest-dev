@@ -98,7 +98,7 @@ cn_set_cam_config() {
 
 cn_set_no_proxy_default() {
     if [[ -z "${CN_SELF_NO_PROXY}" ]]; then
-        CN_SELF_NO_PROXY="false"
+        CN_SELF_NO_PROXY=""
     fi
     declare -gr CN_SELF_NO_PROXY
 }

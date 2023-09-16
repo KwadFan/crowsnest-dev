@@ -17,17 +17,18 @@
 set -Ee
 
 cn_exec_ustreamer() {
-    local cam custom_flags device port res
+    local cam custom_flags device no_proxy port res
     local -a start_param
     cam="CAM_${1}"
     custom_flags="CN_${cam}_CUSTOM_FLAGS"
     device="CN_${cam}_DEVICE"
     fps="CN_${cam}_MAX_FPS"
+    no_proxy="CN_${cam}_CUSTOM_FLAGS"
     port="CN_${cam}_PORT"
     res="CN_${cam}_RESOLUTION"
     start_param=( --tcp-nodelay --no-log-colors )
 
-    if [[ "${CN_SELF_NO_PROXY}" = "true" ]]; then
+    if [[ "${!no_proxy}" = "true" ]]; then
         start_param+=( --host 0.0.0.0 -p "${!port}" )
     else
         start_param+=( --host 127.0.0.1 -p "${!port}" )
