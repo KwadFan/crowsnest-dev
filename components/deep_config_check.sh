@@ -125,14 +125,21 @@ cn_init_deep_config_check() {
     cn_log_sect_header "Configuration Check"
     cn_log_info_msg "Checking configured cam section(s) for possible errors ..."
     cn_log_msg " "
+
     cn_deep_config_check_deprecated_params
+
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         cn_log_sect_header "Cam section: cam ${cam}"
         cn_log_msg " "
+
         cn_deep_config_check_mode "${cam}"
+
         cn_deep_config_check_port "${cam}"
+
         cn_deep_config_check_device "${cam}"
+
         cn_deep_config_check_resolution "${cam}"
+
         cn_deep_config_check_max_fps "${cam}"
     done
     # if [[ "${CN_DEV_MSG}" = "1" ]]; then

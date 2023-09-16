@@ -161,7 +161,6 @@ cn_init_v4l2ctl() {
     cn_v4l2ctl_main
     #cn_v4l2ctl_external_iterator "1"
 
-
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "v4l2_control:\n###########\n"
         printf "Configured cams: %s\n" "${CN_CONFIGURED_CAMS[@]}"
