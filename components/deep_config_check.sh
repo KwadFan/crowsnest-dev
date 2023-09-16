@@ -110,6 +110,7 @@ cn_deep_config_check_self_no_proxy() {
     fi
 }
 
+# Going this way, because maybe it will be extended at some point
 cn_deep_config_check_deprecated_params() {
     cn_deep_config_check_self_no_proxy
 }
