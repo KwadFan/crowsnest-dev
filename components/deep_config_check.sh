@@ -86,7 +86,21 @@ cn_deep_config_check_device() {
 }
 
 cn_deep_config_check_resolution() {
-    true
+    local resolution
+    resolution="CN_CAM_${1}_resolution"
+    if [[ "${!resolution}" =~ ^[0-9]*[0-9]+x+[0-9]*[0-9]$ ]]; then
+
+        cn_log_check_state_msg "resolution" "${!resolution}" "0"
+
+    else
+
+        cn_log_check_state_msg "resolution" "${!resolution}" "1"
+
+        cn_log_check_resolution_msg
+
+        cn_deep_config_check_failed
+
+    fi
 }
 
 cn_deep_config_check_max_fps() {
