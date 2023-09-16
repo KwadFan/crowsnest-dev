@@ -20,13 +20,19 @@ cn_deep_config_check_mode() {
     local mode_sect
     mode_sect="CN_CAM_${1}_MODE"
     if [[ "${CN_AVAIL_BACKENDS[*]}" =~ ${!mode_sect} ]]; then
+
         cn_log_check_state_msg "mode" "${!mode_sect}" "0"
+
+        cn_log_msg " "
+
     else
+
         cn_log_check_state_msg "mode" "${!mode_sect}" "1"
 
         cn_log_check_mode_failed_msg "${!mode_sect}"
 
         cn_deep_config_check_failed
+
     fi
 }
 
