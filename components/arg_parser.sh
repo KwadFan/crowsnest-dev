@@ -48,18 +48,18 @@ cn_init_argparse() {
         fi
     done
 
-if [[ -z "${CN_CONFIG_FILE}" ]]; then
-    cn_missing_cfg_path
-    exit 1
-fi
+    if [[ -z "${CN_CONFIG_FILE}" ]]; then
+        cn_missing_cfg_path
+        exit 1
+    fi
 
-if [[ -n "${CN_CONFIG_FILE}" ]]; then
-    declare -g -r CN_CONFIG_FILE
-fi
+    if [[ -n "${CN_CONFIG_FILE}" ]]; then
+        declare -g -r CN_CONFIG_FILE
+    fi
 
-if [[ "${CN_DEV_MSG}" = "1" ]]; then
-    printf "Given config path: %s\n" "${CN_CONFIG_FILE}"
-fi
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        printf "Given config path: %s\n" "${CN_CONFIG_FILE}"
+    fi
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
