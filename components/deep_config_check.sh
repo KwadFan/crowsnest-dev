@@ -142,5 +142,5 @@ if [[ "${CN_DEV_MSG}" = "1" ]]; then
 fi
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
-    printf "DO NO EXECUTE %s ON ITS OWN!" "$(basename "${0}")"
+    printf "DO NO EXECUTE %s ON ITS OWN!\n" "$(basename "${0}")"
 fi
