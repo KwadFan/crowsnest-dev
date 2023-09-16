@@ -373,6 +373,10 @@ cn_self_no_proxy_deprecated_msg() {
     cn_log_msg " "
 }
 
+cn_check_valid_legacy_raspicam_msg() {
+    cn_log_msg "This is a valid legacy raspicam device path ... [PASSED]"
+    cn_log_msg " "
+}
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: messages.sh\n"
