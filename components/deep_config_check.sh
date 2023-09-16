@@ -36,7 +36,11 @@ cn_deep_config_check_port() {
     if [[ "${!port}" =~ [0-9] ]] \
     && [[ "${!port}" -gt "0" ]] \
     && [[ "${!port}" -le "65535" ]]; then
+
         cn_log_check_state_msg "port" "${!port}" "0"
+
+        cn_log_msg " "
+
     else
         cn_log_check_state_msg "port" "${!port}" "1"
 
@@ -63,10 +67,14 @@ cn_deep_config_check_device() {
 
         cn_log_check_state_msg "device" "${!device}" "0"
 
+        cn_log_msg " "
+
     elif [[ "${!device}" =~ "/base/soc" ]]; then
         if [[ "${!device}" = "${CN_LIBCAMERA_DEV_PATH}" ]]; then
 
             cn_log_check_state_msg "device" "${!device}" "0"
+
+            cn_log_msg " "
 
         else
 
@@ -92,6 +100,8 @@ cn_deep_config_check_resolution() {
 
         cn_log_check_state_msg "resolution" "${!resolution}" "0"
 
+        cn_log_msg " "
+
     else
 
         cn_log_check_state_msg "resolution" "${!resolution}" "1"
@@ -109,6 +119,8 @@ cn_deep_config_check_max_fps() {
     if [[ "${!max_fps}" =~ ^[0-9]+$ ]]; then
 
         cn_log_check_state_msg "max_fps" "${!max_fps}" "0"
+
+        cn_log_msg " "
 
     else
 
@@ -141,19 +153,14 @@ cn_init_deep_config_check() {
         cn_log_msg " "
 
         cn_deep_config_check_mode "${cam}"
-        cn_log_msg " "
 
         cn_deep_config_check_port "${cam}"
-        cn_log_msg " "
 
         cn_deep_config_check_device "${cam}"
-        cn_log_msg " "
 
         cn_deep_config_check_resolution "${cam}"
 
         cn_deep_config_check_max_fps "${cam}"
-
-        cn_log_msg " "
 
     done
 
