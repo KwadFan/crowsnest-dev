@@ -351,7 +351,7 @@ cn_check_raspicam_faq_msg() {
 cn_log_check_resolution_msg() {
     cn_log_err_msg "Formatting of parameter 'resolution' does not match!"
 
-    cn_log_err_msg "Allowed format should be (INT)x(INT) (e.g. 1920x1080)"
+    cn_log_err_msg "Allowed format is (INT)x(INT) (e.g. 1920x1080)"
 
     cn_log_info_msg "Please ensure to use a lowercase 'x' as divider!"
 
