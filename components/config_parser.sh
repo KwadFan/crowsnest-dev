@@ -124,3 +124,10 @@ cn_init_config_parse() {
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: config_parser.sh\n"
 fi
+
+if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
+    printf "This is a component of crowsnest!\n"
+    printf "Components are not meant to be executed, therefor...\n"
+    printf "DO NOT EXECUTE %s ON ITS OWN!\n" "$(basename "${0}")"
+    exit 1
+fi
