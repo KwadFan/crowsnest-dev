@@ -111,6 +111,7 @@ cn_deep_config_check_self_no_proxy() {
 }
 
 # Going this way, because maybe it will be extended at some point
+# gaining some more control, but dont overlength init func
 cn_deep_config_check_deprecated_params() {
     cn_deep_config_check_self_no_proxy
 }
