@@ -87,7 +87,6 @@ cn_exec_camera_streamer() {
     fi
 
     cn_cstreamer_loop "${1}" "${start_param[*]}" &
-
 }
 
 cn_cstreamer_loop() {
