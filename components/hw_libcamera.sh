@@ -22,10 +22,8 @@ CN_LIBCAMERA_OUTPUT_ARRAY=()
 CN_LIBCAMERA_DEV_PATH=""
 
 cn_check_libcamera_hello_bin() {
-    local bin
-    bin="$(command -v libcamera-hello)"
-    if [[ -x "${bin}" ]]; then
-        CN_LIBCAMERA_BIN_PATH="${bin}"
+    if command -v libcamera-hello; then
+        CN_LIBCAMERA_BIN_PATH="$(command -v libcamera-hello)"
     else
         CN_LIBCAMERA_BIN_PATH="null"
     fi
