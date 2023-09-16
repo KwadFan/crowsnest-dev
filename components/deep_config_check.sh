@@ -49,9 +49,9 @@ cn_deep_config_check_device() {
     device="CN_CAM_${1}_DEVICE"
     if [[ "${!device}" =~ /dev/video[0-9] ]] \
     && [[ "${CN_LEGACY_DEV_PATH}" = "${!device}" ]]; then
-
-        cn_log_msg "legacy cam ..."
-
+        cn_log_check_state_msg "device" "${CN_LEGACY_DEV_PATH}" "0"
+        cn_log_msg "This is a valid legacy raspicam device path ... [PASSED]"
+        cn_log_msg " "
     elif [[ "${!device}" =~ /dev/video[0-9] ]] \
     && [[ "${CN_UVC_VALID_DEVICES[*]}" =~ ${!device} ]]; then
         cn_log_check_dev_path_msg "${!device}"
