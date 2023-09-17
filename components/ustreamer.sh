@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -Ee
+set -e
 
 cn_exec_ustreamer() {
     local cam custom_flags device no_proxy port res
