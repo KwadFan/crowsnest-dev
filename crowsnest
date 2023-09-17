@@ -62,7 +62,7 @@ cn_err_exit() {
         done
     fi
     cn_stopped_msg
-    exit 1
+    return 1
 }
 
 cn_shutdown() {
