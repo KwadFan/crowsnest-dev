@@ -301,72 +301,52 @@ cn_log_check_state_msg() {
 
 cn_log_check_mode_failed_msg() {
     cn_log_err_msg "You set 'mode: ${1}', invalid entry!"
-    cn_log_info_msg "Please use one of the following modes ..."
-
+    cn_log_err_msg "Please use one of the following modes ..."
     for x in "${CN_AVAIL_BACKENDS[@]}"; do
-        cn_log_info_msg "    mode: ${x}"
+        cn_log_err_msg "    mode: ${x}"
     done
-
-    cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_MODE_CFG}."
-
+    cn_log_err_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_MODE_CFG}."
     cn_log_msg " "
 }
 
 cn_log_check_port_failed_msg() {
     cn_log_err_msg "You set 'port: ${1}', invalid entry!"
-
-    cn_log_info_msg "Please use only integers in range of 1 - 65535 !"
-
-    cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_PORT_CFG}."
-
+    cn_log_err_msg "Please use only integers in range of 1 - 65535 !"
+    cn_log_err_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_PORT_CFG}."
     cn_log_msg " "
 }
 
 cn_log_check_dev_path_msg() {
     cn_log_check_state_msg "device" "${1}" "2"
-
     cn_log_msg "CHECK (WARN): Using '${1}' may lead to unexpected behaviour(s)!"
-
     cn_log_msg "CHECK (WARN): Please use '/dev/v4l/by-id' or '/dev/v4l/by-path' instead!"
-
     cn_log_msg "CHECK (WARN): Valid device path(s):"
-
     for x in "${CN_UVC_VALID_DEVICES[@]}"; do
         if [[ "${x}" =~ "/dev/v4l" ]]; then
             cn_log_msg "CHECK (WARN):     ${x}"
         fi
     done
-
-    cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_DEV_CFG}."
-
+    cn_log_msg "CHECK (WARN): For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_DEV_CFG}."
     cn_log_msg " "
 }
 
 cn_check_raspicam_faq_msg() {
     cn_log_err_msg "Path '${1}' is not a valid device path!"
-
-    cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_FAQ_RASPICAM}."
-
+    cn_log_err_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_FAQ_RASPICAM}."
     cn_log_msg " "
 }
 
 cn_log_check_resolution_msg() {
     cn_log_err_msg "Formatting of parameter 'resolution' does not match!"
-
     cn_log_err_msg "Allowed format is (INT)x(INT) (e.g. 1920x1080)"
-
-    cn_log_info_msg "Please ensure to use a lowercase 'x' as divider!"
-
-    cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_RESOLUTION_CFG}."
-
+    cn_log_err_msg "Please ensure to use a lowercase 'x' as divider!"
+    cn_log_err_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_RESOLUTION_CFG}."
     cn_log_msg " "
 }
 
 cn_log_check_max_fps_msg() {
     cn_log_err_msg "For parameter 'max_fps' only integers are allowed!"
-
-    cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_MAX_FPS_CFG}."
-
+    cn_log_err_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_MAX_FPS_CFG}."
     cn_log_msg " "
 }
 
@@ -382,8 +362,8 @@ cn_check_valid_legacy_raspicam_msg() {
 }
 
 cn_log_check_rtsp_warn_msg() {
-    cn_log_msg "CHECK (WARN): RTSP functionality is not provided with  'mode: ${1}' !"
-    cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_ENABLE_RTSP}."
+    cn_log_msg "CHECK (WARN): RTSP functionality is not provided with 'mode: ${1}' !"
+    cn_log_msg "CHECK (WARN): For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_ENABLE_RTSP}."
     cn_log_msg " "
 }
 
