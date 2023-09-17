@@ -72,7 +72,7 @@ cn_exec_ustreamer() {
 }
 
 cn_ustreamer_loop() {
-    test_fail || return 1
+    test_fail
     echo "${2}" \
     | xargs "${CN_USTREAMER_BIN_PATH}" 2>&1 \
     | cn_log_output "ustreamer [cam ${1}]"
