@@ -62,7 +62,7 @@ cn_err_exit() {
         fi
         cn_stopped_msg
     fi
-    kill "$(ps -s $$ -o pid=)"
+    kill $(ps -s $$ -o pid=)
     exit 1
 }
 
