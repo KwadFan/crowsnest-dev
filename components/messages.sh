@@ -282,7 +282,6 @@ cn_v4l2ctl_allowed_range_msg() {
 cn_v4l2ctl_ctrl_not_supported_msg() {
     cn_log_err_msg "V4L2 Control '${1}' is not supported! Setup skipped ..."
     # put some whitespace here
-    cn_log_msg " "
 }
 
 cn_log_check_state_msg() {
@@ -323,7 +322,6 @@ cn_log_check_dev_path_msg() {
         fi
     done
     cn_log_msg "CHECK (WARN): For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_DEV_CFG}."
-    cn_log_msg " "
 }
 
 cn_check_raspicam_faq_msg() {
@@ -337,30 +335,25 @@ cn_log_check_resolution_msg() {
     cn_log_err_msg "Allowed format is (INT)x(INT) (e.g. 1920x1080)"
     cn_log_err_msg "Please ensure to use a lowercase 'x' as divider!"
     cn_log_err_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_RESOLUTION_CFG}."
-    cn_log_msg " "
 }
 
 cn_log_check_max_fps_msg() {
     cn_log_err_msg "For parameter 'max_fps' only integers are allowed!"
     cn_log_err_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_MAX_FPS_CFG}."
-    cn_log_msg " "
 }
 
 cn_self_no_proxy_deprecated_msg() {
     cn_log_warn_msg "Parameter 'no_proxy' in section '[crowsnest]' is deprecated!"
     cn_log_warn_msg "Please move 'no_proxy' to the desired cam section!"
-    cn_log_msg " "
 }
 
 cn_check_valid_legacy_raspicam_msg() {
     cn_log_msg "This is a valid legacy raspicam device path ... [PASSED]"
-    cn_log_msg " "
 }
 
 cn_log_check_rtsp_warn_msg() {
     cn_log_msg "CHECK (WARN): RTSP functionality is not provided with 'mode: ${1}' !"
     cn_log_msg "CHECK (WARN): For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_ENABLE_RTSP}."
-    cn_log_msg " "
 }
 
 

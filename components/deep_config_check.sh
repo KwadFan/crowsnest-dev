@@ -148,6 +148,8 @@ cn_init_deep_config_check() {
 
         cn_deep_config_check_rtsp "${cam}"
     done
+
+    cn_log_msg " "
     # if [[ "${CN_DEV_MSG}" = "1" ]]; then
     #     printf "deep_config_check:\n###########\n"
     #     declare -p | grep "CN_"
