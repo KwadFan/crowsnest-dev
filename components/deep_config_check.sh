@@ -103,11 +103,10 @@ cn_deep_config_check_rtsp() {
     mode="CN_CAM_${1}_MODE"
     rtsp="CN_CAM_${1}_ENABLE_RTSP"
     # rtsp_port="CN_CAM_${1}_RTSP_PORT"
-    if [[ "${!mode}" = "ustreamer" ]] \
+    if [[ "${!mode}" != "camera-streamer" ]] \
     && [[ -n "${!rtsp}" ]]; then
-        # cn_log_check_rtsp_msg
         cn_log_check_state_msg "enable_rtsp" "${!rtsp}" "2"
-        cn_log_warn_msg "RTSP cannot be used with '${!mode}' ... [IGNORED]"
+        cn_log_check_rtsp_warn_msg "${!mode}"
         return
     fi
     if [[ "${!mode}" = "camera-streamer" ]] \
