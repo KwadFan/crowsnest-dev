@@ -378,6 +378,28 @@ cn_check_valid_legacy_raspicam_msg() {
     cn_log_msg " "
 }
 
+cn_log_check_rtsp_msg() {
+    # cn_log_check_state_msg "device" "${1}" "2"
+
+    # cn_log_msg "CHECK (WARN): Using '${1}' may lead to unexpected behaviour(s)!"
+
+    # cn_log_msg "CHECK (WARN): Please use '/dev/v4l/by-id' or '/dev/v4l/by-path' instead!"
+
+    # cn_log_msg "CHECK (WARN): Valid device path(s):"
+
+    # for x in "${CN_UVC_VALID_DEVICES[@]}"; do
+    #     if [[ "${x}" =~ "/dev/v4l" ]]; then
+    #         cn_log_msg "CHECK (WARN):     ${x}"
+    #     fi
+    # done
+
+    # cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_DEV_CFG}."
+
+    # cn_log_msg " "
+    true
+}
+
+
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
     printf "Sourced component: messages.sh\n"
 fi

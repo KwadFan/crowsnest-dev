@@ -99,7 +99,20 @@ cn_deep_config_check_max_fps() {
 }
 
 cn_deep_config_check_rtsp() {
-    true
+    local mode rtsp #rtsp_port
+    mode="CN_CAM_${1}_MODE"
+    rtsp="CN_CAM_${1}_ENABLE_RTSP"
+    # rtsp_port="CN_CAM_${1}_RTSP_PORT"
+    if [[ "${!mode}" = "ustreamer" ]] \
+    && [[ "${!rtsp}" = "true" ]]; then
+        # cn_log_check_rtsp_msg
+        cn_log_warn_msg "RTSP cannot be used with '${!mode}' ... [IGNORED]"
+        return
+    fi
+    if [[ "${!mode}" = "camera-streamer" ]] \
+    && [[ "${!rtsp}" = "true" ]]; then
+        cn_log_check_rtsp_port_msg
+    fi
 }
 
 cn_deep_config_check_self_no_proxy() {
