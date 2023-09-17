@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -e
+set -Ee
 
 cn_exec_camera_streamer() {
     local cam custom_flags device port res

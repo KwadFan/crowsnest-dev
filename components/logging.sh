@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -e
+set -Ee
 
 cn_log_prefix() {
     printf "%s" "$(date +'[%D %T]')"

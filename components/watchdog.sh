@@ -17,7 +17,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -e
+set -Ee
 
 ### msg's
 cn_watchdog_next_check_msg() {

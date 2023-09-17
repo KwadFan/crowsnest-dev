@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -e
+set -Ee
 
 CN_DOCS_BASE_URL="https://crowsnest.mainsail.xyz"
 declare -gr CN_DOCS_BASE_URL

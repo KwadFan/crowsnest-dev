@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -e
+set -Ee
 
 CN_CUR_USABLE_BACKENDS=(ustreamer camera-streamer)
 declare -gar CN_CUR_USABLE_BACKENDS
