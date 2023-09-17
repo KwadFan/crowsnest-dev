@@ -31,6 +31,12 @@ cn_print_cfg() {
     done
     # put a little whitespace here
     cn_log_msg " "
+
+    if [[ "${CN_DEV_MSG}" = "1" ]]; then
+        printf "log_config_file.sh:\n###########\n"
+        printf "cfg array: %s" "${cfg[*]}"
+        printf "###########\n"
+    fi
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
