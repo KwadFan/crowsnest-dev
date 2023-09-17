@@ -52,7 +52,7 @@ cn_err_exit() {
         cn_log_msg "==> Error occured in file: ${file_trace} -> ${func_trace}"
         cn_log_sect_header "ERROR DUMP"
         cn_log_msg "..."
-        grep -B 2 -A 5 -n "${func_trace}" "${FILE}" | cn_log_err_dump
+        grep -C 6 -n "${func_trace}" "${FILE}" | cn_log_err_dump
         cn_log_msg "..."
         cn_log_sect_header "END DEBUG TRACE"
     fi
