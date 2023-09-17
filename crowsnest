@@ -62,7 +62,6 @@ cn_err_exit() {
             kill "${job_id}"
         done
     fi
-    exit 1
 }
 
 cn_shutdown() {
@@ -82,7 +81,7 @@ main() {
     cn_import_components
 
     trap 'cn_shutdown' 1 2 3 15
-    trap 'cn_err_exit $? $LINENO' ERR
+    trap 'cn_err_exit $? $LINENO; exit 1' ERR
 
     cn_init_argparse "${@}"
 
