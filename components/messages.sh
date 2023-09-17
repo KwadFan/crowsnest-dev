@@ -223,8 +223,6 @@ cn_streamer_param_msg() {
 
 cn_v4l2ctl_cam_sect_header_msg() {
     cn_log_sect_header "V4L2 Control: [cam ${1}]"
-    # put some whitespace here
-    cn_log_msg " "
 }
 
 cn_v4l2ctl_cam_config_msg() {
