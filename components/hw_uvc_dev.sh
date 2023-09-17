@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -Ee
+set -e
 
 CN_UVC_BY_ID=()
 CN_UVC_BY_PATH=()

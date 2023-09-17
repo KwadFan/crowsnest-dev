@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -Ee
+set -e
 
 
 cn_get_supported_formats() {

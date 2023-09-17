@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -Ee
+set -e
 
 cn_deep_config_check_mode() {
     local mode_sect

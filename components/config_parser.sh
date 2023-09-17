@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -Ee
+set -e
 
 cn_check_config_exist() {
     if [[ ! -f "${CN_CONFIG_FILE}" ]]; then

@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -Ee
+set -e
 
 cn_print_host() {
     local disksize generic_model memtotal sbc_model

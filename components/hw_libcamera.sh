@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -Ee
+set -e
 
 CN_LIBCAMERA_BIN_PATH=""
 CN_LIBCAMERA_AVAIL="0"
