@@ -35,7 +35,7 @@ cn_print_cfg() {
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "log_config_file.sh:\n###########\n"
         for x in "${cfg[@]}"; do
-            printf "cfg array: %s" "${x}"
+            printf "cfg array: %s\n" "${x}"
         done
         printf "###########\n"
     fi
