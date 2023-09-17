@@ -14,7 +14,7 @@
 # shellcheck enable=require-variable-braces
 
 # Exit upon Errors
-set -e
+set -Ee
 
 CN_WORKDIR_PATH="$(dirname "$(readlink -f "${0}")")"
 declare -gr CN_WORKDIR_PATH
@@ -55,14 +55,15 @@ cn_err_exit() {
         grep -B 2 -A 5 -n "${func_trace}" "${FILE}" | cn_log_err_dump
         cn_log_msg "..."
         cn_log_sect_header "END DEBUG TRACE"
-        exit 1
     fi
     if [ -n "$(jobs -pr)" ]; then
         jobs -pr | while IFS='' read -r job_id; do
             kill "${job_id}"
         done
     fi
-    return 1
+    if [[ -n "${line_trace}" ]]; then
+        exit 1
+    fi
 }
 
 cn_shutdown() {
@@ -82,7 +83,7 @@ main() {
     cn_import_components
 
     trap 'cn_shutdown' 1 2 3 15
-    trap 'cn_err_exit $? $LINENO; exit 1' ERR
+    trap 'cn_err_exit $? $LINENO' ERR
 
     cn_init_argparse "${@}"
 
