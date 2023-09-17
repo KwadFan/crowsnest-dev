@@ -382,7 +382,7 @@ cn_check_valid_legacy_raspicam_msg() {
 }
 
 cn_log_check_rtsp_warn_msg() {
-    cn_log_msg "CHECK (WARN): RTSP functionality is not provided with '${1}' !"
+    cn_log_msg "CHECK (WARN): RTSP functionality is not provided with  'mode: ${1}' !"
     cn_log_info_msg "For details please see ${CN_DOCS_BASE_URL}${CN_DOCS_ENABLE_RTSP}."
     cn_log_msg " "
 }
