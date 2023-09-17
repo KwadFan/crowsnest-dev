@@ -68,9 +68,7 @@ cn_exec_ustreamer() {
 
     cn_streamer_param_msg "ustreamer" "${1}" "${start_param[*]}"
 
-    if ! cn_ustreamer_loop "${1}" "${start_param[*]}"; then
-        cn_streamer_failed_msg "ustreamer" "${1}"
-    fi
+    cn_ustreamer_loop "${1}" "${start_param[*]}" &
 }
 
 cn_ustreamer_loop() {
