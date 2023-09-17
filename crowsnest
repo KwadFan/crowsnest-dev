@@ -55,14 +55,13 @@ cn_err_exit() {
         grep -B 2 -A 5 -n "${func_trace}" "${FILE}" | cn_log_err_dump
         cn_log_msg "..."
         cn_log_sect_header "END DEBUG TRACE"
-        cn_halt
     fi
     if [ -n "$(jobs -pr)" ]; then
         jobs -pr | while IFS='' read -r job_id; do
             kill "${job_id}"
         done
     fi
-    cn_halt
+    foo
 }
 
 cn_shutdown() {
@@ -74,7 +73,6 @@ cn_shutdown() {
         done
     fi
     cn_log_msg "Goodbye..."
-    exit 0
 }
 
 cn_halt() {
