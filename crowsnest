@@ -62,6 +62,7 @@ cn_err_exit() {
             kill "${job_id}"
         done
     fi
+    return 1
 }
 
 cn_shutdown() {
