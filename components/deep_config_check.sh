@@ -132,6 +132,7 @@ cn_init_deep_config_check() {
     cn_log_msg " "
 
     cn_deep_config_check_deprecated_params
+    cn_log_msg " "
 
     for cam in "${CN_CONFIGURED_CAMS[@]}"; do
         cn_log_sect_header "Cam section: cam ${cam}"
