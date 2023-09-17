@@ -61,7 +61,7 @@ cn_err_exit() {
             kill "${job_id}"
         done
     fi
-    if [[ "${1}" != "0" ]]; then
+    if [[ "${1}" = "1" ]]; then
         exit 1
     fi
 }
