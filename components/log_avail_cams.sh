@@ -124,8 +124,6 @@ cn_init_print_devices() {
         printf "###########\n"
     fi
     cn_log_sect_header "Detect available devices:"
-    # put some whitespace here
-    cn_log_msg " "
 
     cn_print_dev_count
 
