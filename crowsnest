@@ -61,6 +61,7 @@ cn_err_exit() {
             kill "${job_id}"
         done
     fi
+    cn_stopped_msg
     exit 1
 }
 
