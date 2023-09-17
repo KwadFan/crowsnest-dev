@@ -152,6 +152,8 @@ cn_init_deep_config_check() {
         cn_deep_config_check_resolution "${cam}"
 
         cn_deep_config_check_max_fps "${cam}"
+
+        cn_deep_config_check_rtsp "${cam}"
     done
     # if [[ "${CN_DEV_MSG}" = "1" ]]; then
     #     printf "deep_config_check:\n###########\n"
