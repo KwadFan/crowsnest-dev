@@ -229,8 +229,6 @@ cn_v4l2ctl_cam_sect_header_msg() {
 
 cn_v4l2ctl_cam_config_msg() {
     cn_log_msg "Configuration: ${1}"
-    # put some whitespace here
-    cn_log_msg " "
 }
 
 cn_v4l2ctl_cs_skip_msg() {
