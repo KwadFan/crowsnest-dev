@@ -46,7 +46,7 @@ cn_err_exit() {
     func_trace="${FUNC}"
     file_trace="$(basename "${FILE}")"
     line_trace="${LINE}"
-    if [ "${1}" != "0" ] && [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
+    if [[ "${1}" != "0" ]] && [[ "${CN_SELF_LOG_LEVEL}" = "debug" ]]; then
         cn_log_sect_header "BEGINN DEBUG TRACE"
         cn_log_msg "ERROR: Error ${1} occured on line ${line_trace}"
         cn_log_msg "==> Error occured in file: ${file_trace} -> ${func_trace}"
@@ -61,7 +61,7 @@ cn_err_exit() {
             kill "${job_id}"
         done
     fi
-    if [[ -n "${line_trace}" ]]; then
+    if [[ "${1}" != "0" ]]; then
         exit 1
     fi
 }
