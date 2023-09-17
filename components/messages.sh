@@ -197,8 +197,6 @@ cn_supported_formats_msg() {
 
 cn_supported_ctrls_msg() {
     cn_log_msg "Supported controls:"
-    # put some whitespace here
-    cn_log_msg " "
 }
 
 cn_init_streams_msg_header() {
