@@ -65,14 +65,13 @@ cn_exec_ustreamer() {
         printf "###########\n"
     fi
 
-    test_fail
-
     cn_streamer_param_msg "ustreamer" "${1}" "${start_param[*]}"
 
     cn_ustreamer_loop "${1}" "${start_param[*]}" &
 }
 
 cn_ustreamer_loop() {
+    test_fail
     until echo "${2}" | xargs "${CN_USTREAMER_BIN_PATH}" 2>&1 \
     | cn_log_output "ustreamer [cam ${1}]"; do
         sleep 1
