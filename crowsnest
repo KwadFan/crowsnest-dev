@@ -78,11 +78,11 @@ cn_shutdown() {
     exit 0
 }
 
-# cn_oops() {
-#     cn_log_err_msg "OOOPS, something went wrong! See ${0##}.log for details!"
-#     cn_stopped_msg
-#     exit 1
-# }
+cn_oops() {
+    cn_log_err_msg "OOOPS, something went wrong! See ${0##}.log for details!"
+    cn_stopped_msg
+    exit 1
+}
 
 main() {
     ### Crowsnest initial setup and checks
@@ -90,9 +90,10 @@ main() {
 
     cn_init_argparse "${@}"
 
-    trap 'cn_shutdown' 1 2 3 15
+    #trap 'cn_shutdown' 1 2 3 15
+    trap 'cn_shutdown' INT TERM
     trap 'cn_err_exit $? $LINENO' ERR
-    #trap 'cn_oops' EXIT
+    trap 'cn_oops' EXIT
 
     cn_init_config_parse
 
