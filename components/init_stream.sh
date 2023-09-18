@@ -63,7 +63,7 @@ cn_init_streams() {
             cn_log_msg "Mode for '${cam}' not configured ... Skipped!"
         fi
     done
-    until [[ "${#CN_CONFIGURED_CAMS[@]}" -eq "${instance_count}" ]]; do
+    until [[ ${#CN_CONFIGURED_CAMS[@]} -eq ${instance_count} ]]; do
         if [[ "${CN_DEV_MSG}" = "1" ]]; then
             printf "Instance Count: %d" "${instance_count}"
             printf "Configured Cams Count: %d" "${#CN_CONFIGURED_CAMS[@]}"
