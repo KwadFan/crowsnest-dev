@@ -72,12 +72,13 @@ cn_exec_ustreamer() {
 }
 
 cn_ustreamer_loop() {
-    until echo "${2}" | xargs "${CN_USTREAMER_BIN_PATH}" 2>&1 \
+    while echo "${2}" | xargs "${CN_USTREAMER_BIN_PATH}" 2>&1 \
     | cn_log_output "ustreamer [cam ${1}]"; do
-        sleep 0.1
+        # Should not be seen if running
+        cn_streamer_failed_msg "ustreamer" "${1}"
+        break
     done
-    # Should not be seen if running
-    cn_streamer_failed_msg "ustreamer" "${1}"
+    exit 1
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
