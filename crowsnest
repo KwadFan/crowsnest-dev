@@ -60,7 +60,6 @@ cn_err_exit() {
                 kill "${job_id}"
             done
         fi
-        cn_stopped_msg
     fi
     if [[ "${1}" != "0" ]]; then
         exit 1
