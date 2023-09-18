@@ -50,6 +50,7 @@ cn_init_streams() {
                     cn_exec_ustreamer "${cam}"
                     if [[ "$(cn_get_streamer_running "${mode}")" = "1" ]]; then
                         instance_count=$((instance_count+1))
+                        exit 1
                     fi
                 ;;
                 camera-streamer)
