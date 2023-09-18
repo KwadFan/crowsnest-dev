@@ -75,7 +75,6 @@ cn_shutdown() {
         done
     fi
     cn_log_msg "Goodbye..."
-    exit 0
 }
 
 cn_oops() {
