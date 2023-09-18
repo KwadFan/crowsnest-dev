@@ -24,7 +24,7 @@ cn_get_streamer() {
 }
 
 cn_get_streamer_running() {
-    pgrep -fc "^\/.*${1}*"
+    return "$(("$(pgrep -fc "^\/.*${1}*")"))"
 }
 
 cn_init_streams() {
