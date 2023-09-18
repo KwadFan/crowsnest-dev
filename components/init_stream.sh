@@ -65,7 +65,11 @@ cn_init_streams() {
         fi
     done
     until [[ "${#CN_CONFIGURED_CAMS[@]}" -eq "${instance_count}" ]]; do
-        sleep 0.1
+        if [[ "${CN_DEV_MSG}" = "1" ]]; then
+            printf "Instance Count: %d" "${instance_count}"
+            printf "Configured Cams Count: %d" "${#CN_CONFIGURED_CAMS[@]}"
+        fi
+        sleep 0.5
     done
         cn_log_info_msg "Configured streams initiated ..."
 
