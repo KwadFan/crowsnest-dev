@@ -75,6 +75,7 @@ cn_shutdown() {
             kill "${job_id}"
         done
     fi
+    exit 0
 }
 
 cn_oops() {
