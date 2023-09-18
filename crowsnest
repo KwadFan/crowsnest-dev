@@ -89,8 +89,7 @@ main() {
 
     cn_init_argparse "${@}"
 
-    #trap 'cn_shutdown' 1 2 3 15
-    trap 'cn_shutdown' INT TERM
+    trap 'cn_shutdown' 1 2 3 15
     trap 'cn_err_exit $? $LINENO' ERR
     trap 'cn_oops' EXIT
 
