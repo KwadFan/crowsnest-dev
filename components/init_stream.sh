@@ -30,7 +30,7 @@ cn_get_streamer_running() {
 
 cn_init_streams() {
     local cam mode instance_count
-    instance_count="0"
+    instance_count=0
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "init_stream:\n###########\n"
         declare -p | grep "CN_AVAIL_BACKENDS"
@@ -49,14 +49,14 @@ cn_init_streams() {
                 ustreamer)
                     cn_exec_ustreamer "${cam}"
                     if [[ "$(cn_get_streamer_running "${mode}")" = "1" ]]; then
-                        instance_count=$((instance_count+1))
+                        ((instance_count+1))
                         exit 1
                     fi
                 ;;
                 camera-streamer)
                     cn_exec_camera_streamer "${cam}"
                     if [[ "$(cn_get_streamer_running "${mode}")" = "1" ]]; then
-                        instance_count=$((instance_count+1))
+                        ((instance_count+1))
                     fi
                 ;;
             esac
