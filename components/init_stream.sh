@@ -47,14 +47,13 @@ cn_init_streams() {
             case "${mode}" in
                 ustreamer)
                     cn_exec_ustreamer "${cam}"
-                    if [[ "$(cn_get_streamer_running "${mode}")" = "1" ]]; then
+                    if [[ "$(cn_get_streamer_running "${mode}")" -gt 0 ]]; then
                         ((instance_count+1))
-                        exit 1
                     fi
                 ;;
                 camera-streamer)
                     cn_exec_camera_streamer "${cam}"
-                    if [[ "$(cn_get_streamer_running "${mode}")" = "1" ]]; then
+                    if [[ "$(cn_get_streamer_running "${mode}")" -gt 0 ]]; then
                         ((instance_count+1))
                     fi
                 ;;
