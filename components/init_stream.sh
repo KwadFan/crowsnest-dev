@@ -48,13 +48,13 @@ cn_init_streams() {
                 ustreamer)
                     cn_exec_ustreamer "${cam}"
                     if [[ "$(cn_get_streamer_running "${mode}")" -gt 0 ]]; then
-                        ((instance_count+1))
+                        ((instance_count++))
                     fi
                 ;;
                 camera-streamer)
                     cn_exec_camera_streamer "${cam}"
                     if [[ "$(cn_get_streamer_running "${mode}")" -gt 0 ]]; then
-                        ((instance_count+1))
+                        ((instance_count++))
                     fi
                 ;;
             esac
