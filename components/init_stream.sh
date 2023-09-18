@@ -62,17 +62,17 @@ cn_init_streams() {
             cn_log_msg "Mode for '${cam}' not configured ... Skipped!"
         fi
     done
-    while [[ ${#CN_CONFIGURED_CAMS[@]} -ne ${instance_count} ]]; do
+    if [[ ${#CN_CONFIGURED_CAMS[@]} -ne ${instance_count} ]]; then
         if [[ "${CN_DEV_MSG}" = "1" ]]; then
             printf "init_stream:\n###########\n"
             printf "Instance Count: %d\n" "${instance_count}"
             printf "Configured Cams Count: %d\n" "${#CN_CONFIGURED_CAMS[@]}"
             printf "###########\n"
         fi
-        sleep 2
-    done
+        exit 1
+    else
         cn_log_info_msg "Configured streams initiated ..."
-
+    fi
 }
 
 if [[ "${CN_DEV_MSG}" = "1" ]]; then
