@@ -69,7 +69,7 @@ cn_init_streams() {
             printf "Configured Cams Count: %d\n" "${#CN_CONFIGURED_CAMS[@]}"
             printf "###########\n"
         fi
-        sleep 0.5
+        sleep 2
     done
         cn_log_info_msg "Configured streams initiated ..."
 
