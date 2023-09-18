@@ -133,7 +133,9 @@ main() {
     cn_init_watchdog
 
     ### Jail Crowsnest into loop using watchdog
-    cn_watchdog_runtime
+    while true; do
+        cn_watchdog_runtime
+    done
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
