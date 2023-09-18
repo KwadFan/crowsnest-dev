@@ -64,7 +64,7 @@ cn_init_streams() {
             cn_log_msg "Mode for '${cam}' not configured ... Skipped!"
         fi
     done
-    if [[ "${#CN_CONFIGURED_CAMS[@]}" = "${instance_count}" ]]; then
+    if [[ "${#CN_CONFIGURED_CAMS[@]}" -eq "${instance_count}" ]]; then
         cn_log_info_msg "Configured streams initiated ..."
         # put some whitespace here
         cn_log_msg " "
