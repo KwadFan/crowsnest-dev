@@ -65,6 +65,7 @@ cn_exec_ustreamer() {
         printf "###########\n"
     fi
 
+    test_fail
 
     cn_streamer_param_msg "ustreamer" "${1}" "${start_param[*]}"
 
