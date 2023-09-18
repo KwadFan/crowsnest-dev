@@ -71,6 +71,7 @@ cn_shutdown() {
     cn_log_msg "Shutdown or Killed by User!"
     cn_log_msg "Please come again :)"
     cn_log_msg "Goodbye..."
+    sleep 1
     if [ -n "$(jobs -pr)" ]; then
         jobs -pr | while IFS='' read -r job_id; do
             kill "${job_id}"
