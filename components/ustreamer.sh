@@ -59,8 +59,6 @@ cn_exec_ustreamer() {
         done
     fi
 
-        #start_param+=(--foo)
-
     if [[ "${CN_DEV_MSG}" = "1" ]]; then
         printf "ustreamer:\n###########\n"
         printf "start_param: %s\n" "${start_param[*]}"
@@ -78,7 +76,7 @@ cn_exec_ustreamer() {
 cn_ustreamer_loop() {
     echo "${2}" \
     | xargs "${CN_USTREAMER_BIN_PATH}" 2>&1 \
-    | cn_log_output "ustreamer [cam ${1}]"
+    | cn_log_output "ustreamer [cam ${1}]" &
     # Should not be seen if running
     cn_streamer_failed_msg "ustreamer" "${1}"
 }
