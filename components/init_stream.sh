@@ -46,7 +46,7 @@ cn_init_streams() {
         if [[ -n "${mode}" ]]; then
             cn_streamer_init_msg "${mode}" "${cam}"
             case "${mode}" in
-                ustreamer|mjpg)
+                ustreamer)
                     cn_exec_ustreamer "${cam}"
                     if [[ "$(cn_get_streamer_running "${mode}")" = "1" ]]; then
                         instance_count=$((instance_count+1))
