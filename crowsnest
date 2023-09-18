@@ -80,7 +80,7 @@ cn_shutdown() {
 }
 
 cn_oops() {
-    cn_log_msg "OOOPS, something went wrong! See log for details!"
+    cn_log_err_msg "OOOPS, something went wrong! See log for details!"
     cn_stopped_msg
     exit 1
 }
