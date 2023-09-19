@@ -75,7 +75,6 @@ cn_shutdown() {
             kill "${job_id}"
         done
     fi
-    exit 0
 }
 
 cn_oops() {
@@ -84,14 +83,14 @@ cn_oops() {
     exit 1
 }
 
-    trap 'cn_shutdown' 1 2 3 15
-    trap 'cn_err_exit $? $LINENO' ERR
-
 main() {
     ### Crowsnest initial setup and checks
     cn_import_components
 
     cn_init_argparse "${@}"
+
+    trap 'cn_shutdown' 1 2 3 15
+    trap 'cn_err_exit $? $LINENO' ERR
 
     cn_init_config_parse
 
@@ -141,6 +140,8 @@ main() {
     while true; do
         cn_watchdog_runtime
     done
+
+    exit 0
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
