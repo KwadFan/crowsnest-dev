@@ -83,7 +83,9 @@ cn_oops() {
     exit 1
 }
 
-main() {
+if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
+
+#main() {
     ### Crowsnest initial setup and checks
     cn_import_components
 
@@ -142,8 +144,7 @@ main() {
     done
 
     exit 0
-}
+#}
 
-if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
-    main "${@}"
+    #main "${@}"
 fi
