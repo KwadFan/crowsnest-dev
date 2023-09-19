@@ -57,14 +57,12 @@ cn_err_exit() {
         cn_log_sect_header "END DEBUG TRACE"
     fi
     trap 'cn_oops' EXIT
-        if [ -n "$(jobs -pr)" ]; then
-            jobs -pr | while IFS='' read -r job_id; do
-                kill "${job_id}"
-            done
-        fi
-    if [[ "${1}" != "0" ]]; then
-        exit 1
+    if [ -n "$(jobs -pr)" ]; then
+        jobs -pr | while IFS='' read -r job_id; do
+            kill "${job_id}"
+        done
     fi
+    exit 1
 }
 
 cn_shutdown() {
