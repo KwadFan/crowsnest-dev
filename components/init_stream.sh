@@ -70,6 +70,7 @@ cn_init_streams() {
             printf "Configured Cams Count: %d\n" "${#CN_CONFIGURED_CAMS[@]}"
             printf "###########\n"
         fi
+        trap 'cn_oops' EXIT
         exit 1
     else
         cn_log_info_msg "Configured streams initiated ..."
